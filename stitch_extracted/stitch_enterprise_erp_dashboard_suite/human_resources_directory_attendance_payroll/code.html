@@ -1,0 +1,628 @@
+﻿<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#5c647a", "primary-fixed": "#dde1ff", "on-tertiary-fixed-variant": "#005137", "on-background": "#0b1c30", "primary-container": "#1e40af", "on-primary": "#ffffff", "tertiary-fixed-dim": "#68dba9", "on-error-container": "#93000a", "background": "#f8f9ff", "on-tertiary-container": "#5bcf9e", "inverse-primary": "#b8c4ff", "on-secondary": "#ffffff", "surface-tint": "#3755c3", "on-primary-container": "#a8b8ff", "primary": "#00288e", "tertiary-fixed": "#85f8c4", "surface-container-low": "#eff4ff", "secondary": "#565e74", "on-secondary-fixed-variant": "#3f465c", "on-secondary-fixed": "#131b2e", "on-tertiary-fixed": "#002114", "secondary-fixed": "#dae2fd", "inverse-on-surface": "#eaf1ff", "secondary-fixed-dim": "#bec6e0", "outline-variant": "#c4c5d5", "secondary-container": "#dae2fd", "on-tertiary": "#ffffff", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "on-error": "#ffffff", "surface": "#f8f9ff", "inverse-surface": "#213145", "on-primary-fixed": "#001453", "surface-container-highest": "#d3e4fe", "on-primary-fixed-variant": "#173bab", "outline": "#757684", "surface-dim": "#cbdbf5", "on-surface": "#0b1c30", "surface-container-high": "#dce9ff", "tertiary": "#003d28", "surface-container": "#e5eeff", "error-container": "#ffdad6", "on-surface-variant": "#444653", "surface-bright": "#f8f9ff", "tertiary-container": "#00563a", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b8c4ff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-mobile": "1rem", "space-xxs": "0.125rem", "margin": "1.5rem", "space-lg": "1rem", "space-xl": "1.5rem", "space-sm": "0.5rem", "space-md": "0.75rem", "gutter": "1rem", "gutter-dense": "0.5rem", "space-2xl": "2rem", "space-xs": "0.25rem" }, "fontFamily": { "label-sm": ["Inter"], "headline-lg": ["Inter"], "mono-data": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "label-md": ["Inter"], "headline-sm": ["Inter"], "display-lg": ["Inter"], "body-lg": ["Inter"] }, "fontSize": { "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "mono-data": ["12px", { "lineHeight": "16px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary"><aside class="fixed left-0 top-0 h-screen w-64 bg-inverse-surface text-inverse-on-surface z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="h-14 flex items-center px-space-md gap-space-sm bg-inverse-surface border-b border-outline/20"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-sm font-bold">A</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-surface-container-lowest leading-none">Apex ERP</span><span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">Enterprise Cloud</span></div></div><div class="flex-1 px-space-xs py-space-sm space-y-space-md"><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Finance & Accounting</span><span class="material-symbols-outlined text-[14px]">account_balance</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="invoices" href="#"><span class="material-symbols-outlined text-[16px]">receipt_long</span><span>Invoices</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="financial-reports" href="#"><span class="material-symbols-outlined text-[16px]">analytics</span><span>Financial Reports</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="pl-summary" href="#"><span class="material-symbols-outlined text-[16px]">query_stats</span><span>P&L Summary</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="treasury-cash-flow" href="#"><span class="material-symbols-outlined text-[16px]">payments</span><span>Treasury & Cash Flow</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Inventory & Warehousing</span><span class="material-symbols-outlined text-[14px]">warehouse</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="products-list" href="#"><span class="material-symbols-outlined text-[16px]">inventory_2</span><span>Products List</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="reorder-alerts" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">notification_important</span><span>Reorder Alerts</span></div><span class="px-1.5 py-0.5 rounded-full bg-error text-on-error font-label-sm text-[10px] leading-tight">8</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="stock-movement-log" href="#"><span class="material-symbols-outlined text-[16px]">swap_horiz</span><span>Stock Movement</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Sales & CRM</span><span class="material-symbols-outlined text-[14px]">trending_up</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="customers" href="#"><span class="material-symbols-outlined text-[16px]">group</span><span>Customers</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="sales-orders" href="#"><span class="material-symbols-outlined text-[16px]">shopping_bag</span><span>Sales Orders</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="order-pipeline" href="#"><span class="material-symbols-outlined text-[16px]">view_kanban</span><span>Order Pipeline</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Purchasing & Suppliers</span><span class="material-symbols-outlined text-[14px]">local_shipping</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="suppliers" href="#"><span class="material-symbols-outlined text-[16px]">store</span><span>Suppliers</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="quotations-comparison" href="#"><span class="material-symbols-outlined text-[16px]">compare_arrows</span><span>Quotations Comparison</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="purchase-orders" href="#"><span class="material-symbols-outlined text-[16px]">assignment</span><span>Purchase Orders</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Human Resources</span><span class="material-symbols-outlined text-[14px]">badge</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary font-label-md rounded" data-path="employee-profiles" href="#"><span class="material-symbols-outlined text-[16px]">person</span><span>Employee Profiles</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="attendance" href="#"><span class="material-symbols-outlined text-[16px]">schedule</span><span>Attendance</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="leave-management" href="#"><span class="material-symbols-outlined text-[16px]">event_available</span><span>Leave Management</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="payroll" href="#"><span class="material-symbols-outlined text-[16px]">paid</span><span>Payroll</span></a></nav></div></div><div class="p-space-sm border-t border-outline/20 flex items-center justify-between bg-inverse-surface"><div class="flex items-center gap-space-xs"><span class="inline-block w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary-fixed-dim">US-East Cluster</span></div><span class="font-mono-data text-mono-data text-secondary-fixed-dim">v4.18.2</span></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-container-lowest border-b border-outline-variant/40 z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px] text-primary">domain</span><span class="font-label-md text-label-md text-on-surface font-semibold">Apex Global Corp - NA Branch</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-[18px] text-on-surface-variant">search</span><input class="w-80 h-8 pl-8 pr-12 rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant/60 border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all" placeholder="Search transactions, SKU, suppliers, accounts..." type="text"/><span class="absolute right-space-xs px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono-data text-[10px] border border-outline-variant/40">⌘K</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low border border-outline-variant/30"><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">Operational</span></div><button class="flex items-center gap-space-xs h-8 px-space-sm rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors"><span class="material-symbols-outlined text-[16px]">add</span><span>New</span></button><button class="relative p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span></button><button class="p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">help</span></button><div class="h-5 w-px bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Marcus Sterling</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">VP Operations</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida/ALJJyrAZEYJR_gteHhJTbBmZpiGFkUS--iQzGK-dLPDD2r0Xt0HhkgqMZpmVxIWetS5TTO4zBN-ITL8eur99h-gr2WrB1IkXaAkSY99FRfWuHFGE-4leTBfiLB2eoi3a0qA7_EIEIY90BIiEjfyM3_C51PZc1_dL53Wa3htLHYsfR5Ibus9gRFFA9ZGKKcQUMGI7b8ekkKUcOg5ruO1LgkI6nLtk7y4KNzlXh4dvYUgKYSCH"/></div></div></header><main class="w-full pt-14 px-space-xl bg-background min-h-screen"><div class="flex flex-col w-full pb-space-2xl space-y-space-lg">
+<!-- Executive Control / Action Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pt-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs font-mono-data text-mono-data text-secondary uppercase tracking-wider">
+<span>Global Enterprise</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-semibold">Human Resources</span>
+<span class="text-outline-variant">/</span>
+<span>Workforce Matrix</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-0.5">HR & Workforce Operations</h1>
+</div>
+<div class="flex items-center flex-wrap gap-space-sm">
+<button class="h-8 px-space-md rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">sync</span>
+<span>Biometric Sync</span>
+</button>
+<button class="h-8 px-space-md rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">account_balance_wallet</span>
+<span>Run Payroll Batch</span>
+</button>
+<button class="h-8 px-space-md rounded bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md flex items-center gap-space-xs shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+<span>+ Onboard Employee</span>
+</button>
+</div>
+</div>
+<!-- Metric Overview Strip -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Stat 1: Total Workforce -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Total Workforce</span>
+<div class="flex items-baseline gap-space-sm mt-1">
+<span class="font-display-lg text-display-lg text-on-surface font-bold tracking-tight">142</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Active Roster</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">groups</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-secondary font-body-sm text-body-sm pt-space-xs">
+<span class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+<span>98.6% Retained</span>
+</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">+3 Hired this cycle</span>
+</div>
+</div>
+<!-- Stat 2: Today's Attendance -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Today's Attendance</span>
+<div class="flex items-baseline gap-space-sm mt-1">
+<span class="font-display-lg text-display-lg text-on-surface font-bold tracking-tight">96.4%</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm">Present</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]">how_to_reg</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center gap-space-md text-secondary font-body-sm text-body-sm pt-space-xs">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span><strong>4</strong> on Approved Leave</span>
+</span>
+<span class="flex items-center gap-1 text-error">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span><strong>1</strong> Unexcused Late</span>
+</span>
+</div>
+</div>
+<!-- Stat 3: Upcoming Payroll Cycle -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Upcoming Payroll Cycle</span>
+<div class="flex items-baseline gap-space-sm mt-1">
+<span class="font-display-lg text-display-lg text-on-surface font-bold tracking-tight font-mono-data">$482,150.00</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-secondary font-body-sm text-body-sm pt-space-xs">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">
+          Cutoff in 4 Days
+        </span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">Period: Oct 1 - Oct 31</span>
+</div>
+</div>
+</div>
+<!-- Section 1: Live Attendance & Leave Flow Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Digital Punch Clock & Biometric Sync Status (5 Cols) -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">fingerprint</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Time & Punch Terminal</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-tertiary font-mono-data text-label-sm flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+            Cloud Hardware: Synced 2m ago
+          </span>
+</div>
+<!-- Terminal Display UI -->
+<div class="bg-inverse-surface rounded p-space-lg text-inverse-on-surface flex flex-col items-center justify-center text-center shadow-inner relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-primary-container/20 blur-xl"></div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed-dim mb-1">HQ Central Standard Time (UTC-5)</span>
+<div class="font-mono-data text-[34px] leading-tight font-bold tracking-tight text-surface-container-lowest" id="liveClock">14:32:48 PM</div>
+<div class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1">Thursday, October 24, 2024</div>
+<div class="mt-space-lg w-full flex items-center justify-center gap-space-sm">
+<button class="flex-1 py-2 px-space-md rounded bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors">
+<span class="material-symbols-outlined text-[16px]">login</span>
+<span>Punch In</span>
+</button>
+<button class="flex-1 py-2 px-space-md rounded bg-surface-variant/20 hover:bg-surface-variant/40 text-inverse-on-surface font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors">
+<span class="material-symbols-outlined text-[16px]">coffee</span>
+<span>Meal Break</span>
+</button>
+<button class="flex-1 py-2 px-space-md rounded bg-surface-variant/20 hover:bg-surface-variant/40 text-inverse-on-surface font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors">
+<span class="material-symbols-outlined text-[16px]">logout</span>
+<span>Punch Out</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Punch Log Mini-Feed -->
+<div class="mt-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary block mb-space-xs">Recent Biometric Logs</span>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between text-body-sm p-space-xs rounded bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span class="font-medium text-on-surface">Elena Rostova</span>
+<span class="text-secondary font-mono-data text-label-sm">[EMP-1092]</span>
+</div>
+<span class="font-mono-data text-label-sm text-on-surface-variant">14:30:12 • Terminal #04</span>
+</div>
+<div class="flex items-center justify-between text-body-sm p-space-xs rounded bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span class="font-medium text-on-surface">Kareem Al-Mansoor</span>
+<span class="text-secondary font-mono-data text-label-sm">[EMP-0881]</span>
+</div>
+<span class="font-mono-data text-label-sm text-on-surface-variant">14:28:44 • Turnstile Gate B</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Leave Approval Panel (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">pending_actions</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Pending Leave Authorizations</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">2 Requests Awaiting</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Request 1 -->
+<div class="p-space-md rounded bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="Corporate headshot of Marcus Vance, senior software engineer with glasses and dark blazer on neutral corporate studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmJVukGQI7eKvJmdGDWL1OVHbEMcwOoiLcFQBKeSApba4cRwZPIppC75jTY_P8RtJtWHSXjxekYrwaailo6gV-dXla91pxE-b_FynFlsZ_FXf5Kz1dUmUrMHqJI1uZhHhvyRhpx0r30IyDKk6epyZ3Yr-q7MlKgXMOCE9B3ZcJHykXzVpI1IwpRjB9eah9MroJsDeMHQMyXG5isr34bVqpCWRvgB0GUS1akXr2lveG"/>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Marcus Vance</span>
+<span class="font-mono-data text-label-sm text-secondary">#EMP-0412</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Engineering</span>
+</div>
+<div class="flex items-center gap-space-sm mt-0.5 text-body-sm text-secondary">
+<span class="font-semibold text-primary">3 Days Annual Leave</span>
+<span>•</span>
+<span>Nov 12 - Nov 14, 2024</span>
+<span>•</span>
+<span class="italic text-on-surface-variant font-body-sm">"Family obligation"</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-center">
+<button class="h-8 px-space-sm rounded bg-surface-container-highest hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-colors">
+                Reject
+              </button>
+<button class="h-8 px-space-md rounded bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[15px]">check</span>
+<span>Approve</span>
+</button>
+</div>
+</div>
+<!-- Request 2 -->
+<div class="p-space-md rounded bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="Professional headshot of Elena Rostova, operations manager, poised businesswoman with friendly smile and charcoal suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrFMkJFK49QFkp-pNOmUzPYfawsieeiXIa2P4yKeOvHU7Y3f33_Ff07ZGOYcpRkXv7BF9i4yvo3mQE-kENbWeLc78HBifrSnjxu_bAv4dHEbeGKFoeWLzz184oiZplCxlKsvIcarForo-v_SLYQNFbDqziHR4zdfSqWX5Lzeq1gTkIIqcKj5XATvPryBhCjyhNuHLoPa3uf3nl5UAtv0Ik2QbT_mWiK2JHqAOPLL2N"/>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Elena Rostova</span>
+<span class="font-mono-data text-label-sm text-secondary">#EMP-1092</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Operations</span>
+</div>
+<div class="flex items-center gap-space-sm mt-0.5 text-body-sm text-secondary">
+<span class="font-semibold text-tertiary">2 Days Medical / Sick</span>
+<span>•</span>
+<span>Oct 28 - Oct 29, 2024</span>
+<span>•</span>
+<span class="italic text-on-surface-variant font-body-sm">"Doctor consultation certificate attached"</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-center">
+<button class="h-8 px-space-sm rounded bg-surface-container-highest hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-colors">
+                Reject
+              </button>
+<button class="h-8 px-space-md rounded bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[15px]">check</span>
+<span>Approve</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-body-sm text-secondary">
+<span class="text-on-surface-variant font-body-sm">Balance Accrual Period: Q4 FY24</span>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#">
+<span>View All Absence History</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Section 2: Employee Profiles & Payroll Computation Table -->
+<div class="bg-surface-container-lowest rounded shadow-sm flex flex-col">
+<!-- Table Filter & Search Toolbar -->
+<div class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest">
+<div class="flex items-center flex-wrap gap-space-sm">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-sm text-[18px] text-on-surface-variant">search</span>
+<input class="w-64 h-8 pl-8 pr-3 rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none transition-colors" placeholder="Filter employee by ID, name..." type="text"/>
+</div>
+<div class="flex items-center gap-space-xxs bg-surface-container-low p-0.5 rounded">
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest shadow-sm text-on-surface font-label-md text-label-md">All Depts</button>
+<button class="px-space-sm py-1 rounded hover:bg-surface-container-lowest text-secondary font-label-md text-label-md transition-colors">Engineering</button>
+<button class="px-space-sm py-1 rounded hover:bg-surface-container-lowest text-secondary font-label-md text-label-md transition-colors">Operations</button>
+<button class="px-space-sm py-1 rounded hover:bg-surface-container-lowest text-secondary font-label-md text-label-md transition-colors">Finance</button>
+<button class="px-space-sm py-1 rounded hover:bg-surface-container-lowest text-secondary font-label-md text-label-md transition-colors">Sales</button>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-8 px-space-md rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-colors">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export Payroll (NACHA/CSV)</span>
+</button>
+<button class="h-8 px-space-md rounded bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md flex items-center gap-space-xs transition-colors">
+<span class="material-symbols-outlined text-[16px]">send_and_archive</span>
+<span>Commit To Banking Batch</span>
+</button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="h-9 bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="px-space-lg w-10">
+<input class="rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</th>
+<th class="px-space-md">Employee / Badge</th>
+<th class="px-space-md">Department / Title</th>
+<th class="px-space-md text-center">Attendance Rate</th>
+<th class="px-space-md text-right">Base Salary</th>
+<th class="px-space-md text-right">Bonuses</th>
+<th class="px-space-md text-right">Deductions</th>
+<th class="px-space-md text-right">Net Payable</th>
+<th class="px-space-md text-center">Audit Status</th>
+<th class="px-space-lg text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-md text-body-md text-on-surface">
+<!-- Row 1 -->
+<tr class="h-12 hover:bg-surface-container-low transition-colors group">
+<td class="px-space-lg">
+<input checked="" class="rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover shadow-sm" data-alt="Portrait of Marcus Vance, senior systems architect, clean corporate lighting, focused expression with dark formal collar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcHg-7KuqdQLNOWbCPZrhYE6P6MK0Pe3DA6kOkLWuyuBEmM3Ov1bZlKESC8AfLZwYGIcXElhCqRFeeBkcLXYn95Fu0nrUhxxpwJ5GZr_9JffWBN1pSM6hhgmE_eqPA-rSvMkQsb4kBtYkq2Hs_twnEMDF021_HWT_ATHL4QWOxKY437PQrLih_PzU6WLCYj_ALT1FzVltlBsYmqnOffXpnnNsiwjE3pREM8GdMgsuo"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Marcus Vance</span>
+<span class="font-mono-data text-label-sm text-secondary leading-tight">EMP-0412</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium leading-tight">Staff Architect</span>
+<span class="font-label-sm text-label-sm text-secondary leading-tight">Engineering</span>
+</div>
+</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-mono-data text-label-sm font-semibold">100.0%</span>
+</td>
+<td class="px-space-md text-right font-mono-data">$9,500.00</td>
+<td class="px-space-md text-right font-mono-data text-tertiary">+$850.00</td>
+<td class="px-space-md text-right font-mono-data text-error">-$120.00</td>
+<td class="px-space-md text-right font-mono-data font-bold text-on-surface">$10,230.00</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+                Calculated & Verified
+              </span>
+</td>
+<td class="px-space-lg text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Payslip Breakdown">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Edit Adjustment">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="h-12 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors group">
+<td class="px-space-lg">
+<input checked="" class="rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover shadow-sm" data-alt="Corporate headshot of Elena Rostova, head of supply chain operations, professional setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDamqwDT5_Jv5DyDYaE4Ov9foz1obljgzY6Nb0UUO6v5FizyQ4_ZujtVuJYjeNpgU3BUaukVgtM2nMRoNEXOF-a77Hfhe4BgGJeDyBmDdB_gm5tSHETOnwqQ4Ru1I7xpDZrwKJl089zB-_85ZpiSSG2Ql76PsV9d6DkOx0IXSp1Zd1XRkoETnhBGCf69DAsWrqi9VLiwiYNrnkcd0359RYQvv7tNm_kICUd2d8guO2v"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Elena Rostova</span>
+<span class="font-mono-data text-label-sm text-secondary leading-tight">EMP-1092</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium leading-tight">Operations Lead</span>
+<span class="font-label-sm text-label-sm text-secondary leading-tight">Logistics & Supply</span>
+</div>
+</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-mono-data text-label-sm font-semibold">95.2%</span>
+</td>
+<td class="px-space-md text-right font-mono-data">$8,200.00</td>
+<td class="px-space-md text-right font-mono-data text-tertiary">+$400.00</td>
+<td class="px-space-md text-right font-mono-data text-error">-$240.00</td>
+<td class="px-space-md text-right font-mono-data font-bold text-on-surface">$8,360.00</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+                Calculated & Verified
+              </span>
+</td>
+<td class="px-space-lg text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Payslip Breakdown">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Edit Adjustment">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="h-12 hover:bg-surface-container-low transition-colors group">
+<td class="px-space-lg">
+<input checked="" class="rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover shadow-sm" data-alt="Portrait of Julian Chen, VP Financial Controller, professional executive headshot with sharp suit and navy tie against minimalist architectural interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu4-Ty6sNk6QRpWn6B8S16wwXdtmFLkk903pxzbzPNDhwv053_r1ngP1uaE4U458N_Dn8XtUQcTmFk9ZjTqV2xlDgVTRGwLtvzTw5oIe2YuV4T1HzvYPjgTkxq_g17R4Dqb96SR3NTQbJ7xy3-37Ck0k4ycRWcvVGGtn_BpCCz1sRb-JYW87PuATkSaYeztGuXQVNT7VK9KZELQLt_c6RS9dThbHBOJhJrW0380uGK"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Julian Chen</span>
+<span class="font-mono-data text-label-sm text-secondary leading-tight">EMP-0038</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium leading-tight">Chief Controller</span>
+<span class="font-label-sm text-label-sm text-secondary leading-tight">Finance</span>
+</div>
+</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-mono-data text-label-sm font-semibold">100.0%</span>
+</td>
+<td class="px-space-md text-right font-mono-data">$11,800.00</td>
+<td class="px-space-md text-right font-mono-data text-tertiary">+$1,200.00</td>
+<td class="px-space-md text-right font-mono-data text-on-surface-variant">$0.00</td>
+<td class="px-space-md text-right font-mono-data font-bold text-on-surface">$13,000.00</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+                Calculated & Verified
+              </span>
+</td>
+<td class="px-space-lg text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Payslip Breakdown">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Edit Adjustment">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="h-12 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors group">
+<td class="px-space-lg">
+<input checked="" class="rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover shadow-sm" data-alt="Portrait of Samantha Reed, director of sales, smiling confident professional with tailored cream blazer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb5aBAjjio3mbDraEyDU_Ws8nB-KKIo2CbP6vdfDm6ajonS_7NKi-DwvnCl2D75P7Lq8wxvXZFWj8nL3EWhto46CCMxpErDyEaTodaTHTsTuSHRpYwPHorumi2Dwpx_ESaw5Jyek25lH_LKGsq_LADTRlFSHZyaGxCy0C9cy9faGbLXfIUaLMGKuInTexqHzCWg6q_2CPCVsssEHKVapwH6dbVzoqwugfUXu0qZJqN"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Samantha Reed</span>
+<span class="font-mono-data text-label-sm text-secondary leading-tight">EMP-0744</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium leading-tight">Enterprise Sales Lead</span>
+<span class="font-label-sm text-label-sm text-secondary leading-tight">Sales & CRM</span>
+</div>
+</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-mono-data text-label-sm font-semibold">97.8%</span>
+</td>
+<td class="px-space-md text-right font-mono-data">$7,500.00</td>
+<td class="px-space-md text-right font-mono-data text-tertiary">+$3,450.00</td>
+<td class="px-space-md text-right font-mono-data text-error">-$80.00</td>
+<td class="px-space-md text-right font-mono-data font-bold text-on-surface">$10,870.00</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+                Calculated & Verified
+              </span>
+</td>
+<td class="px-space-lg text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Payslip Breakdown">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Edit Adjustment">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="h-12 hover:bg-surface-container-low transition-colors group">
+<td class="px-space-lg">
+<input class="rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover shadow-sm" data-alt="Portrait of Tariq Al-Jamil, HR business partner, warm and composed HR professional with navy blazer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKAmyzrBrKZqGB4zwJapa2TE74BYtlHT78PmNZ5JgLjngixej6lejjK3QP1n5Rf9mVZKCSQ-bRO5fwi-6SvIBStDhfnVe_hjHuBiZOSVJKP9hGh68nByq6LWrISeDPVMHueEiwOKPV-vnqWfwssMNhVuzSSGBLWs_xyZIT3Ke_c2K4loTnq_H2pYkS0EGB3Bjz5NtSpJla0CnaW1y9f7gVD3G3zBPlBuE0fP2sPEVy"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Tariq Al-Jamil</span>
+<span class="font-mono-data text-label-sm text-secondary leading-tight">EMP-1301</span>
+</div>
+</div>
+</td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium leading-tight">HR Operations Partner</span>
+<span class="font-label-sm text-label-sm text-secondary leading-tight">Human Resources</span>
+</div>
+</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-mono-data text-label-sm font-semibold">91.4%</span>
+</td>
+<td class="px-space-md text-right font-mono-data">$6,400.00</td>
+<td class="px-space-md text-right font-mono-data text-on-surface-variant">$0.00</td>
+<td class="px-space-md text-right font-mono-data text-error">-$380.00</td>
+<td class="px-space-md text-right font-mono-data font-bold text-on-surface">$6,020.00</td>
+<td class="px-space-md text-center">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Pending Adjustment
+              </span>
+</td>
+<td class="px-space-lg text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Payslip Breakdown">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Edit Adjustment">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination Footer -->
+<div class="p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-low text-secondary font-body-sm text-body-sm">
+<div class="flex items-center gap-space-sm">
+<span>Showing <strong>1-5</strong> of <strong>142</strong> active personnel</span>
+<span class="text-outline-variant">|</span>
+<div class="flex items-center gap-space-xs">
+<span>Rows per page:</span>
+<select class="bg-surface-container-lowest text-on-surface rounded px-1.5 py-0.5 font-mono-data text-label-sm focus:outline-none cursor-pointer">
+<option>5</option>
+<option>10</option>
+<option>25</option>
+<option>50</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-center">
+<button class="w-7 h-7 rounded bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors shadow-sm disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="w-7 h-7 rounded bg-primary text-on-primary font-mono-data text-label-sm font-semibold shadow-sm">1</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-mono-data text-label-sm hover:bg-surface-container transition-colors shadow-sm">2</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-mono-data text-label-sm hover:bg-surface-container transition-colors shadow-sm">3</button>
+<span class="px-1 text-on-surface-variant font-mono-data text-label-sm">...</span>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-mono-data text-label-sm hover:bg-surface-container transition-colors shadow-sm">29</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initLiveClock() {
+    function updateClock() {
+      const clockEl = document.getElementById('liveClock');
+      if (!clockEl) return;
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      const strHours = String(hours).padStart(2, '0');
+      clockEl.textContent = `${strHours}:${minutes}:${seconds} ${ampm}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  })();
+</script></main></div><script>
+// Universal Navigation Bridge for Stitch Extracted Suite
+document.addEventListener("DOMContentLoaded", function () {
+  const isRtl = document.documentElement.getAttribute("dir") === "rtl";
+  const pathMapEn = {
+    "invoices": "../finance_invoices_receivables_1/code.html",
+    "financial-reports": "../../index.html#finance/reports",
+    "pl-summary": "../../index.html#finance/pl",
+    "treasury-cash-flow": "../../index.html#finance/treasury",
+    "products-list": "../inventory_products_stock_alerts/code.html",
+    "reorder-alerts": "../../index.html#inventory/alerts",
+    "stock-movement-log": "../../index.html#inventory/movement",
+    "customers": "../../index.html#sales/customers",
+    "sales-orders": "../sales_orders_pipeline_tracker/code.html",
+    "order-pipeline": "../sales_orders_pipeline_tracker/code.html",
+    "suppliers": "../purchasing_quotations_po_tracking/code.html",
+    "quotations-comparison": "../purchasing_quotations_po_tracking/code.html",
+    "purchase-orders": "../purchasing_quotations_po_tracking/code.html",
+    "employee-profiles": "../human_resources_directory_attendance_payroll/code.html",
+    "attendance": "../human_resources_directory_attendance_payroll/code.html",
+    "leave-management": "../human_resources_directory_attendance_payroll/code.html",
+    "payroll": "../human_resources_directory_attendance_payroll/code.html"
+  };
+
+  const pathMapAr = {
+    "invoices": "../finance_invoices_receivables_2/code.html",
+    "financial-reports": "../_2/code.html",
+    "pl-summary": "../rtl_4/code.html",
+    "treasury-cash-flow": "../_1/code.html",
+    "products-list": "../rtl_1/code.html",
+    "reorder-alerts": "../../index.html#inventory/alerts",
+    "stock-movement-log": "../../index.html#inventory/movement",
+    "customers": "../../index.html#sales/customers",
+    "sales-orders": "../rtl_2/code.html",
+    "order-pipeline": "../rtl_2/code.html",
+    "suppliers": "../rtl_3/code.html",
+    "quotations-comparison": "../rtl_3/code.html",
+    "purchase-orders": "../rtl_3/code.html",
+    "employee-profiles": "../../index.html#hr/employees",
+    "attendance": "../../index.html#hr/attendance",
+    "leave-management": "../../index.html#hr/leave",
+    "payroll": "../../index.html#hr/payroll"
+  };
+
+  const currentMap = isRtl ? pathMapAr : pathMapEn;
+
+  document.querySelectorAll('aside nav a[data-path]').forEach(function (link) {
+    const p = link.getAttribute('data-path');
+    if (currentMap[p]) {
+      link.setAttribute('href', currentMap[p]);
+    }
+  });
+
+  // Add Portal Launch Button in Header if not present
+  const header = document.querySelector('header');
+  if (header && !document.getElementById('portalBridgeBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'portalBridgeBtn';
+    btn.href = '../../index.html';
+    btn.className = 'flex items-center gap-1.5 h-8 px-3 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 shadow-sm transition-all ml-2';
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">dashboard_customize</span><span>' + (isRtl ? 'البوابة الرئيسية الشاملة' : 'Master ERP Portal') + '</span>';
+    header.appendChild(btn);
+  }
+});
+</script>
+</body></html>

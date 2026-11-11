@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المبيعات وإدارة العملاء - نظام أبيكس ERP</title>
+  
+  <!-- خطوط عربية حديثة: Cairo, Tajawal, IBM Plex Sans Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Material Symbols Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js للمخططات والرسوم البيانية المالية -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- إعدادات Tailwind لتتناسب مع ألوان وتصميم الـ SaaS الحديث -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00288e",
+            "primary-container": "#1e40af",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#a8b8ff",
+            secondary: "#565e74",
+            "secondary-container": "#dae2fd",
+            surface: "#f8f9ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#444653",
+            "inverse-surface": "#213145",
+            "inverse-on-surface": "#eaf1ff",
+            outline: "#757684",
+            "outline-variant": "#c4c5d5",
+            tertiary: "#003d28",
+            "tertiary-container": "#00563a",
+            "tertiary-fixed": "#85f8c4",
+            "tertiary-fixed-dim": "#68dba9",
+            error: "#ba1a1a",
+            "error-container": "#ffdad6"
+          },
+          fontFamily: {
+            sans: ['Cairo', 'Tajawal', 'IBM Plex Sans Arabic', 'sans-serif'],
+            'mono-data': ['Inter', 'Cairo', 'monospace']
+          },
+          spacing: {
+            'space-xxs': '0.125rem',
+            'space-xs': '0.25rem',
+            'space-sm': '0.5rem',
+            'space-md': '0.75rem',
+            'space-lg': '1rem',
+            'space-xl': '1.5rem',
+            'space-2xl': '2rem'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- ملف التنسيقات المخصص للنظام والـ RTL -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-background font-sans text-on-surface antialiased selection:bg-primary-container selection:text-on-primary min-h-screen">
+
+  <!-- ====================================================================== -->
+  <!-- 1. القائمة الجانبية في جهة اليمين (ENTERPRISE RTL SIDEBAR)             -->
+  <!-- ====================================================================== -->
+  <aside class="fixed right-0 top-0 h-screen w-64 bg-inverse-surface text-inverse-on-surface z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.08)] overflow-y-auto" id="mainSidebar">
+    
+    <!-- رأس القائمة: الشعار والعنوان -->
+    <div class="h-14 flex items-center px-space-md gap-space-sm bg-inverse-surface border-b border-outline/20">
+      <div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-lg shadow-sm">
+        أ
+      </div>
+      <div class="flex flex-col">
+        <span class="font-bold text-base tracking-tight text-white leading-none">أبيكس ERP</span>
+        <span class="text-[10px] text-slate-400 uppercase tracking-widest mt-1">سحابة المؤسسات v4.18</span>
+      </div>
+    </div>
+
+    <!-- تصنيفات الوحدات الخمسة -->
+    <div class="flex-1 px-space-xs py-space-sm space-y-space-md">
+      
+      <!-- الوحدة الأولى: المالية والمحاسبة -->
+      <div class="space-y-space-xxs">
+        <div class="px-space-sm py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+          <span>المالية والمحاسبة</span>
+          <span class="material-symbols-outlined text-[15px]">account_balance</span>
+        </div>
+        <nav class="space-y-0.5">
+          <a href="#finance/invoices" onclick="navigateTo('finance', 'invoices')" data-path="finance-invoices" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">receipt_long</span>
+            <span>الفواتير والذمم المدينة</span>
+          </a>
+          <a href="#finance/reports" onclick="navigateTo('finance', 'reports')" data-path="finance-reports" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">analytics</span>
+            <span>التقارير المالية والرسوم</span>
+          </a>
+          <a href="#finance/pl" onclick="navigateTo('finance', 'pl')" data-path="finance-pl" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">query_stats</span>
+            <span>قائمة الأرباح والخسائر (P&L)</span>
+          </a>
+          <a href="#finance/treasury" onclick="navigateTo('finance', 'treasury')" data-path="finance-treasury" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">payments</span>
+            <span>الخزينة والحسابات البنكية</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- الوحدة الثانية: المخزون والمستودعات -->
+      <div class="space-y-space-xxs">
+        <div class="px-space-sm py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+          <span>المخزون والمستودعات</span>
+          <span class="material-symbols-outlined text-[15px]">warehouse</span>
+        </div>
+        <nav class="space-y-0.5">
+          <a href="#inventory/products" onclick="navigateTo('inventory', 'products')" data-path="inventory-products" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">inventory_2</span>
+            <span>دليل المنتجات والأصناف</span>
+          </a>
+          <a href="#inventory/alerts" onclick="navigateTo('inventory', 'alerts')" data-path="inventory-alerts" class="nav-link flex items-center justify-between px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-[17px]">notification_important</span>
+              <span>تنبيهات إعادة الطلب</span>
+            </div>
+            <span class="px-1.5 py-0.2 rounded-full bg-rose-600 text-white font-mono-data text-[10px] font-bold">8</span>
+          </a>
+          <a href="#inventory/movement" onclick="navigateTo('inventory', 'movement')" data-path="inventory-movement" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">swap_horiz</span>
+            <span>سجل حركات المخزون</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- الوحدة الثالثة: المبيعات والعملاء -->
+      <div class="space-y-space-xxs">
+        <div class="px-space-sm py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+          <span>المبيعات وإدارة العملاء</span>
+          <span class="material-symbols-outlined text-[15px]">trending_up</span>
+        </div>
+        <nav class="space-y-0.5">
+          <a href="#sales/customers" onclick="navigateTo('sales', 'customers')" data-path="sales-customers" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">group</span>
+            <span>دليل وحسابات العملاء</span>
+          </a>
+          <a href="#sales/orders" onclick="navigateTo('sales', 'orders')" data-path="sales-orders" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">shopping_cart</span>
+            <span>نموذج أمر البيع التفاعلي</span>
+          </a>
+          <a href="#sales/pipeline" onclick="navigateTo('sales', 'pipeline')" data-path="sales-pipeline" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">view_kanban</span>
+            <span>خط سير وتتبع الطلبات</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- الوحدة الرابعة: المشتريات والموردين -->
+      <div class="space-y-space-xxs">
+        <div class="px-space-sm py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+          <span>المشتريات والموردين</span>
+          <span class="material-symbols-outlined text-[15px]">local_shipping</span>
+        </div>
+        <nav class="space-y-0.5">
+          <a href="#purchasing/suppliers" onclick="navigateTo('purchasing', 'suppliers')" data-path="purchasing-suppliers" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">store</span>
+            <span>دليل الموردين المعتمدين</span>
+          </a>
+          <a href="#purchasing/quotes" onclick="navigateTo('purchasing', 'quotes')" data-path="purchasing-quotes" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">compare_arrows</span>
+            <span>مقارنة عروض الأسعار</span>
+          </a>
+          <a href="#purchasing/po" onclick="navigateTo('purchasing', 'po')" data-path="purchasing-po" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">assignment</span>
+            <span>أوامر الشراء والحسابات الدائنة</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- الوحدة الخامسة: الموارد البشرية والرواتب -->
+      <div class="space-y-space-xxs">
+        <div class="px-space-sm py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+          <span>الموارد البشرية والرواتب</span>
+          <span class="material-symbols-outlined text-[15px]">badge</span>
+        </div>
+        <nav class="space-y-0.5">
+          <a href="#hr/employees" onclick="navigateTo('hr', 'employees')" data-path="hr-employees" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">person</span>
+            <span>سجل وملفات الموظفين</span>
+          </a>
+          <a href="#hr/attendance" onclick="navigateTo('hr', 'attendance')" data-path="hr-attendance" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">schedule</span>
+            <span>محطة الحضور والانصراف</span>
+          </a>
+          <a href="#hr/leave" onclick="navigateTo('hr', 'leave')" data-path="hr-leave" class="nav-link flex items-center justify-between px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-[17px]">event_available</span>
+              <span>إدارة واعتماد الإجازات</span>
+            </div>
+            <span class="px-1.5 py-0.2 rounded-full bg-amber-500 text-white font-mono-data text-[10px] font-bold">2</span>
+          </a>
+          <a href="#hr/payroll" onclick="navigateTo('hr', 'payroll')" data-path="hr-payroll" class="nav-link flex items-center gap-space-sm px-space-sm py-1.5 rounded text-xs transition-colors hover:bg-slate-700/50">
+            <span class="material-symbols-outlined text-[17px]">paid</span>
+            <span>مسير الرواتب الآلي</span>
+          </a>
+        </nav>
+      </div>
+
+    </div>
+
+    <!-- تذييل القائمة: حالة السيرفر السحابي -->
+    <div class="p-space-sm border-t border-outline/20 flex items-center justify-between bg-slate-900 text-xs">
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 live-pulse"></span>
+        <span class="text-slate-300 font-semibold">خادم الشرق الأوسط السحابي</span>
+      </div>
+      <span class="font-mono-data text-[11px] text-slate-400">AWS me-central-1</span>
+    </div>
+  </aside>
+
+  <!-- ====================================================================== -->
+  <!-- 2. محتوى الصفحة وشريط الأدوات العلوي                                   -->
+  <!-- ====================================================================== -->
+  <div class="pr-64 pl-0 transition-all" id="appBodyWrapper">
+    
+    <!-- الشريط العلوي (Top Header) -->
+    <header class="fixed top-0 right-64 left-0 h-14 bg-surface-container-lowest border-b border-outline-variant/40 z-40 flex items-center justify-between px-space-lg shadow-[0_1px_4px_rgba(0,0,0,0.03)]" id="topHeader">
+      
+      <!-- اليمين: اختيار الفرع والبحث السريع واختيار العملة -->
+      <div class="flex items-center gap-space-md">
+        
+        <!-- اسم الفرع أو المؤسسة -->
+        <div class="flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:bg-surface-container transition-colors text-xs font-bold">
+          <span class="material-symbols-outlined text-[17px] text-primary">domain</span>
+          <span>شركة أبيكس العالمية - فرع الشرق الأوسط</span>
+          <span class="material-symbols-outlined text-[15px] text-secondary">unfold_more</span>
+        </div>
+
+        <!-- زر اختيار عملة التقارير -->
+        <button onclick="openCurrencyModal()" class="flex items-center gap-1 px-3 py-1 rounded bg-surface-container border border-outline-variant/40 text-xs text-on-surface hover:bg-surface-container-high transition-colors font-bold">
+          <span class="material-symbols-outlined text-[16px] text-primary">currency_exchange</span>
+          <span id="nav-currency-label" class="font-mono-data font-bold">USD ($)</span>
+          <span class="material-symbols-outlined text-[14px] text-secondary">expand_more</span>
+        </button>
+
+        <!-- حقل البحث العام السريع -->
+        <div class="relative flex items-center cursor-pointer" onclick="openGlobalSearch()">
+          <span class="material-symbols-outlined absolute right-2.5 text-[18px] text-secondary">search</span>
+          <input type="text" placeholder="بحث في المعاملات، الأرقام المرجعية، العملاء..." 
+                 class="w-72 h-8 pr-9 pl-12 rounded bg-surface-container-low text-xs text-on-surface border border-transparent hover:border-outline-variant/50 focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all cursor-pointer" readonly />
+          <span class="absolute left-1.5 px-1.5 py-0.5 rounded bg-surface-container text-secondary font-mono-data text-[10px] border border-outline-variant/40">⌘K</span>
+        </div>
+      </div>
+
+      <!-- اليسار: حالة النظام، زر إضافة فاتورة، الإشعارات، والملف الشخصي -->
+      <div class="flex items-center gap-space-md">
+        
+        <!-- مؤشر ربط ومزامنة Firebase -->
+        <button id="firebaseStatusBadge" onclick="openFirebaseModal()" class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800 cursor-pointer hover:bg-emerald-100 transition-colors shadow-sm" title="إدارة المزامنة السحابية مع Firebase">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 live-pulse"></span>
+          <span>Firebase متصل (tast-b91f3)</span>
+        </button>
+
+        <!-- مؤشر الحالة التشغيلية -->
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-xs font-bold text-slate-700">
+          <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+          <span>سحابة نشطة</span>
+        </div>
+
+        <!-- زر إنشاء فاتورة جديدة سريع -->
+        <button onclick="openCreateInvoiceModal()" class="flex items-center gap-1 h-8 px-3.5 rounded bg-primary-container text-on-primary text-xs font-bold hover:bg-primary transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[17px]">add</span>
+          <span>فاتورة جديدة</span>
+        </button>
+
+        <!-- جرس التنبيهات -->
+        <button onclick="showToast('مركز الإشعارات: 3 تنبيهات تشغيلية معلقة للمراجعة.', 'info')" class="relative p-1.5 rounded hover:bg-surface-container-low text-secondary hover:text-on-surface transition-colors" title="التنبيهات">
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+          <span class="absolute top-1 left-1 w-2 h-2 rounded-full bg-rose-600"></span>
+        </button>
+
+        <div class="h-5 w-px bg-outline-variant/40"></div>
+
+        <!-- بطاقة المستخدم الحالي -->
+        <div class="flex items-center gap-2.5 cursor-pointer" onclick="navigateTo('hr', 'employees')">
+          <div class="flex flex-col text-left hidden md:flex">
+            <span class="text-xs font-bold text-on-surface leading-tight">ماركوس ستيرلينغ</span>
+            <span class="text-[11px] text-secondary leading-tight">نائب الرئيس للعمليات</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Marcus Sterling" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" />
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ==================================================================== -->
+    <!-- 3. منطقة المحتوى الرئيسي المعروض                                     -->
+    <!-- ==================================================================== -->
+    <main class="w-full pt-16 px-space-xl pb-space-2xl min-h-screen bg-background">
+      
+      <!-- مسار التصفح العلوي (Breadcrumbs) -->
+      <div class="flex items-center gap-1.5 text-xs text-secondary mb-3 font-semibold" id="topBreadcrumb">
+        <span class="hover:text-primary cursor-pointer transition-colors" onclick="navigateTo('finance', 'invoices')">المالية والمحاسبة</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_left</span>
+        <span class="text-on-surface font-bold">إدارة الفواتير والذمم المدينة</span>
+      </div>
+
+      <!-- منطقة العرض الديناميكية التفاعلية -->
+      <div id="mainContentArea" class="w-full">
+        <!-- يتم التحميل ديناميكياً عبر js/app.js -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- 4. النوافذ المنبثقة التفاعلية (MODALS)                                  -->
+  <!-- ====================================================================== -->
+
+  <!-- نافذة إنشاء فاتورة جديدة (Slide-out Modal) -->
+  <div id="newInvoiceModal" class="fixed inset-0 z-50 modal-overlay flex justify-start hidden">
+    <div class="w-full max-w-lg bg-surface-container-lowest h-full shadow-2xl flex flex-col justify-between modal-content-panel p-space-xl overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-3 border-b border-outline-variant/30 mb-space-lg">
+          <div>
+            <h3 class="font-bold text-base text-on-surface">إصدار فاتورة مبيعات جديدة للعميل</h3>
+            <span class="text-xs text-secondary">قيد محاسبي في دفتر الأستاذ وسند مطالبة رسمي</span>
+          </div>
+          <button onclick="closeCreateInvoiceModal()" class="p-1.5 rounded-full hover:bg-surface-container text-secondary">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+
+        <form id="newInvoiceForm" onsubmit="handleSaveNewInvoice(event)" class="space-y-space-md text-xs">
+          <div>
+            <label class="block font-bold text-secondary mb-1">اختر حساب العميل المعتمد *</label>
+            <select id="modalCustomerInput" class="w-full h-9 px-3 rounded bg-surface-container-low border border-outline-variant/60 focus:border-primary focus:outline-none">
+              <option value="شركة أبيكس للصناعات الهندسية">شركة أبيكس للصناعات الهندسية</option>
+              <option value="هوليداي لوجستيكس الدولية">هوليداي لوجستيكس الدولية</option>
+              <option value="شركة بيوجين للتشخيصات الطبية">شركة بيوجين للتشخيصات الطبية</option>
+              <option value="أومني كورب للخدمات اللوجستية">أومني كورب للخدمات اللوجستية</option>
+              <option value="فانغارد للأنظمة البحرية والملاحة">فانغارد للأنظمة البحرية والملاحة</option>
+              <option value="مجموعة القاهرة الصناعية المتطورة">مجموعة القاهرة الصناعية المتطورة</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-secondary mb-1">إجمالي مبلغ الفاتورة ($) *</label>
+            <input type="number" id="modalAmountInput" step="0.01" value="48500.00" class="w-full h-9 px-3 rounded bg-surface-container-low border border-outline-variant/60 font-mono-data font-bold text-sm focus:border-primary focus:outline-none" required />
+          </div>
+
+          <div class="grid grid-cols-2 gap-space-md">
+            <div>
+              <label class="block font-bold text-secondary mb-1">تاريخ استحقاق السداد *</label>
+              <input type="date" id="modalDueDateInput" value="2025-03-15" class="w-full h-9 px-3 rounded bg-surface-container-low border border-outline-variant/60 focus:border-primary focus:outline-none font-mono-data" required />
+            </div>
+            <div>
+              <label class="block font-bold text-secondary mb-1">شروط الدفع والائتمان</label>
+              <select id="modalTermsSelect" class="w-full h-9 px-3 rounded bg-surface-container-low border border-outline-variant/60 focus:border-primary focus:outline-none">
+                <option value="آجل 30 يوم">آجل 30 يوم</option>
+                <option value="آجل 15 يوم">آجل 15 يوم</option>
+                <option value="آجل 45 يوم">آجل 45 يوم</option>
+                <option value="الدفع عند الاستلام">الدفع عند الاستلام</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-bold text-secondary mb-1">ملاحظات وشروط التدقيق المالي</label>
+            <textarea id="modalNotesInput" rows="3" class="w-full p-2.5 rounded bg-surface-container-low border border-outline-variant/60" placeholder="مثال: تم اعتماد المرحلة الأولى من التوريد، السداد عبر التحويل البنكي لحساب CIB."></textarea>
+          </div>
+
+          <div class="p-3 rounded bg-blue-50 border border-blue-200 text-[11px] text-blue-900 leading-relaxed">
+            <span class="font-bold block mb-0.5">ترحيل آلي لدفتر الأستاذ (GL Posting)</span>
+            بمجرد الحفظ، يتم ترحيل الفاتورة آلياً لحساب الذمم المدينة (أصول GL-1200) مع قيد مقابل في حساب الإيرادات (GL-4000).
+          </div>
+        </form>
+      </div>
+
+      <div class="pt-4 border-t border-outline-variant/30 flex items-center justify-end gap-2">
+        <button type="button" onclick="closeCreateInvoiceModal()" class="px-4 py-2 rounded bg-surface-container hover:bg-surface-container-high text-xs font-bold">
+          إلغاء
+        </button>
+        <button type="button" onclick="handleSaveNewInvoice()" class="px-5 py-2 rounded bg-primary-container text-on-primary hover:bg-primary text-xs font-bold shadow-sm transition-all">
+          اعتماد وإصدار الفاتورة
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة اختيار عملة عرض التقارير المالية -->
+  <div id="currencyModal" class="fixed inset-0 z-50 modal-overlay flex items-center justify-center hidden p-4">
+    <div class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-2xl p-space-lg modal-content-panel space-y-space-md">
+      <div class="flex items-center justify-between pb-2 border-b border-outline-variant/30">
+        <div>
+          <h3 class="font-bold text-sm text-on-surface">اختيار عملة عرض التقارير المالية</h3>
+          <span class="text-xs text-secondary">تحويل مالي لحظي مجمع لكافة القيود والأرصدة</span>
+        </div>
+        <button onclick="closeCurrencyModal()" class="p-1 rounded text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs font-bold">
+        <button onclick="setCurrency('USD')" class="w-full p-3 rounded-lg border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-colors bg-surface-container-low/50">
+          <div class="flex items-center gap-2">
+            <span class="font-mono-data font-bold text-base text-primary">$</span>
+            <div class="text-right">
+              <span class="font-bold text-on-surface block">دولار أمريكي (USD)</span>
+              <span class="text-[11px] text-secondary font-normal">عملة التقارير الأساسية</span>
+            </div>
+          </div>
+          <span class="font-mono-data text-xs text-secondary">1.000</span>
+        </button>
+
+        <button onclick="setCurrency('EGP')" class="w-full p-3 rounded-lg border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-colors bg-surface-container-low/50">
+          <div class="flex items-center gap-2">
+            <span class="font-mono-data font-bold text-base text-primary">ج.م</span>
+            <div class="text-right">
+              <span class="font-bold text-on-surface block">جنيه مصري (EGP)</span>
+              <span class="text-[11px] text-secondary font-normal">عمليات المقر الإقليمي للشرق الأوسط</span>
+            </div>
+          </div>
+          <span class="font-mono-data text-xs text-secondary">49.50</span>
+        </button>
+
+        <button onclick="setCurrency('SAR')" class="w-full p-3 rounded-lg border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-colors bg-surface-container-low/50">
+          <div class="flex items-center gap-2">
+            <span class="font-mono-data font-bold text-base text-primary">ر.س</span>
+            <div class="text-right">
+              <span class="font-bold text-on-surface block">ريال سعودي (SAR)</span>
+              <span class="text-[11px] text-secondary font-normal">عمليات الخليج العربي والمملكة</span>
+            </div>
+          </div>
+          <span class="font-mono-data text-xs text-secondary">3.750</span>
+        </button>
+
+        <button onclick="setCurrency('EUR')" class="w-full p-3 rounded-lg border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-colors bg-surface-container-low/50">
+          <div class="flex items-center gap-2">
+            <span class="font-mono-data font-bold text-base text-primary">€</span>
+            <div class="text-right">
+              <span class="font-bold text-on-surface block">يورو (EUR)</span>
+              <span class="text-[11px] text-secondary font-normal">تسويات فروع الاتحاد الأوروبي</span>
+            </div>
+          </div>
+          <span class="font-mono-data text-xs text-secondary">0.920</span>
+        </button>
+      </div>
+
+      <div class="pt-2 text-left">
+        <button onclick="closeCurrencyModal()" class="px-4 py-1.5 rounded bg-surface-container text-xs font-bold">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- لوحة الأوامر السريعة (Cmd+K Command Palette) -->
+  <div id="globalSearchModal" class="fixed inset-0 z-50 modal-overlay flex items-start justify-center pt-24 hidden p-4">
+    <div class="w-full max-w-xl bg-surface-container-lowest rounded-xl shadow-2xl p-4 modal-content-panel space-y-3">
+      <div class="relative flex items-center border-b border-outline-variant/30 pb-3">
+        <span class="material-symbols-outlined absolute right-2 text-[20px] text-primary">search</span>
+        <input type="text" id="cmdPaletteInput" placeholder="اكتب اسم شاشة أو رقم أمر للانتقال السريع..." 
+               class="w-full pr-9 pl-12 text-sm text-on-surface font-semibold focus:outline-none bg-transparent" />
+        <span class="px-1.5 py-0.5 rounded bg-surface-container text-[10px] text-secondary font-mono-data">ESC</span>
+      </div>
+
+      <div class="space-y-1 text-xs">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-secondary px-2">اختصارات التنقل المباشر</span>
+        <div onclick="navigateTo('finance', 'invoices'); closeGlobalSearch();" class="p-2 rounded hover:bg-surface-container-low cursor-pointer flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[17px] text-primary">receipt_long</span>
+            <span class="font-bold">الفواتير والذمم المدينة</span>
+          </div>
+          <span class="text-secondary font-mono-data text-[11px]">#finance/invoices</span>
+        </div>
+        <div onclick="navigateTo('finance', 'reports'); closeGlobalSearch();" class="p-2 rounded hover:bg-surface-container-low cursor-pointer flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[17px] text-primary">analytics</span>
+            <span class="font-bold">التقارير المالية والرسوم</span>
+          </div>
+          <span class="text-secondary font-mono-data text-[11px]">#finance/reports</span>
+        </div>
+        <div onclick="navigateTo('inventory', 'products'); closeGlobalSearch();" class="p-2 rounded hover:bg-surface-container-low cursor-pointer flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[17px] text-primary">inventory_2</span>
+            <span class="font-bold">دليل المنتجات والأصناف</span>
+          </div>
+          <span class="text-secondary font-mono-data text-[11px]">#inventory/products</span>
+        </div>
+        <div onclick="navigateTo('sales', 'orders'); closeGlobalSearch();" class="p-2 rounded hover:bg-surface-container-low cursor-pointer flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[17px] text-primary">shopping_bag</span>
+            <span class="font-bold">نموذج أمر البيع التفاعلي</span>
+          </div>
+          <span class="text-secondary font-mono-data text-[11px]">#sales/orders</span>
+        </div>
+        <div onclick="navigateTo('purchasing', 'quotes'); closeGlobalSearch();" class="p-2 rounded hover:bg-surface-container-low cursor-pointer flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[17px] text-primary">compare_arrows</span>
+            <span class="font-bold">مقارنة عروض الأسعار</span>
+          </div>
+          <span class="text-secondary font-mono-data text-[11px]">#purchasing/quotes</span>
+        </div>
+        <div onclick="navigateTo('hr', 'attendance'); closeGlobalSearch();" class="p-2 rounded hover:bg-surface-container-low cursor-pointer flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[17px] text-primary">schedule</span>
+            <span class="font-bold">محطة تسجيل الحضور والانصراف</span>
+          </div>
+          <span class="text-secondary font-mono-data text-[11px]">#hr/attendance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة مركز مزامنة Firebase السحابي -->
+  <div id="firebaseSyncModal" class="fixed inset-0 z-50 modal-overlay flex items-center justify-center hidden p-4">
+    <div class="w-full max-w-lg bg-surface-container-lowest rounded-xl shadow-2xl p-space-lg modal-content-panel space-y-space-md">
+      <div class="flex items-center justify-between pb-2 border-b border-outline-variant/30">
+        <div class="flex items-center gap-2">
+          <span class="p-2 rounded bg-amber-50 text-amber-600 material-symbols-outlined text-[24px]">cloud_sync</span>
+          <div>
+            <h3 class="font-bold text-base text-on-surface">مركز المزامنة السحابية مع Firebase</h3>
+            <span class="text-xs text-secondary font-mono-data">Project ID: tast-b91f3</span>
+          </div>
+        </div>
+        <button onclick="closeFirebaseModal()" class="p-1 rounded text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Project Details -->
+      <div class="p-3 rounded-lg bg-surface-container-low text-xs space-y-1.5 font-mono-data">
+        <div class="flex justify-between"><span class="text-secondary font-sans font-bold">معرف المشروع (Project ID):</span> <span class="font-bold text-primary">tast-b91f3</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-sans font-bold">نطاق المصادقة (Auth Domain):</span> <span>tast-b91f3.firebaseapp.com</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-sans font-bold">مستودع التخزين (Storage Bucket):</span> <span>tast-b91f3.firebasestorage.app</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-sans font-bold">معرف التطبيق (App ID):</span> <span class="truncate max-w-[200px]">1:129487182461:web:8220dbc061305bf65a2f14</span></div>
+      </div>
+
+      <!-- Collections Synchronized -->
+      <div>
+        <span class="text-xs font-bold text-secondary block mb-2 font-sans">المجموعات وقواعد البيانات المربوطة سحابياً (10 مجموعات):</span>
+        <div class="grid grid-cols-2 gap-1.5 text-[11px] font-mono-data">
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_invoices</span> <span class="text-emerald-700 font-bold font-sans">الفواتير</span></div>
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_products</span> <span class="text-emerald-700 font-bold font-sans">المخزون</span></div>
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_customers</span> <span class="text-emerald-700 font-bold font-sans">العملاء</span></div>
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_sales_orders</span> <span class="text-emerald-700 font-bold font-sans">المبيعات</span></div>
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_suppliers</span> <span class="text-emerald-700 font-bold font-sans">الموردين</span></div>
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_purchase_orders</span> <span class="text-emerald-700 font-bold font-sans">أوامر الشراء</span></div>
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_employees</span> <span class="text-emerald-700 font-bold font-sans">الموظفين</span></div>
+          <div class="p-1.5 rounded bg-surface-container flex items-center justify-between"><span>erp_attendance_log</span> <span class="text-emerald-700 font-bold font-sans">البصمة</span></div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="space-y-2 pt-2">
+        <button onclick="triggerFirebasePush()" class="w-full py-2.5 rounded bg-primary-container text-white text-xs font-bold hover:bg-primary shadow-sm transition-all flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+          <span>رفع وحفظ كافة بيانات النظام إلى Firebase الآن (Push All Data)</span>
+        </button>
+        <button onclick="triggerFirebasePull()" class="w-full py-2 rounded bg-surface-container hover:bg-surface-container-high text-xs font-bold text-on-surface transition-all flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">cloud_download</span>
+          <span>سحب وتحديث البيانات من سحابة Firebase (Pull Cloud Data)</span>
+        </button>
+      </div>
+
+      <!-- Security Rules Note -->
+      <div class="p-2.5 rounded bg-blue-50 border border-blue-200 text-[11px] text-blue-900 leading-relaxed font-sans">
+        <span class="font-bold block mb-0.5">ملاحظة أمان سحابة Firebase (Cloud Firestore Rules):</span>
+        إذا كانت قاعدة البيانات جديدة، تأكد من تفعيل وضع الاختبار (Test Mode) في Firebase Console بإضافة:
+        <code class="block font-mono-data text-[10px] bg-white p-1 rounded mt-1 border text-slate-800" dir="ltr">allow read, write: if true;</code>
+      </div>
+
+      <div class="pt-1 text-left">
+        <button onclick="closeFirebaseModal()" class="px-4 py-1.5 rounded bg-surface-container text-xs font-bold">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- حاوية الإشعارات العائمة (Toast Container) -->
+  <div id="toastContainer"></div>
+
+  <!-- السكربتات الأساسية للنظام وخدمة Firebase -->
+  <script>window.INITIAL_MODULE = 'sales'; window.INITIAL_SUBVIEW = 'orders';</script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/firebase-service.js"></script>
+</body>
+</html>
+

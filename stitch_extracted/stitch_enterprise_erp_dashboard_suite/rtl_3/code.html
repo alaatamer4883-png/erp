@@ -1,0 +1,635 @@
+﻿<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;font-family:'Cairo','Inter',sans-serif;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-tertiary-container":"#5bcf9e","surface-dim":"#cbdbf5","surface-container":"#e5eeff","on-secondary-fixed":"#131b2e","tertiary-container":"#00563a","surface-variant":"#d3e4fe","outline-variant":"#c4c5d5","secondary-fixed-dim":"#bec6e0","on-tertiary-fixed-variant":"#005137","on-background":"#0b1c30","on-error":"#ffffff","secondary":"#565e74","tertiary":"#003d28","on-primary-container":"#a8b8ff","tertiary-fixed-dim":"#68dba9","surface-container-high":"#dce9ff","error":"#ba1a1a","surface-container-highest":"#d3e4fe","inverse-surface":"#213145","surface-tint":"#3755c3","primary":"#00288e","on-surface-variant":"#444653","primary-fixed-dim":"#b8c4ff","secondary-container":"#dae2fd","inverse-primary":"#b8c4ff","background":"#f8f9ff","surface-bright":"#f8f9ff","on-secondary-container":"#5c647a","surface-container-low":"#eff4ff","secondary-fixed":"#dae2fd","on-tertiary":"#ffffff","on-secondary":"#ffffff","error-container":"#ffdad6","on-primary":"#ffffff","on-primary-fixed-variant":"#173bab","inverse-on-surface":"#eaf1ff","surface":"#f8f9ff","on-secondary-fixed-variant":"#3f465c","primary-container":"#1e40af","on-primary-fixed":"#001453","on-tertiary-fixed":"#002114","on-error-container":"#93000a","outline":"#757684","primary-fixed":"#dde1ff","surface-container-lowest":"#ffffff","tertiary-fixed":"#85f8c4","on-surface":"#0b1c30"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin-mobile":"1rem","space-xl":"1.5rem","space-lg":"1rem","space-sm":"0.5rem","margin":"1.5rem","space-md":"0.75rem","gutter-dense":"0.5rem","space-xs":"0.25rem","space-2xl":"2rem","space-xxs":"0.125rem","gutter":"1rem"},"fontFamily":{"label-md":["Inter"],"body-sm":["Inter"],"headline-sm":["Inter"],"mono-data":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"headline-md":["Inter"],"display-lg":["Inter"],"headline-lg":["Inter"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"mono-data":["12px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"body-lg":["15px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"600"}],"body-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed right-0 top-0 h-full w-64 bg-inverse-surface text-inverse-on-surface z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-14 px-space-md flex items-center justify-between bg-inverse-surface"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-sm text-headline-sm">أ</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm leading-tight text-surface-container-lowest font-bold">أيبكس ERP</span><span class="font-label-sm text-label-sm text-outline-variant">Cloud Enterprise</span></div></div></div><nav class="flex-1 px-space-xs py-space-sm space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-headline-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-outline-variant uppercase tracking-wider">الوحدات التشغيلية</div><div class="space-y-space-xxs"><div class="flex items-center justify-between px-space-sm py-space-xs text-outline-variant font-label-md text-label-md"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">account_balance</span>المالية والمحاسبة</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><div class="pr-space-lg pl-space-xs space-y-space-xxs"><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="finance-invoices" href="#">الفواتير</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="finance-reports" href="#">التقارير المالية</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="finance-pl" href="#">قائمة الأرباح والخسائر</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="finance-treasury" href="#">الخزينة والسيولة النقدية</a></div></div><div class="space-y-space-xxs"><div class="flex items-center justify-between px-space-sm py-space-xs text-outline-variant font-label-md text-label-md"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">inventory_2</span>المخزون والمستودعات</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><div class="pr-space-lg pl-space-xs space-y-space-xxs"><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="inventory-products" href="#">قائمة المنتجات</a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="inventory-alerts" href="#"><span>تنبيهات إعادة الطلب</span><span class="px-space-xs py-space-xxs rounded-full bg-error-container text-on-error-container font-mono-data text-label-sm leading-none">8</span></a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="inventory-audit" href="#">حركة وتدقيق المخزون</a></div></div><div class="space-y-space-xxs"><div class="flex items-center justify-between px-space-sm py-space-xs text-outline-variant font-label-md text-label-md"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">storefront</span>المبيعات وإدارة العملاء</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><div class="pr-space-lg pl-space-xs space-y-space-xxs"><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="sales-customers" href="#">دليل العملاء</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="sales-orders" href="#">أوامر البيع</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="sales-tracking" href="#">تتبع خط سير الطلبات</a></div></div><div class="space-y-space-xxs"><div class="flex items-center justify-between px-space-sm py-space-xs text-outline-variant font-label-md text-label-md"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">shopping_cart</span>المشتريات والموردين</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><div class="pr-space-lg pl-space-xs space-y-space-xxs"><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="purchasing-suppliers" href="#">دليل الموردين</a><a aria-current="page" class="flex items-center px-space-sm py-space-xs rounded-lg transition-colors bg-primary-container text-on-primary font-headline-sm" data-path="purchasing-quotes" href="#">مقارنة عروض الأسعار</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="purchasing-orders" href="#">أوامر الشراء</a></div></div><div class="space-y-space-xxs"><div class="flex items-center justify-between px-space-sm py-space-xs text-outline-variant font-label-md text-label-md"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">group</span>الموارد البشرية</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><div class="pr-space-lg pl-space-xs space-y-space-xxs"><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="hr-employees" href="#">ملفات الموظفين</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="hr-attendance" href="#">الحضور والانصراف</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="hr-leaves" href="#">إدارة الإجازات</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-outline-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="hr-payroll" href="#">مسير الرواتب</a></div></div></nav></div><div class="px-space-md py-space-sm bg-inverse-surface shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center justify-between font-mono-data text-label-sm text-outline-variant"><span>v4.18.2</span><span>عنقود الشرق الأوسط</span></div></div></aside><div class="pr-64"><header class="fixed top-0 right-64 left-0 h-14 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg"><span class="material-symbols-outlined text-secondary text-[18px]">domain</span><span class="font-label-sm text-label-sm text-on-surface font-semibold">شركة أيبكس العالمية - فرع الشرق الأوسط / الرياض</span><span class="material-symbols-outlined text-secondary text-[16px]">unfold_more</span></div><div class="hidden sm:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg border border-surface-container"><span class="material-symbols-outlined text-primary text-[16px]">monetization_on</span><span class="font-mono-data text-label-sm text-primary font-bold">USD ($)</span><span class="font-label-sm text-label-sm text-secondary">- عملة التقارير</span></div></div><div class="flex-1 max-w-lg mx-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute right-space-sm text-secondary text-[18px]">search</span><input class="w-full h-8 pr-space-2xl pl-space-md bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)] placeholder-secondary focus:outline-none" placeholder="بحث في الطلبات، العملاء، عروض الموردين... ⌘K" type="text"></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span><span class="font-label-sm text-label-sm text-on-surface">متصل تشغيلياً</span></div><button class="h-8 px-space-md bg-primary-container text-on-primary rounded-lg font-label-md text-label-md flex items-center gap-space-xs hover:bg-primary transition-colors" type="button"><span class="material-symbols-outlined text-[16px]">add</span>إجراء جديد</button><div class="relative flex items-center justify-center"><button class="p-space-xs rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><span class="absolute top-1 left-1 w-2 h-2 rounded-full bg-error"></span></div><button class="p-space-xs rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button><div class="flex items-center gap-space-sm pr-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface font-semibold">ماركوس ستيرلينغ</span><span class="font-label-sm text-label-sm text-secondary">نائب الرئيس للعمليات</span></div></div></div></header><main class="relative pt-14 w-full px-space-lg bg-surface"><div class="flex flex-col w-full pb-space-2xl space-y-space-lg text-right" dir="rtl">
+<!-- PAGE HEADER & BREADCRUMB -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pt-space-md">
+<div class="flex flex-col space-y-space-xxs">
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+<span>المشتريات والموردين</span>
+<span class="material-symbols-outlined text-[14px]">chevron_left</span>
+<span class="text-secondary font-medium">إدارة طلبات الشراء والعقود</span>
+<span class="material-symbols-outlined text-[14px]">chevron_left</span>
+<span class="font-mono-data text-primary px-space-xs py-0.5 rounded-DEFAULT bg-primary-fixed text-on-primary-fixed">PR-BATCH-9941</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface">مركز المشتريات وإدارة الموردين</h1>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-mono-data text-label-sm">v4.2 PRO</span>
+</div>
+<p class="font-body-md text-body-md text-secondary">
+        تنفيذ مقارنة عروض الأسعار متعددة الموردين، واعتماد طلبات الشراء، وتدقيق المطابقة الثلاثية في الوقت الفعلي.
+      </p>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="h-9 px-space-md bg-surface-container-lowest text-on-surface hover:bg-surface-container-high rounded-lg font-label-md text-label-md flex items-center gap-space-xs shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">download</span>
+<span>تصدير السجل العام</span>
+</button>
+<button class="h-9 px-space-md bg-primary-container text-on-primary hover:bg-primary rounded-lg font-label-md text-label-md flex items-center gap-space-xs shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ إصدار طلب تسعير جديد (RFQ)</span>
+</button>
+</div>
+</div>
+<!-- TOP KPI SUMMARY (4 METRIC CARDS) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">طلبات عروض أسعار نشطة</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">request_quote</span>
+</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg font-bold text-on-surface font-mono-data">6</span>
+<span class="font-label-md text-label-md text-secondary">طلبات جارية</span>
+</div>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-mono-data text-label-sm">
+          دورة: 1.8 يوم
+        </span>
+</div>
+<div class="flex items-center justify-between text-secondary font-body-sm text-body-sm pt-space-xs bg-surface-container-low/50 px-space-xs rounded">
+<span>4 عروض معلقة بانتظار الرد</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">timelapse</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">اعتمادات أوامر الشراء المعلقة</span>
+<span class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[18px]">assignment_late</span>
+</span>
+</div>
+<div class="flex items-baseline justify-between"><span class="font-display-lg text-display-lg font-bold text-on-surface font-mono-data">$84,200</span><span class="inline-flex items-center gap-0.5 px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-mono-data text-label-sm font-semibold">3 أوامر حرجة</span></div>
+<div class="flex items-center justify-between text-secondary font-body-sm text-body-sm pt-space-xs bg-surface-container-low/50 px-space-xs rounded">
+<span class="text-error font-medium">$48,150 تتطلب تفويض الإدارة</span>
+<span class="material-symbols-outlined text-[16px] text-error">priority_high</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">الموردون المعتمدون والمفحوصون</span>
+<span class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg font-bold text-on-surface font-mono-data">64</span>
+<span class="font-label-md text-label-md text-secondary">شريكاً موثوقاً</span>
+</div>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-mono-data text-label-sm">
+          99.2% SLA
+        </span>
+</div>
+<div class="flex items-center justify-between text-secondary font-body-sm text-body-sm pt-space-xs bg-surface-container-low/50 px-space-xs rounded">
+<span>فئة ISO الأولى | 52 شريك استراتيجي</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">workspace_premium</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">الوفورات الشهرية في المشتريات</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-display-lg text-display-lg font-bold text-on-surface font-mono-data">+8.5%</span>
+<span class="inline-flex items-center gap-0.5 px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-mono-data text-label-sm font-semibold">$19.4k وفورات</span>
+</div>
+<div class="flex items-center justify-between text-secondary font-body-sm text-body-sm pt-space-xs bg-surface-container-low/50 px-space-xs rounded">
+<span>أعلى من الميزانية المرجعية (+3.1%)</span>
+<span class="material-symbols-outlined text-[16px] text-primary">savings</span>
+</div>
+</div>
+</div>
+<!-- MAIN SECTION 1: SUPPLIER QUOTATIONS COMPARISON MATRIX -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Header bar -->
+<div class="p-space-md bg-surface-container-low flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-space-xs bg-primary-container text-on-primary px-space-sm py-1 rounded-lg">
+<span class="material-symbols-outlined text-[16px]">compare_arrows</span>
+<span class="font-label-md text-label-md font-bold">مصفوفة تقييم العروض التنافسية</span>
+</div>
+<span class="px-space-xs py-1 rounded-DEFAULT bg-surface-container text-primary font-mono-data text-label-sm font-semibold">
+          طلب تسعير RFQ #2025-089
+        </span>
+<div class="h-4 w-px bg-outline-variant hidden sm:block"></div>
+<span class="font-body-sm text-body-sm text-secondary">
+          الصنف: <strong class="text-on-surface">محركات خطوية رقمية NEMA-23 عالية الدقة (HSM-500X)</strong> | الكمية المطلوبة: <strong class="text-on-surface font-mono-data">500 وحدة</strong>
+</span>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-error-container text-on-error-container font-mono-data text-label-sm">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span>متبقي على إغلاق المزايدة: 14س و 22د</span>
+</div>
+<button class="h-8 px-space-sm bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded-lg font-label-sm text-label-sm flex items-center gap-1 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">tune</span>
+<span>تصفية معايير المصفوفة</span>
+</button>
+</div>
+</div>
+<!-- Comparison Table Grid -->
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse min-w-[760px]">
+<thead>
+<tr class="bg-surface-container-high/60 text-secondary font-label-sm text-label-sm">
+<th class="p-space-md w-1/4">معيار المقارنة والتحليل الفني</th>
+<th class="p-space-md w-1/4 bg-primary-fixed/25 text-on-surface relative">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">أيبكس للصناعات الدقيقة</span>
+<span class="px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+                  أفضل قيمة موصى بها
+                </span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">شيكاغو، الولايات المتحدة (شريك معتمد A+)</span>
+</th>
+<th class="p-space-md w-1/4">
+<div class="font-headline-sm text-headline-sm font-semibold text-on-surface">نورديك ديناميكس</div>
+<span class="font-body-sm text-body-sm text-secondary">غوتنبرغ، السويد (شريك قياسي B+)</span>
+</th>
+<th class="p-space-md w-1/4">
+<div class="font-headline-sm text-headline-sm font-semibold text-on-surface">مكونات شرق آسيا</div>
+<span class="font-body-sm text-body-sm text-secondary">شنتشن، الصين (عقد توريد سنوي B)</span>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-md text-body-md">
+<!-- Criterion 1: Unit & Total Price -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors"><td class="p-space-md font-label-md text-label-md text-on-surface bg-surface-container-low/40"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-primary">payments</span><span>سعر الوحدة والإجمالي ($ USD)</span></div></td><td class="p-space-md bg-primary-fixed/15"><div class="font-headline-md text-headline-md font-bold text-on-surface font-mono-data">$142.00 <span class="text-label-sm text-secondary font-normal">/ وحدة</span></div><div class="text-secondary font-mono-data font-medium text-body-sm">الإجمالي: $71,000.00</div><span class="inline-block mt-1 text-[11px] px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-semibold">خصم كميات -4% مطبق</span></td><td class="p-space-md"><div class="font-headline-md text-headline-md font-semibold text-on-surface font-mono-data">$135.50 <span class="text-label-sm text-secondary font-normal">/ وحدة</span></div><div class="text-secondary font-mono-data text-body-sm">الإجمالي: $67,750.00</div><span class="text-secondary text-[11px] block mt-1">السعر الأدنى غير شامل الضرائب</span></td><td class="p-space-md"><div class="font-headline-md text-headline-md font-semibold text-on-surface font-mono-data">$150.00 <span class="text-label-sm text-secondary font-normal">/ وحدة</span></div><div class="text-secondary font-mono-data text-body-sm">الإجمالي: $75,000.00</div><span class="text-error text-[11px] block mt-1">+6% أعلى من السقف المحدد</span></td></tr>
+<!-- Criterion 2: Lead Time -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-space-md font-label-md text-label-md text-on-surface bg-surface-container-low/40">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">local_shipping</span>
+<span>مدة التوريد والشحن المتوقع</span>
+</div>
+</td>
+<td class="p-space-md bg-primary-fixed/15">
+<div class="flex items-center gap-space-xs text-on-surface font-bold">
+<span class="material-symbols-outlined text-tertiary text-[18px]">bolt</span>
+<span>5 أيام تقويمية</span>
+</div>
+<div class="text-secondary text-body-sm">شحن بري سريع مضمون (Door-to-Door)</div>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface font-medium">14 يوماً تقويمياً</div>
+<div class="text-secondary text-body-sm">شحن جوي عادي مجدول</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs text-tertiary font-bold">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>3 أيام تقويمية</span>
+</div>
+<div class="text-secondary text-body-sm">مستودع إقليمي جاهز للتسليم الفوري</div>
+</td>
+</tr>
+<!-- Criterion 3: MOQ -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-space-md font-label-md text-label-md text-on-surface bg-surface-container-low/40">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">inventory</span>
+<span>الحد الأدنى للطلب (MOQ)</span>
+</div>
+</td>
+<td class="p-space-md bg-primary-fixed/15">
+<span class="font-mono-data font-bold text-on-surface">250 وحدة</span>
+<span class="text-secondary text-body-sm block">مرن (يتوافق مع سياسة الدفعات المجزأة)</span>
+</td>
+<td class="p-space-md">
+<span class="font-mono-data font-medium text-on-surface">500 وحدة</span>
+<span class="text-secondary text-body-sm block">صارم (مطابق لكامل الدفعة)</span>
+</td>
+<td class="p-space-md">
+<span class="font-mono-data font-medium text-error">1,000 وحدة</span>
+<span class="text-error text-body-sm block">يتطلب استثناء إداري خاص</span>
+</td>
+</tr>
+<!-- Criterion 4: Incoterms & Customs -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors"><td class="p-space-md font-label-md text-label-md text-on-surface bg-surface-container-low/40"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-primary">gavel</span><span>شروط التجارة الدولية والجمارك (Incoterms)</span></div></td><td class="p-space-md bg-primary-fixed/15"><div class="font-mono-data font-bold text-on-surface">$450.00 <span class="font-label-sm text-primary">DDP (التسليم خال الرسوم)</span></div><span class="text-secondary text-body-sm block">المورد يتحمل كامل الإجراءات الجمركية والتأمين</span></td><td class="p-space-md"><div class="font-mono-data font-medium text-on-surface">$2,800.00 <span class="font-label-sm text-secondary">FOB (تسليم ظهر السفينة)</span></div><span class="text-secondary text-body-sm block">يلزم تفريغ الشحنة والجمارك عبر وكيلنا المحلي</span></td><td class="p-space-md"><div class="font-mono-data font-medium text-on-surface">$1,950.00 <span class="font-label-sm text-secondary">CIF (الشحن والتأمين)</span></div><span class="text-secondary text-body-sm block">التخليص الجمركي على مسؤولية المشتري</span></td></tr>
+<!-- Criterion 5: Quality & Defect Rate -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-space-md font-label-md text-label-md text-on-surface bg-surface-container-low/40">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+<span>تقييم الجودة ومعدل العيوب</span>
+</div>
+</td>
+<td class="p-space-md bg-primary-fixed/15">
+<div class="flex items-center gap-1 font-bold text-on-surface font-mono-data">
+<span class="material-symbols-outlined text-amber-500 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9 / 5.0</span>
+<span class="text-secondary font-normal font-body-sm">(عيوب &lt;0.02%)</span>
+</div>
+<span class="text-secondary text-body-sm block">معتمد ISO 9001:2015 و AS9100D</span>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-on-surface font-mono-data font-medium">
+<span class="material-symbols-outlined text-amber-500 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.6 / 5.0</span>
+<span class="text-secondary font-normal font-body-sm">(عيوب 0.12%)</span>
+</div>
+<span class="text-secondary text-body-sm block">معتمد ISO 9001</span>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-on-surface font-mono-data font-medium">
+<span class="material-symbols-outlined text-amber-500 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.8 / 5.0</span>
+<span class="text-secondary font-normal font-body-sm">(عيوب 0.05%)</span>
+</div>
+<span class="text-secondary text-body-sm block">معتمد مع فحص طرف ثالث SGS</span>
+</td>
+</tr>
+<!-- Criterion 6: Payment Terms & Risk -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-space-md font-label-md text-label-md text-on-surface bg-surface-container-low/40">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">account_balance_wallet</span>
+<span>شروط الدفع والتسهيلات الائتمانية</span>
+</div>
+</td>
+<td class="p-space-md bg-primary-fixed/15">
+<span class="font-headline-sm text-headline-sm font-bold text-tertiary">صافي 45 يوماً (Net 45)</span>
+<span class="text-secondary text-body-sm block">مثالي لدورة السيولة النقدية والخزينة</span>
+</td>
+<td class="p-space-md">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">صافي 30 يوماً (Net 30)</span>
+<span class="text-secondary text-body-sm block">معتاد ويتطلب اعتماد جدول التدفقات</span>
+</td>
+<td class="p-space-md">
+<span class="font-headline-sm text-headline-sm font-semibold text-error">دفع مسبق 100%</span>
+<span class="text-error text-body-sm block">مخاطرة سيولة عالية وتجميد أموال تشغيلية</span>
+</td>
+</tr>
+<!-- Final Awarding Row -->
+<tr class="bg-surface-container-low/60">
+<td class="p-space-md font-label-md text-label-md text-secondary">
+              قرار لجنة المشتريات والترسية
+            </td>
+<td class="p-space-md bg-primary-fixed/25">
+<button class="w-full h-10 px-space-md bg-primary text-on-primary hover:bg-primary-container rounded-lg font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-space-xs shadow-md transition-all hover:scale-[1.01]" type="button">
+<span class="material-symbols-outlined text-[20px]">thumb_up</span>
+<span>الترسية والتحويل لأمر شراء</span>
+</button>
+</td>
+<td class="p-space-md">
+<button class="w-full h-9 px-space-md bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm transition-colors" type="button">
+<span>اختيار المورد (ب)</span>
+</button>
+</td>
+<td class="p-space-md">
+<button class="w-full h-9 px-space-md bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm transition-colors" type="button">
+<span>اختيار المورد (ج)</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- MAIN SECTION 2: ACTIVE PURCHASE ORDERS (PO TABLE) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col space-y-space-sm">
+<!-- Table Toolbar -->
+<div class="p-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-mono-data text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>مطابقة ثلاثية نشطة 3-Way Match Active</span>
+</div>
+<div class="h-4 w-px bg-outline-variant hidden sm:block"></div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">سجل أوامر الشراء المباشرة والجارية</h2>
+</div>
+<!-- Filters & Search -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute right-space-sm top-2 text-secondary text-[18px]">search</span>
+<input class="w-full h-9 pr-space-2xl pl-space-md bg-surface-container-low text-on-surface rounded-lg font-body-sm text-body-sm placeholder-secondary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="بحث برقم الأمر، المورد..." type="text">
+</div>
+<button class="h-9 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg font-label-sm text-label-sm flex items-center gap-1 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">filter_list</span>
+<span>حالة الذمم الدائنة</span>
+</button>
+<button class="h-9 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg font-label-sm text-label-sm flex items-center gap-1 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">sync</span>
+<span>تحديث سجل الحسابات</span>
+</button>
+</div>
+</div>
+<!-- PO Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse min-w-[900px]">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm border-b border-surface-container">
+<th class="p-space-md w-10 text-center">
+<input class="rounded accent-primary cursor-pointer" type="checkbox">
+</th>
+<th class="p-space-md">رقم أمر الشراء (PO)</th>
+<th class="p-space-md">المورد وجهة الاتصال</th>
+<th class="p-space-md">تاريخ الطلب</th>
+<th class="p-space-md">التسليم المتوقع</th>
+<th class="p-space-md">قيمة الأمر ($)</th>
+<th class="p-space-md">حالة الذمم AP</th>
+<th class="p-space-md">حالة الاعتماد المالي</th>
+<th class="p-space-md text-center">الإجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-md text-body-md text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors"><td class="p-space-md text-center"><input class="rounded accent-primary cursor-pointer" type="checkbox"></td><td class="p-space-md"><div class="font-mono-data font-bold text-primary">PO-2025-0412</div><span class="text-secondary text-label-sm">أمر توريد رئيسي</span></td><td class="p-space-md"><div class="font-semibold text-on-surface">أيبكس للصناعات الدقيقة</div><span class="text-secondary text-body-sm font-mono-data">procurement@apex-precision.us</span></td><td class="p-space-md font-mono-data text-secondary">24 أكتوبر 2025</td><td class="p-space-md font-mono-data text-on-surface">02 نوفمبر 2025</td><td class="p-space-md font-mono-data font-bold text-on-surface">$71,450.00</td><td class="p-space-md"><span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]">done_all</span>مطابق للفاتورة</span></td><td class="p-space-md"><span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px]">verified</span>معتمد - نائب رئيس العمليات</span></td><td class="p-space-md text-center"><div class="flex items-center justify-center gap-1"><button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تحميل أمر الشراء" type="button"><span class="material-symbols-outlined text-[18px]">download</span></button><button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تدقيق المطابقة" type="button"><span class="material-symbols-outlined text-[18px]">rule</span></button><button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-on-surface transition-colors" title="المزيد" type="button"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></td></tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-md text-center">
+<input class="rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="p-space-md">
+<div class="font-mono-data font-bold text-primary">PO-2025-0413</div>
+<span class="text-secondary text-label-sm">أمر فوري</span>
+</td>
+<td class="p-space-md">
+<div class="font-semibold text-on-surface">نورديك ديناميكس</div>
+<span class="text-secondary text-body-sm font-mono-data">orders@nordic-dyn.se</span>
+</td>
+<td class="p-space-md font-mono-data text-secondary">25 أكتوبر 2025</td>
+<td class="p-space-md font-mono-data text-on-surface">10 نوفمبر 2025</td>
+<td class="p-space-md font-mono-data font-bold text-on-surface">$34,120.00</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">event_repeat</span>
+                مجدول للدفع
+              </span>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                معتمد - مدير العمليات
+              </span>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تحميل أمر الشراء" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تدقيق المطابقة" type="button">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-on-surface transition-colors" title="المزيد" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-md text-center">
+<input class="rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="p-space-md">
+<div class="font-mono-data font-bold text-primary">PO-2025-0414</div>
+<span class="text-secondary text-label-sm">توريد دوري</span>
+</td>
+<td class="p-space-md">
+<div class="font-semibold text-on-surface">مكونات شرق آسيا</div>
+<span class="text-secondary text-body-sm font-mono-data">supply@eac-shenzhen.cn</span>
+</td>
+<td class="p-space-md font-mono-data text-secondary">26 أكتوبر 2025</td>
+<td class="p-space-md font-mono-data text-on-surface">01 نوفمبر 2025</td>
+<td class="p-space-md font-mono-data font-bold text-on-surface">$12,800.00</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">hourglass_empty</span>
+                بانتظار الفاتورة
+              </span>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                  قيد التدقيق المالي
+                </span>
+<button class="px-2 py-0.5 bg-primary-container text-on-primary hover:bg-primary rounded font-label-sm text-label-sm transition-colors" type="button">اعتماد</button>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تحميل أمر الشراء" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تدقيق المطابقة" type="button">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-on-surface transition-colors" title="المزيد" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-error-container/20 hover:bg-error-container/30 transition-colors"><td class="p-space-md text-center"><input class="rounded accent-primary cursor-pointer" type="checkbox"></td><td class="p-space-md"><div class="font-mono-data font-bold text-error">PO-2025-0415</div><span class="text-secondary text-label-sm">طلب استثنائي طارئ</span></td><td class="p-space-md"><div class="font-semibold text-on-surface">داينامكس العالمية المحدودة</div><span class="text-secondary text-body-sm font-mono-data">orders@global-dyn.com</span></td><td class="p-space-md font-mono-data text-secondary">27 أكتوبر 2025</td><td class="p-space-md font-mono-data text-on-surface">15 نوفمبر 2025</td><td class="p-space-md font-mono-data font-bold text-on-surface">$48,150.00</td><td class="p-space-md"><span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]">hourglass_empty</span>بانتظار الفاتورة</span></td><td class="p-space-md"><div class="flex items-center gap-space-xs"><span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold"><span class="material-symbols-outlined text-[14px]">warning</span>يتطلب توقيع نائب الرئيس</span><button class="px-2 py-0.5 bg-error text-on-error hover:bg-on-error-container rounded font-label-sm text-label-sm transition-colors font-bold" type="button">توقيع وإصدار</button></div></td><td class="p-space-md text-center"><div class="flex items-center justify-center gap-1"><button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تحميل أمر الشراء" type="button"><span class="material-symbols-outlined text-[18px]">download</span></button><button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تدقيق المطابقة" type="button"><span class="material-symbols-outlined text-[18px]">rule</span></button><button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-on-surface transition-colors" title="المزيد" type="button"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></td></tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-md text-center">
+<input class="rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="p-space-md">
+<div class="font-mono-data font-bold text-primary">PO-2025-0416</div>
+<span class="text-secondary text-label-sm">عقد أجهزة استشعار</span>
+</td>
+<td class="p-space-md">
+<div class="font-semibold text-on-surface">تيتان لروبوتات الاستشعار</div>
+<span class="text-secondary text-body-sm font-mono-data">info@titan-robotics.de</span>
+</td>
+<td class="p-space-md font-mono-data text-secondary">28 أكتوبر 2025</td>
+<td class="p-space-md font-mono-data text-on-surface">18 نوفمبر 2025</td>
+<td class="p-space-md font-mono-data font-bold text-on-surface">$21,680.00</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+                مطابق للفاتورة
+              </span>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                معتمد
+              </span>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تحميل أمر الشراء" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-primary transition-colors" title="تدقيق المطابقة" type="button">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-secondary hover:text-on-surface transition-colors" title="المزيد" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-secondary">
+<div>
+        عرض <span class="font-mono-data font-bold text-on-surface">1 - 5</span> من أصل <span class="font-mono-data font-bold text-on-surface">38</span> أمر شراء نشط
+      </div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1 rounded bg-surface-container-lowest text-outline-variant cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="w-7 h-7 rounded bg-primary-container text-on-primary font-mono-data text-label-sm font-bold flex items-center justify-center" type="button">1</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-mono-data text-label-sm flex items-center justify-center hover:bg-surface-container transition-colors" type="button">2</button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-mono-data text-label-sm flex items-center justify-center hover:bg-surface-container transition-colors" type="button">3</button>
+<button class="p-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BOTTOM SECTION: FINANCIAL CONTROL & THREE-WAY AUDIT CARDS -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1: 3-Way Match Integrity -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">الرقابة المالية المؤتمتة</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">fact_check</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">المطابقة الثلاثية المؤتمتة (3-Way Matching)</h3>
+<p class="font-body-sm text-body-sm text-secondary">
+          تكامل فوري يربط أمر الشراء (PO) وإشعار استلام الرصيف (GRN) وفاتورة المورد قبل سداد أي مستحقات.
+        </p>
+</div>
+<div class="space-y-space-xs">
+<div class="flex justify-between items-center font-mono-data text-body-sm">
+<span class="text-on-surface font-medium">معدل المطابقة دون تدخل بشري</span>
+<span class="text-tertiary font-bold">99.84%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 99.84%;"></div>
+</div>
+<div class="flex justify-between text-secondary font-label-sm text-label-sm pt-1">
+<span>حالات عدم تطابق: 0.16% (معالجة يدوية)</span>
+<span class="text-primary font-medium cursor-pointer hover:underline">سجل التدقيق</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Currency Hedging & AP Commitments -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">إدارة مخاطر العملات</span>
+<span class="material-symbols-outlined text-primary text-[20px]">currency_exchange</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">تحوط التزامات الخزينة متعددة العملات</h3>
+<p class="font-body-sm text-body-sm text-secondary">
+          توزيع الالتزامات المالية للموردين حسب العملة للتحوط من تقلبات أسعار الصرف.
+        </p>
+</div>
+<div class="space-y-space-xs"><div class="flex items-center gap-space-xs"><div class="flex-1 bg-primary h-3 rounded-full" title="الدولار الأمريكي: 74%"></div><div class="w-1/5 bg-surface-tint h-3 rounded-full" title="اليورو: 18%"></div><div class="w-1/12 bg-secondary-fixed-dim h-3 rounded-full" title="الكرونة السويدية: 8%"></div></div><div class="grid grid-cols-3 gap-space-xs text-center pt-space-xs font-mono-data text-label-sm"><div class="p-space-xxs rounded bg-surface-container-low"><span class="block text-primary font-bold">74%</span><span class="text-secondary text-[11px]">USD ($) (الأساس)</span></div><div class="p-space-xxs rounded bg-surface-container-low"><span class="block text-surface-tint font-bold">18%</span><span class="text-secondary text-[11px]">EUR (€)</span></div><div class="p-space-xxs rounded bg-surface-container-low"><span class="block text-secondary font-bold">8%</span><span class="text-secondary text-[11px]">SEK (kr)</span></div></div></div>
+</div>
+<!-- Card 3: Supplier Governance & Audit -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">حوكمة الموردين والامتثال</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">shield</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">الامتثال القانوني والشهادات القياسية</h3>
+<p class="font-body-sm text-body-sm text-secondary">
+          مراقبة استمرارية صلاحية شهادات الجودة ISO ورخص التصدير لضمان عدم توقف خطوط الإنتاج.
+        </p>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-amber-500 text-[20px]">notification_important</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">2 موردين قيد تجديد شهادة ISO</span>
+<span class="font-body-sm text-body-sm text-secondary">تنبيه انتهاء الصلاحية خلال 30 يوماً</span>
+</div>
+</div>
+<button class="h-8 px-space-xs bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm transition-colors" type="button">
+          متابعة
+        </button>
+</div>
+</div>
+</div>
+</div></main></div>
+
+
+
+<script>
+// Universal Navigation Bridge for Stitch Extracted Suite
+document.addEventListener("DOMContentLoaded", function () {
+  const isRtl = document.documentElement.getAttribute("dir") === "rtl";
+  const pathMapEn = {
+    "invoices": "../finance_invoices_receivables_1/code.html",
+    "financial-reports": "../../index.html#finance/reports",
+    "pl-summary": "../../index.html#finance/pl",
+    "treasury-cash-flow": "../../index.html#finance/treasury",
+    "products-list": "../inventory_products_stock_alerts/code.html",
+    "reorder-alerts": "../../index.html#inventory/alerts",
+    "stock-movement-log": "../../index.html#inventory/movement",
+    "customers": "../../index.html#sales/customers",
+    "sales-orders": "../sales_orders_pipeline_tracker/code.html",
+    "order-pipeline": "../sales_orders_pipeline_tracker/code.html",
+    "suppliers": "../purchasing_quotations_po_tracking/code.html",
+    "quotations-comparison": "../purchasing_quotations_po_tracking/code.html",
+    "purchase-orders": "../purchasing_quotations_po_tracking/code.html",
+    "employee-profiles": "../human_resources_directory_attendance_payroll/code.html",
+    "attendance": "../human_resources_directory_attendance_payroll/code.html",
+    "leave-management": "../human_resources_directory_attendance_payroll/code.html",
+    "payroll": "../human_resources_directory_attendance_payroll/code.html"
+  };
+
+  const pathMapAr = {
+    "invoices": "../finance_invoices_receivables_2/code.html",
+    "financial-reports": "../_2/code.html",
+    "pl-summary": "../rtl_4/code.html",
+    "treasury-cash-flow": "../_1/code.html",
+    "products-list": "../rtl_1/code.html",
+    "reorder-alerts": "../../index.html#inventory/alerts",
+    "stock-movement-log": "../../index.html#inventory/movement",
+    "customers": "../../index.html#sales/customers",
+    "sales-orders": "../rtl_2/code.html",
+    "order-pipeline": "../rtl_2/code.html",
+    "suppliers": "../rtl_3/code.html",
+    "quotations-comparison": "../rtl_3/code.html",
+    "purchase-orders": "../rtl_3/code.html",
+    "employee-profiles": "../../index.html#hr/employees",
+    "attendance": "../../index.html#hr/attendance",
+    "leave-management": "../../index.html#hr/leave",
+    "payroll": "../../index.html#hr/payroll"
+  };
+
+  const currentMap = isRtl ? pathMapAr : pathMapEn;
+
+  document.querySelectorAll('aside nav a[data-path]').forEach(function (link) {
+    const p = link.getAttribute('data-path');
+    if (currentMap[p]) {
+      link.setAttribute('href', currentMap[p]);
+    }
+  });
+
+  // Add Portal Launch Button in Header if not present
+  const header = document.querySelector('header');
+  if (header && !document.getElementById('portalBridgeBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'portalBridgeBtn';
+    btn.href = '../../index.html';
+    btn.className = 'flex items-center gap-1.5 h-8 px-3 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 shadow-sm transition-all ml-2';
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">dashboard_customize</span><span>' + (isRtl ? 'البوابة الرئيسية الشاملة' : 'Master ERP Portal') + '</span>';
+    header.appendChild(btn);
+  }
+});
+</script>
+</body></html>

@@ -1,0 +1,785 @@
+﻿<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#5c647a", "primary-fixed": "#dde1ff", "on-tertiary-fixed-variant": "#005137", "on-background": "#0b1c30", "primary-container": "#1e40af", "on-primary": "#ffffff", "tertiary-fixed-dim": "#68dba9", "on-error-container": "#93000a", "background": "#f8f9ff", "on-tertiary-container": "#5bcf9e", "inverse-primary": "#b8c4ff", "on-secondary": "#ffffff", "surface-tint": "#3755c3", "on-primary-container": "#a8b8ff", "primary": "#00288e", "tertiary-fixed": "#85f8c4", "surface-container-low": "#eff4ff", "secondary": "#565e74", "on-secondary-fixed-variant": "#3f465c", "on-secondary-fixed": "#131b2e", "on-tertiary-fixed": "#002114", "secondary-fixed": "#dae2fd", "inverse-on-surface": "#eaf1ff", "secondary-fixed-dim": "#bec6e0", "outline-variant": "#c4c5d5", "secondary-container": "#dae2fd", "on-tertiary": "#ffffff", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "on-error": "#ffffff", "surface": "#f8f9ff", "inverse-surface": "#213145", "on-primary-fixed": "#001453", "surface-container-highest": "#d3e4fe", "on-primary-fixed-variant": "#173bab", "outline": "#757684", "surface-dim": "#cbdbf5", "on-surface": "#0b1c30", "surface-container-high": "#dce9ff", "tertiary": "#003d28", "surface-container": "#e5eeff", "error-container": "#ffdad6", "on-surface-variant": "#444653", "surface-bright": "#f8f9ff", "tertiary-container": "#00563a", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b8c4ff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-mobile": "1rem", "space-xxs": "0.125rem", "margin": "1.5rem", "space-lg": "1rem", "space-xl": "1.5rem", "space-sm": "0.5rem", "space-md": "0.75rem", "gutter": "1rem", "gutter-dense": "0.5rem", "space-2xl": "2rem", "space-xs": "0.25rem" }, "fontFamily": { "label-sm": ["Inter"], "headline-lg": ["Inter"], "mono-data": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "label-md": ["Inter"], "headline-sm": ["Inter"], "display-lg": ["Inter"], "body-lg": ["Inter"] }, "fontSize": { "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "mono-data": ["12px", { "lineHeight": "16px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary"><aside class="fixed left-0 top-0 h-screen w-64 bg-inverse-surface text-inverse-on-surface z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="h-14 flex items-center px-space-md gap-space-sm bg-inverse-surface border-b border-outline/20"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-sm font-bold">A</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-surface-container-lowest leading-none">Apex ERP</span><span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">Enterprise Cloud</span></div></div><div class="flex-1 px-space-xs py-space-sm space-y-space-md"><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Finance & Accounting</span><span class="material-symbols-outlined text-[14px]">account_balance</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="invoices" href="#"><span class="material-symbols-outlined text-[16px]">receipt_long</span><span>Invoices</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="financial-reports" href="#"><span class="material-symbols-outlined text-[16px]">analytics</span><span>Financial Reports</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="pl-summary" href="#"><span class="material-symbols-outlined text-[16px]">query_stats</span><span>P&L Summary</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="treasury-cash-flow" href="#"><span class="material-symbols-outlined text-[16px]">payments</span><span>Treasury & Cash Flow</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Inventory & Warehousing</span><span class="material-symbols-outlined text-[14px]">warehouse</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="products-list" href="#"><span class="material-symbols-outlined text-[16px]">inventory_2</span><span>Products List</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="reorder-alerts" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">notification_important</span><span>Reorder Alerts</span></div><span class="px-1.5 py-0.5 rounded-full bg-error text-on-error font-label-sm text-[10px] leading-tight">8</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="stock-movement-log" href="#"><span class="material-symbols-outlined text-[16px]">swap_horiz</span><span>Stock Movement</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Sales & CRM</span><span class="material-symbols-outlined text-[14px]">trending_up</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="customers" href="#"><span class="material-symbols-outlined text-[16px]">group</span><span>Customers</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="sales-orders" href="#"><span class="material-symbols-outlined text-[16px]">shopping_bag</span><span>Sales Orders</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary font-label-md rounded" data-path="order-pipeline" href="#"><span class="material-symbols-outlined text-[16px]">view_kanban</span><span>Order Pipeline</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Purchasing & Suppliers</span><span class="material-symbols-outlined text-[14px]">local_shipping</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="suppliers" href="#"><span class="material-symbols-outlined text-[16px]">store</span><span>Suppliers</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="quotations-comparison" href="#"><span class="material-symbols-outlined text-[16px]">compare_arrows</span><span>Quotations Comparison</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="purchase-orders" href="#"><span class="material-symbols-outlined text-[16px]">assignment</span><span>Purchase Orders</span></a></nav></div><div class="space-y-space-xxs"><div class="px-space-sm py-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed-dim flex items-center justify-between"><span>Human Resources</span><span class="material-symbols-outlined text-[14px]">badge</span></div><nav class="space-y-space-xxs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="employee-profiles" href="#"><span class="material-symbols-outlined text-[16px]">person</span><span>Employee Profiles</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="attendance" href="#"><span class="material-symbols-outlined text-[16px]">schedule</span><span>Attendance</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="leave-management" href="#"><span class="material-symbols-outlined text-[16px]">event_available</span><span>Leave Management</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-inverse-on-surface hover:bg-surface-variant/20 hover:text-surface-container-lowest transition-colors font-body-sm text-body-sm" data-path="payroll" href="#"><span class="material-symbols-outlined text-[16px]">paid</span><span>Payroll</span></a></nav></div></div><div class="p-space-sm border-t border-outline/20 flex items-center justify-between bg-inverse-surface"><div class="flex items-center gap-space-xs"><span class="inline-block w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary-fixed-dim">US-East Cluster</span></div><span class="font-mono-data text-mono-data text-secondary-fixed-dim">v4.18.2</span></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-container-lowest border-b border-outline-variant/40 z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px] text-primary">domain</span><span class="font-label-md text-label-md text-on-surface font-semibold">Apex Global Corp - NA Branch</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-[18px] text-on-surface-variant">search</span><input class="w-80 h-8 pl-8 pr-12 rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant/60 border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all" placeholder="Search transactions, SKU, suppliers, accounts..." type="text"/><span class="absolute right-space-xs px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono-data text-[10px] border border-outline-variant/40">⌘K</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low border border-outline-variant/30"><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">Operational</span></div><button class="flex items-center gap-space-xs h-8 px-space-sm rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors"><span class="material-symbols-outlined text-[16px]">add</span><span>New</span></button><button class="relative p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span></button><button class="p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">help</span></button><div class="h-5 w-px bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Marcus Sterling</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">VP Operations</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida/ALJJyrAZEYJR_gteHhJTbBmZpiGFkUS--iQzGK-dLPDD2r0Xt0HhkgqMZpmVxIWetS5TTO4zBN-ITL8eur99h-gr2WrB1IkXaAkSY99FRfWuHFGE-4leTBfiLB2eoi3a0qA7_EIEIY90BIiEjfyM3_C51PZc1_dL53Wa3htLHYsfR5Ibus9gRFFA9ZGKKcQUMGI7b8ekkKUcOg5ruO1LgkI6nLtk7y4KNzlXh4dvYUgKYSCH"/></div></div></header><main class="w-full pt-14 px-space-xl bg-background min-h-screen"><div class="flex flex-col w-full pb-space-2xl space-y-space-xl">
+<!-- Module Sub-Header & Global Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-space-xxs">
+<span>Sales & CRM</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary font-semibold">Order Fulfillment Operations</span>
+</div>
+<div class="flex items-center gap-space-md">
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">Sales Orders & Pipeline</h1>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container font-mono-data text-mono-data text-on-surface-variant">Live Sync: 4m ago</span>
+</div>
+</div>
+<!-- Right Controls: View Switcher & Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Dual View Switcher -->
+<div class="inline-flex p-1 bg-surface-container-low rounded-lg">
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-primary shadow-sm font-label-md text-label-md transition-all" id="view-pipeline-btn">
+<span class="material-symbols-outlined text-[16px]">view_kanban</span>
+<span>Pipeline Board</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" id="view-table-btn">
+<span class="material-symbols-outlined text-[16px]">table_rows</span>
+<span>Data Table View</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Export CSV</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-lg py-2 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-all shadow-sm font-label-md text-label-md" onclick="document.getElementById('quick-order-panel').scrollIntoView({behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ New Sales Order</span>
+</button>
+</div>
+</div>
+</div>
+<!-- KPI / Pipeline Metric Strip with Visual Progression Steppers -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Stage 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary-fixed"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-surface-container-low flex items-center justify-center font-mono-data text-mono-data text-primary font-bold">01</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">New / Quotation</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant">18 Orders</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-sm">
+<span class="font-display-lg text-display-lg font-bold text-on-surface tracking-tight">$142,300</span>
+<span class="font-label-sm text-label-sm text-tertiary-container flex items-center gap-0.5 font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12.4%
+        </span>
+</div>
+<!-- Meter -->
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 48%"></div>
+</div>
+<div class="flex items-center justify-between mt-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span>Target: $300k</span>
+<span class="font-mono-data">48% of Quota</span>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary-container"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center font-mono-data text-mono-data text-primary font-bold">02</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Processing & Approved</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant">12 Orders</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-sm">
+<span class="font-display-lg text-display-lg font-bold text-on-surface tracking-tight">$98,400</span>
+<span class="font-label-sm text-label-sm text-tertiary-container flex items-center gap-0.5 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 92% SLA
+        </span>
+</div>
+<!-- Meter -->
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex items-center justify-between mt-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span>Credit Verified</span>
+<span class="font-mono-data">Avg 3.2 hrs</span>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1 bg-tertiary-container"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center font-mono-data text-mono-data text-on-secondary-container font-bold">03</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Packed & In-Transit</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant">9 Orders</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-sm">
+<span class="font-display-lg text-display-lg font-bold text-on-surface tracking-tight">$76,100</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono-data">3 Carriers</span>
+</div>
+<!-- Meter -->
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 80%"></div>
+</div>
+<div class="flex items-center justify-between mt-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span>Fulfillment Velocity</span>
+<span class="font-mono-data">98.1% Ontime</span>
+</div>
+</div>
+<!-- Stage 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1 bg-tertiary-fixed-dim"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-tertiary-fixed flex items-center justify-center font-mono-data text-mono-data text-on-tertiary-fixed font-bold">04</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Shipped & Delivered</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant">34 Orders</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-sm">
+<span class="font-display-lg text-display-lg font-bold text-on-surface tracking-tight">$285,900</span>
+<span class="font-label-sm text-label-sm text-tertiary-container flex items-center gap-0.5 font-semibold">
+<span class="material-symbols-outlined text-[14px]">done_all</span> Settled
+        </span>
+</div>
+<!-- Meter -->
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full rounded-full" style="width: 100%"></div>
+</div>
+<div class="flex items-center justify-between mt-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span>Cycle Completed</span>
+<span class="font-mono-data font-semibold text-tertiary">100% Invoiced</span>
+</div>
+</div>
+</div>
+<!-- Interactive Pipeline Stage Board (Kanban Cards Style) -->
+<div class="flex flex-col space-y-space-md" id="pipeline-kanban-section">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Active Pipeline Cards</h2>
+<span class="text-on-surface-variant font-body-sm text-body-sm">Drag or inspect live telemetry stages</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Filter Carrier:</span>
+<select class="h-7 px-space-xs rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none">
+<option>All Logistics Hubs</option>
+<option>FedEx Priority Freight</option>
+<option>DHL Worldwide Express</option>
+<option>Maersk Intermodal</option>
+</select>
+</div>
+</div>
+<!-- Horizontal Multi-Stage Board -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Column 1: New / Quotation -->
+<div class="flex flex-col space-y-space-md bg-surface-container-low/60 p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">Quotation Intake</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface font-mono-data text-[11px] flex items-center justify-center font-bold">2</span>
+</div>
+<!-- Card 1.1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-primary font-bold">SO-2024-8841</span>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[10px]">Quote Review</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold font-headline-sm">
+<span class="material-symbols-outlined text-[18px]">precision_manufacturing</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold truncate">Apex Aerospace Ltd</h3>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate">Turbine Assembly Kits (x4)</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$54,200.00</span>
+<span class="font-mono-data text-mono-data text-error font-medium">Promo: 15% VIP</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs border-t border-surface-container-high/40 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Corporate headshot of young Caucasian enterprise account manager wearing navy business suit and spectacles, crisp neutral office background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHbGn1DTdqfklzeDA1K7Pp-t-mDFRXZpULKHv6AycDiNJ68OM_z01zxrj-9y2F8b03XksrP_AJb_cy9M-y5lvgMCscSto58cailA27ZR5Qucb64_e1IyzCiDFS8z-3j6YS8ocIQmUNreKhh3Xe38KqNAFaxFt2wfUQ_v7G1wA6OJoeQuYRzGVxu4mng9lAUQmuwS8cuDSEdpFfLvBiua4duRO0-UVOEKpbZkFGxIFd"/>
+<span class="font-body-sm text-body-sm text-on-surface">E. Vance</span>
+</div>
+<span class="flex items-center gap-1 font-mono-data text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[13px]">timer</span> Valid 48h
+            </span>
+</div>
+</div>
+<!-- Card 1.2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-primary font-bold">SO-2024-8845</span>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">Draft PO</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold font-headline-sm">
+<span class="material-symbols-outlined text-[18px]">biotech</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold truncate">BioGen Diagnostics</h3>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate">Automated Centrifuges (x12)</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$88,100.00</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">Standard Net30</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs border-t border-surface-container-high/40 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Portrait of Asian female enterprise solutions architect in professional corporate apparel with friendly executive expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMdC7LqHOpAd7RBKGy8k0yU0XePfzCfZimR7IcQN3JUFegk8kIH_I2_xieoDPfDebyF-1_33gxt6yMq_STLrujzTm4W-ScO_oXxzExvnL8fJA1uzQYf9OLxl0782zGo2jk5CWf-lsHE_3j2JQz-KE3pqBZnBnroCgOA0MONDgT_I8Qxw4UXWw6LoIX0sU_VlJgzAcdKIhOep_b8jw9WnY2XnF9Xg1CaW9YpWR_t0gl"/>
+<span class="font-body-sm text-body-sm text-on-surface">H. Chen</span>
+</div>
+<span class="flex items-center gap-1 font-mono-data text-[11px] text-tertiary-container font-semibold">
+<span class="material-symbols-outlined text-[13px]">alarm</span> Reviewing
+            </span>
+</div>
+</div>
+</div>
+<!-- Column 2: Processing & Approved -->
+<div class="flex flex-col space-y-space-md bg-surface-container-low/60 p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">Credit Cleared & Staging</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface font-mono-data text-[11px] flex items-center justify-center font-bold">1</span>
+</div>
+<!-- Card 2.1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-primary font-bold">SO-2024-8839</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-[10px] font-semibold">Staged Bay 4</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold font-headline-sm">
+<span class="material-symbols-outlined text-[18px]">domain</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold truncate">Apex Global North America</h3>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate">Core Network Switchers (x40)</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$98,400.00</span>
+<span class="font-mono-data text-mono-data text-tertiary-container font-semibold">Pre-Paid 100%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 75%"></div>
+</div>
+<div class="flex items-center justify-between pt-space-xs border-t border-surface-container-high/40 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Portrait of senior Hispanic logistics operations lead with confident demeanour and crisp corporate collar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGixPejQK9ZD5Yqie0gM60Ud_77n0SwMqq80aUOd7MIWSdo4-1m-6qBwFa_eyiLMZC52BDhfsVFQyj-nz2BJpi0LtcOI8NdpWna6Jislbk7zZpsMl-0cNUWalDAXrScZYkKyOxbODzwUdehu-tl-tTobGQgG5z9c1japi9qFKwZGDrRRNJpZjSS29etN7jHBc19E-jbkakRFQoIeO2cS37fnadr3EYNg10pQHH0dSq"/>
+<span class="font-body-sm text-body-sm text-on-surface">M. Ramos</span>
+</div>
+<span class="font-mono-data text-[11px] text-on-surface-variant">Picking 40/40</span>
+</div>
+</div>
+</div>
+<!-- Column 3: Packed & In-Transit -->
+<div class="flex flex-col space-y-space-md bg-surface-container-low/60 p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">Active Freight</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface font-mono-data text-[11px] flex items-center justify-center font-bold">1</span>
+</div>
+<!-- Card 3.1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-primary font-bold">SO-2024-8822</span>
+<span class="px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[10px] font-semibold">In Route</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold font-headline-sm">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold truncate">OmniCorp Logistics</h3>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate">Tracking: 1Z992A012891</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$76,100.00</span>
+<span class="font-mono-data text-mono-data text-tertiary-container font-bold">ETA: 4h 15m</span>
+</div>
+<!-- Progress timeline line -->
+<div class="flex items-center gap-1 pt-1">
+<span class="h-1.5 w-1/3 bg-tertiary-container rounded-full"></span>
+<span class="h-1.5 w-1/3 bg-tertiary-container rounded-full"></span>
+<span class="h-1.5 w-1/3 bg-surface-container rounded-full"></span>
+</div>
+<div class="flex items-center justify-between pt-space-xs border-t border-surface-container-high/40 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Portrait of professional Black logistics coordinator in corporate attire against modern warehouse office backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8P3RsQlU3np_bYcn60AsVXqqmkxsBlPVJaMLz4sGX8UN_2zAFwTSdwjfG3jmrWwDFfsn3wuHB_SowEYAcrtoaOukixZuGbOgopK2c6uyZONXm5I62rG5utPGoFCdvFdX4g4CwleQ0Ig9DnehtFOEztMjur9cyVux-Z2QZUm71GfBX_48Dy1kcyc-MZ9yD24vAojbZesu4im4j8R_Urk4zMQXP_zjkk2f7Gha_W_O8"/>
+<span class="font-body-sm text-body-sm text-on-surface">K. Bradley</span>
+</div>
+<span class="flex items-center gap-1 font-mono-data text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">near_me</span> I-80 Hub East
+            </span>
+</div>
+</div>
+</div>
+<!-- Column 4: Shipped & Delivered -->
+<div class="flex flex-col space-y-space-md bg-surface-container-low/60 p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">Delivered & Invoiced</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface font-mono-data text-[11px] flex items-center justify-center font-bold">2</span>
+</div>
+<!-- Card 4.1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-primary font-bold">SO-2024-8810</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-[10px] font-semibold">POD Signed</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary font-bold font-headline-sm">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold truncate">Apex Global North America</h3>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate">Dock 12 Signature: J. Doe</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$162,500.00</span>
+<span class="font-label-sm text-label-sm text-tertiary-container font-semibold">Paid in Full</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs border-t border-surface-container-high/40 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Corporate headshot of professional executive account manager in modern business attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-cNZ6pHAFKwoD_ZwizHIIZvfujRjayGBPu4LCSP8zZ3vgHmYe0KpxLRM-LHk9PqsZAnm0CSshWLQg8ctFXym74-ByVxLnWsFLdZquKvvNm-r4WV_yNh0UNLs7Iho-9XPo_GnLctbdn6ssGrpP-tJ8ITxzmEd0zlEkmpXWc5yS_7d7de_DNnW2P4wyTokzW_xvJ4RHl4uidVedzxsSmOLUjTXJA87vT03E3ccPjvM-"/>
+<span class="font-body-sm text-body-sm text-on-surface">E. Vance</span>
+</div>
+<span class="font-mono-data text-[11px] text-tertiary-container flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[13px]">task_alt</span> Closed
+            </span>
+</div>
+</div>
+<!-- Card 4.2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-primary font-bold">SO-2024-8798</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-[10px] font-semibold">POD Signed</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary font-bold font-headline-sm">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold truncate">Vanguard Marine Corp</h3>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate">Sonar Arrays (x2)</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$123,400.00</span>
+<span class="font-mono-data text-mono-data text-secondary">Inv #INV-9902</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs border-t border-surface-container-high/40 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Portrait of female operations specialist with dark tied back hair in modern office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDATn3W4EVPn-vO-6FPYtSZejKH_OYWCtNKAlyt8RjwhFIflAEawTLlaLMW-3e1yWOeMPPHnv9rsD8vkCPcFfchkQU3aDxhyKIrZgeEfDtiHCsSot7yuf6BEmR-i0pSiaQw6xx0KaEVUCBctuoQ0nomkmapyYm3Le-WQd0sSV4LxET2my8i3VzWE7jYtiKB4blp1pyql36vVlNCC4Jpefb_eqlfdl1rxO5Qk6lmcPoK"/>
+<span class="font-body-sm text-body-sm text-on-surface">T. Larson</span>
+</div>
+<span class="font-mono-data text-[11px] text-tertiary-container flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[13px]">task_alt</span> Closed
+            </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Order Creation & Recent Orders Workstation Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start" id="quick-order-panel">
+<!-- LEFT PANEL: Quick Sales Order Entry Station (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container-low">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">post_add</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Quick Order Entry</h2>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-mono-data text-mono-data">DRAFT #SO-2024-8850</span>
+</div>
+<!-- Customer Lookup Field with Live Snippet Card -->
+<div class="flex flex-col space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Account / Customer Entity</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-[18px] text-on-surface-variant">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary-container" id="customer-input" type="text" value="Apex Global North America"/>
+</div>
+</div>
+<!-- Customer Verified Data Dossier Preview Snippet -->
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Customer Dossier Snippet</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[10px] font-semibold">Tier-1 Enterprise</span>
+</div>
+<div class="flex items-start gap-space-sm pt-space-xxs">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary font-bold shadow-sm">
+<span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-bold text-on-surface">Apex Global North America</span>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-mono-data text-mono-data mt-0.5">
+<span class="material-symbols-outlined text-[13px]">call</span>
+<span>+1 (555) 234-8901</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[13px]">location_on</span>
+<span class="truncate">742 Evergreen Suite 400, Chicago IL</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Line Items / SKUs Selection Grid -->
+<div class="flex flex-col space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Order Line Items (2 SKUs)</label>
+<button class="text-primary font-label-sm text-label-sm hover:underline font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">add</span> Add SKU
+          </button>
+</div>
+<div class="space-y-space-xs">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold truncate">APX-4800G Enterprise Gateway</span>
+<span class="font-mono-data text-[11px] text-on-surface-variant">Qty: 24 units @ $1,800.00</span>
+</div>
+<span class="font-mono-data text-mono-data font-bold">$43,200.00</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold truncate">Fiber Patch Transceivers 100G</span>
+<span class="font-mono-data text-[11px] text-on-surface-variant">Qty: 50 units @ $120.00</span>
+</div>
+<span class="font-mono-data text-mono-data font-bold">$6,000.00</span>
+</div>
+</div>
+</div>
+<!-- Pricing Adjustments & Discount Logic -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Subtotal (74 items)</span>
+<span class="font-mono-data text-mono-data text-on-surface font-semibold">$49,200.00</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-primary">Discount / Promo:</span>
+<select class="h-6 px-1.5 text-[11px] rounded bg-surface-container-low text-on-surface focus:outline-none font-mono-data">
+<option selected="">15% VIP Tier</option>
+<option>$250.00 Fixed Promo</option>
+<option>Volume Tier B (8%)</option>
+<option>No Discount</option>
+</select>
+</div>
+<span class="font-mono-data text-mono-data text-error font-semibold">-$7,380.00</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Freight (FedEx Priority Ground)</span>
+<span class="font-mono-data text-mono-data text-on-surface">$450.00</span>
+</div>
+<div class="pt-space-xs border-t border-surface-container-low flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Total Order Value</span>
+<span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">$42,270.00</span>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="w-1/2 h-9 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+          Save as Draft
+        </button>
+<button class="w-1/2 h-9 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all shadow-sm flex items-center justify-center gap-space-xs" id="commit-order-btn">
+<span class="material-symbols-outlined text-[16px]">send</span>
+<span>Submit for Approval</span>
+</button>
+</div>
+</div>
+<!-- RIGHT PANEL: Recent Orders Telemetry & Ledger (7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm border-b border-surface-container-low">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">receipt_long</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Recent Orders Workstation</h2>
+</div>
+<!-- In-Table Quick Filter Pills -->
+<div class="flex items-center gap-space-xs">
+<button class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-[11px]">All (54)</button>
+<button class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-[11px] hover:bg-surface-container-high transition-colors">Pending (12)</button>
+<button class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-[11px] hover:bg-surface-container-high transition-colors">In-Transit (9)</button>
+</div>
+</div>
+<!-- Orders Interactive Grid/Cards -->
+<div class="space-y-space-sm">
+<!-- Order Row 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors flex flex-col space-y-space-sm group">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-mono-data text-mono-data font-bold text-primary">SO-2024-8839</span>
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/40"></span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Apex Global North America</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-mono-data text-[10px] font-bold">PAID (ACH)</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$98,400.00</span>
+</div>
+</div>
+<!-- Customer details metadata snippet -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs text-on-surface-variant font-body-sm text-body-sm pt-space-xxs">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">phone</span>
+<span class="font-mono-data">+1 (555) 234-8901</span>
+</div>
+<div class="flex items-center gap-1 sm:col-span-2 truncate">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span class="truncate">742 Evergreen Suite 400, Chicago IL</span>
+</div>
+</div>
+<!-- Stage Progress Stepper (New -> Processing -> Shipped) -->
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-sm flex-1 max-w-md">
+<!-- Step 1 Complete -->
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+<span class="font-label-sm text-[11px] font-semibold text-primary">New</span>
+</div>
+<div class="h-0.5 flex-1 bg-primary-container"></div>
+<!-- Step 2 In Progress -->
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-mono-data text-[10px] font-bold">2</span>
+<span class="font-label-sm text-[11px] font-bold text-on-surface">Processing</span>
+</div>
+<div class="h-0.5 flex-1 bg-surface-container-high"></div>
+<!-- Step 3 Pending -->
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center font-mono-data text-[10px]">3</span>
+<span class="font-label-sm text-[11px]">Shipped</span>
+</div>
+</div>
+<!-- Discount Applied & Items -->
+<div class="flex items-center gap-space-md font-mono-data text-mono-data">
+<span class="text-on-surface-variant">40 Items</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">15% VIP Tier</span>
+</div>
+</div>
+</div>
+<!-- Order Row 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors flex flex-col space-y-space-sm group">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-mono-data text-mono-data font-bold text-primary">SO-2024-8841</span>
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/40"></span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Apex Aerospace Ltd</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono-data text-[10px] font-bold">NET 30 PENDING</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$54,200.00</span>
+</div>
+</div>
+<!-- Customer details metadata snippet -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs text-on-surface-variant font-body-sm text-body-sm pt-space-xxs">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">phone</span>
+<span class="font-mono-data">+1 (555) 891-3342</span>
+</div>
+<div class="flex items-center gap-1 sm:col-span-2 truncate">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span class="truncate">Hangar B-4, Willow Run Airport, Detroit MI</span>
+</div>
+</div>
+<!-- Stage Progress Stepper (New -> Processing -> Shipped) -->
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-sm flex-1 max-w-md">
+<!-- Step 1 In Progress -->
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-mono-data text-[10px] font-bold">1</span>
+<span class="font-label-sm text-[11px] font-bold text-on-surface">New</span>
+</div>
+<div class="h-0.5 flex-1 bg-surface-container-high"></div>
+<!-- Step 2 -->
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center font-mono-data text-[10px]">2</span>
+<span class="font-label-sm text-[11px]">Processing</span>
+</div>
+<div class="h-0.5 flex-1 bg-surface-container-high"></div>
+<!-- Step 3 -->
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center font-mono-data text-[10px]">3</span>
+<span class="font-label-sm text-[11px]">Shipped</span>
+</div>
+</div>
+<!-- Discount Applied & Items -->
+<div class="flex items-center gap-space-md font-mono-data text-mono-data">
+<span class="text-on-surface-variant">4 Items</span>
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-medium">$250.00 Fixed Promo</span>
+</div>
+</div>
+</div>
+<!-- Order Row 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors flex flex-col space-y-space-sm group">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-mono-data text-mono-data font-bold text-primary">SO-2024-8822</span>
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/40"></span>
+<span class="font-label-md text-label-md font-bold text-on-surface">OmniCorp Logistics</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-mono-data text-[10px] font-bold">PAID (WIRE)</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$76,100.00</span>
+</div>
+</div>
+<!-- Customer details metadata snippet -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs text-on-surface-variant font-body-sm text-body-sm pt-space-xxs">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">phone</span>
+<span class="font-mono-data">+1 (555) 441-9921</span>
+</div>
+<div class="flex items-center gap-1 sm:col-span-2 truncate">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span class="truncate">Distribution Hub 9, Logistics Blvd, Dallas TX</span>
+</div>
+</div>
+<!-- Stage Progress Stepper (Complete to Shipped) -->
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-sm flex-1 max-w-md">
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+<span class="font-label-sm text-[11px] font-semibold text-tertiary-container">New</span>
+</div>
+<div class="h-0.5 flex-1 bg-tertiary-container"></div>
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+<span class="font-label-sm text-[11px] font-semibold text-tertiary-container">Processing</span>
+</div>
+<div class="h-0.5 flex-1 bg-primary"></div>
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-mono-data text-[10px] font-bold">3</span>
+<span class="font-label-sm text-[11px] font-bold text-primary">In-Transit</span>
+</div>
+</div>
+<!-- Discount Applied & Items -->
+<div class="flex items-center gap-space-md font-mono-data text-mono-data">
+<span class="text-on-surface-variant">18 Items</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Standard / No Disc</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ledger Pagination & Quick Status Footer -->
+<div class="pt-space-sm flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm border-t border-surface-container-low">
+<span>Showing 1-3 of 54 Enterprise Orders</span>
+<div class="flex items-center gap-space-xs">
+<button class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<span class="font-mono-data px-2 py-0.5 rounded bg-primary-container text-on-primary text-[11px]">1</span>
+<span class="font-mono-data px-2 py-0.5 text-[11px]">2</span>
+<span class="font-mono-data px-2 py-0.5 text-[11px]">3</span>
+<button class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Script for View Switching and Feedback Toast -->
+<script>
+    (function initSalesPipeline() {
+      const pipelineBtn = document.getElementById('view-pipeline-btn');
+      const tableBtn = document.getElementById('view-table-btn');
+      const kanbanSection = document.getElementById('pipeline-kanban-section');
+      const commitBtn = document.getElementById('commit-order-btn');
+
+      if (pipelineBtn && tableBtn && kanbanSection) {
+        tableBtn.addEventListener('click', () => {
+          tableBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+          tableBtn.classList.remove('text-on-surface-variant');
+          pipelineBtn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+          pipelineBtn.classList.add('text-on-surface-variant');
+          kanbanSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        pipelineBtn.addEventListener('click', () => {
+          pipelineBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+          pipelineBtn.classList.remove('text-on-surface-variant');
+          tableBtn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+          tableBtn.classList.add('text-on-surface-variant');
+        });
+      }
+
+      if (commitBtn) {
+        commitBtn.addEventListener('click', () => {
+          const original = commitBtn.innerHTML;
+          commitBtn.disabled = true;
+          commitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[16px]">autorenew</span><span>Verifying SLA...</span>`;
+          setTimeout(() => {
+            commitBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]">done</span><span>Order Dispatched!</span>`;
+            commitBtn.classList.remove('bg-primary-container');
+            commitBtn.classList.add('bg-tertiary-container');
+            setTimeout(() => {
+              commitBtn.innerHTML = original;
+              commitBtn.classList.remove('bg-tertiary-container');
+              commitBtn.classList.add('bg-primary-container');
+              commitBtn.disabled = false;
+            }, 2500);
+          }, 900);
+        });
+      }
+    })();
+  </script>
+</div></main></div><script>
+// Universal Navigation Bridge for Stitch Extracted Suite
+document.addEventListener("DOMContentLoaded", function () {
+  const isRtl = document.documentElement.getAttribute("dir") === "rtl";
+  const pathMapEn = {
+    "invoices": "../finance_invoices_receivables_1/code.html",
+    "financial-reports": "../../index.html#finance/reports",
+    "pl-summary": "../../index.html#finance/pl",
+    "treasury-cash-flow": "../../index.html#finance/treasury",
+    "products-list": "../inventory_products_stock_alerts/code.html",
+    "reorder-alerts": "../../index.html#inventory/alerts",
+    "stock-movement-log": "../../index.html#inventory/movement",
+    "customers": "../../index.html#sales/customers",
+    "sales-orders": "../sales_orders_pipeline_tracker/code.html",
+    "order-pipeline": "../sales_orders_pipeline_tracker/code.html",
+    "suppliers": "../purchasing_quotations_po_tracking/code.html",
+    "quotations-comparison": "../purchasing_quotations_po_tracking/code.html",
+    "purchase-orders": "../purchasing_quotations_po_tracking/code.html",
+    "employee-profiles": "../human_resources_directory_attendance_payroll/code.html",
+    "attendance": "../human_resources_directory_attendance_payroll/code.html",
+    "leave-management": "../human_resources_directory_attendance_payroll/code.html",
+    "payroll": "../human_resources_directory_attendance_payroll/code.html"
+  };
+
+  const pathMapAr = {
+    "invoices": "../finance_invoices_receivables_2/code.html",
+    "financial-reports": "../_2/code.html",
+    "pl-summary": "../rtl_4/code.html",
+    "treasury-cash-flow": "../_1/code.html",
+    "products-list": "../rtl_1/code.html",
+    "reorder-alerts": "../../index.html#inventory/alerts",
+    "stock-movement-log": "../../index.html#inventory/movement",
+    "customers": "../../index.html#sales/customers",
+    "sales-orders": "../rtl_2/code.html",
+    "order-pipeline": "../rtl_2/code.html",
+    "suppliers": "../rtl_3/code.html",
+    "quotations-comparison": "../rtl_3/code.html",
+    "purchase-orders": "../rtl_3/code.html",
+    "employee-profiles": "../../index.html#hr/employees",
+    "attendance": "../../index.html#hr/attendance",
+    "leave-management": "../../index.html#hr/leave",
+    "payroll": "../../index.html#hr/payroll"
+  };
+
+  const currentMap = isRtl ? pathMapAr : pathMapEn;
+
+  document.querySelectorAll('aside nav a[data-path]').forEach(function (link) {
+    const p = link.getAttribute('data-path');
+    if (currentMap[p]) {
+      link.setAttribute('href', currentMap[p]);
+    }
+  });
+
+  // Add Portal Launch Button in Header if not present
+  const header = document.querySelector('header');
+  if (header && !document.getElementById('portalBridgeBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'portalBridgeBtn';
+    btn.href = '../../index.html';
+    btn.className = 'flex items-center gap-1.5 h-8 px-3 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 shadow-sm transition-all ml-2';
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">dashboard_customize</span><span>' + (isRtl ? 'البوابة الرئيسية الشاملة' : 'Master ERP Portal') + '</span>';
+    header.appendChild(btn);
+  }
+});
+</script>
+</body></html>
