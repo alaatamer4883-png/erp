@@ -124,7 +124,71 @@ const MODULE_TITLES = {
   }
 };
 
+// ============================================================================
+// RESPONSIVE SIDEBAR & MOBILE DRAWER CONTROLLER (التحكم في القائمة الجانبية والهاتف)
+// ============================================================================
+
+function toggleSidebar(forceState = null) {
+  const isMobile = window.innerWidth < 1024;
+  const sidebar = document.getElementById('mainSidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+
+  if (isMobile) {
+    const isCurrentlyOpen = document.body.classList.contains('sidebar-mobile-open') || 
+                            (sidebar && sidebar.classList.contains('mobile-open'));
+    const nextState = forceState !== null ? forceState : !isCurrentlyOpen;
+
+    if (nextState) {
+      document.body.classList.add('sidebar-mobile-open');
+      if (sidebar) sidebar.classList.add('mobile-open');
+      if (backdrop) backdrop.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      closeSidebar();
+    }
+  } else {
+    // Desktop: Toggle collapsed / expanded focus mode
+    const isCollapsed = document.body.classList.contains('sidebar-desktop-collapsed');
+    const nextState = forceState !== null ? forceState : !isCollapsed;
+    
+    if (nextState) {
+      document.body.classList.add('sidebar-desktop-collapsed');
+      showToast('تم تفعيل وضع التركيز الكامل (Full Focus Mode).', 'info');
+    } else {
+      document.body.classList.remove('sidebar-desktop-collapsed');
+    }
+  }
+}
+
+function closeSidebar() {
+  const sidebar = document.getElementById('mainSidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+
+  document.body.classList.remove('sidebar-mobile-open');
+  if (sidebar) sidebar.classList.remove('mobile-open');
+  if (backdrop) {
+    backdrop.classList.add('hidden');
+  }
+  document.body.style.overflow = '';
+}
+
+// Ensure global accessibility for onclick attributes
+window.toggleSidebar = toggleSidebar;
+window.closeSidebar = closeSidebar;
+
+// Close drawer automatically on resize above mobile breakpoint
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 1024) {
+    closeSidebar();
+  }
+});
+
 function navigateTo(module, subView = null) {
+  // Automatically close mobile sidebar drawer upon selecting any page
+  if (window.innerWidth < 1024) {
+    closeSidebar();
+  }
+
   if (!MODULE_TITLES[module]) module = 'finance';
   ERP_STATE.activeModule = module;
 
@@ -183,7 +247,7 @@ function updateSidebarActive() {
   }
 }
 
-// Sub-nav Tab Header Builder in Arabic
+// Sub-nav Tab Header Builder in Arabic with Smooth Mobile Touch Scrolling
 function renderSubNavTabs(module, activeView) {
   const modInfo = MODULE_TITLES[module];
   const tabs = Object.keys(modInfo.views).map(key => {
@@ -191,7 +255,7 @@ function renderSubNavTabs(module, activeView) {
     const name = modInfo.views[key].title;
     return `
       <button onclick="navigateTo('${module}', '${key}')" 
-              class="subnav-tab px-4 py-2 text-xs font-bold rounded-t border-b-2 transition-all duration-150 ${
+              class="subnav-tab px-3 md:px-4 py-2 text-xs font-bold rounded-t border-b-2 whitespace-nowrap shrink-0 transition-all duration-150 ${
                 isAct 
                   ? 'border-primary-container text-primary-container bg-surface-container-low shadow-sm' 
                   : 'border-transparent text-secondary hover:text-on-surface hover:bg-surface-container-low/50'
@@ -202,7 +266,7 @@ function renderSubNavTabs(module, activeView) {
   }).join('');
 
   return `
-    <div class="flex items-center gap-1 border-b border-outline-variant/30 mb-space-md overflow-x-auto">
+    <div class="flex items-center gap-1 border-b border-outline-variant/40 mb-space-md overflow-x-auto no-scrollbar scroll-smooth py-0.5">
       ${tabs}
     </div>
   `;
@@ -2339,6 +2403,7 @@ window.addEventListener('DOMContentLoaded', () => {
       openGlobalSearch();
     }
     if (e.key === 'Escape') {
+      closeSidebar();
       closeGlobalSearch();
       closeCreateInvoiceModal();
       closeCurrencyModal();

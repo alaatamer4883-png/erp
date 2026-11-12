@@ -75,20 +75,29 @@
 
 <body class="bg-background font-sans text-on-surface antialiased selection:bg-primary-container selection:text-on-primary min-h-screen">
 
+  <!-- خلفية معتمة للهواتف والأجهزة اللوحية عند فتح القائمة الجانبية (Mobile Sidebar Backdrop) -->
+  <div id="sidebarBackdrop" onclick="closeSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
+
   <!-- ====================================================================== -->
   <!-- 1. القائمة الجانبية في جهة اليمين (ENTERPRISE RTL SIDEBAR)             -->
   <!-- ====================================================================== -->
   <aside class="fixed right-0 top-0 h-screen w-64 bg-inverse-surface text-inverse-on-surface z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.08)] overflow-y-auto" id="mainSidebar">
     
-    <!-- رأس القائمة: الشعار والعنوان -->
-    <div class="h-14 flex items-center px-space-md gap-space-sm bg-inverse-surface border-b border-outline/20">
-      <div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-lg shadow-sm">
-        أ
+    <!-- رأس القائمة: الشعار والعنوان وزر الإغلاق في وضع الهاتف -->
+    <div class="h-14 flex items-center justify-between px-space-md bg-inverse-surface border-b border-outline/20">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-lg shadow-sm">
+          أ
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">أبيكس ERP</span>
+          <span class="text-[10px] text-slate-400 uppercase tracking-widest mt-1">سحابة المؤسسات v4.18</span>
+        </div>
       </div>
-      <div class="flex flex-col">
-        <span class="font-bold text-base tracking-tight text-white leading-none">أبيكس ERP</span>
-        <span class="text-[10px] text-slate-400 uppercase tracking-widest mt-1">سحابة المؤسسات v4.18</span>
-      </div>
+      <!-- زر إغلاق القائمة في الشاشات الصغيرة (Mobile Close Button) -->
+      <button onclick="closeSidebar()" class="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer" title="إغلاق القائمة">
+        <span class="material-symbols-outlined text-[22px]">close</span>
+      </button>
     </div>
 
     <!-- تصنيفات الوحدات الخمسة -->
@@ -236,70 +245,89 @@
   <div class="pr-64 pl-0 transition-all" id="appBodyWrapper">
     
     <!-- الشريط العلوي (Top Header) -->
-    <header class="fixed top-0 right-64 left-0 h-14 bg-surface-container-lowest border-b border-outline-variant/40 z-40 flex items-center justify-between px-space-lg shadow-[0_1px_4px_rgba(0,0,0,0.03)]" id="topHeader">
+    <header class="fixed top-0 right-64 left-0 h-14 bg-surface-container-lowest border-b border-outline-variant/40 z-40 flex items-center justify-between px-2 sm:px-4 md:px-space-lg shadow-[0_1px_4px_rgba(0,0,0,0.03)]" id="topHeader">
       
-      <!-- اليمين: اختيار الفرع والبحث السريع واختيار العملة -->
-      <div class="flex items-center gap-space-md">
+      <!-- اليمين: زر فتح/إغلاق القائمة واختيار الفرع والعملة والبحث -->
+      <div class="flex items-center gap-1.5 sm:gap-2 md:gap-space-md">
         
-        <!-- اسم الفرع أو المؤسسة -->
-        <div class="flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:bg-surface-container transition-colors text-xs font-bold">
+        <!-- زر التبديل للقائمة الجانبية (Sidebar Toggle Button) -->
+        <button id="sidebarToggleBtn" onclick="toggleSidebar()" class="flex items-center justify-center w-9 h-9 rounded-lg hover:bg-surface-container text-on-surface transition-colors cursor-pointer shrink-0 border border-outline-variant/40" title="القائمة الرئيسية / وضع التركيز">
+          <span class="material-symbols-outlined text-[24px] text-primary">menu</span>
+        </button>
+
+        <!-- الشعار الصغير على الهواتف عند إخفاء القائمة -->
+        <div class="lg:hidden flex items-center gap-1.5 shrink-0">
+          <div class="w-7 h-7 rounded-md bg-primary-container flex items-center justify-center text-on-primary font-bold text-xs shadow-xs">
+            أ
+          </div>
+          <span class="font-bold text-xs text-on-surface hidden xs:inline">أبيكس</span>
+        </div>
+
+        <!-- اسم الفرع أو المؤسسة (يتحول لأيقونة على الشاشات فائقة الصغر) -->
+        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:bg-surface-container transition-colors text-xs font-bold shrink-0">
           <span class="material-symbols-outlined text-[17px] text-primary">domain</span>
-          <span>شركة أبيكس العالمية - فرع الشرق الأوسط</span>
+          <span class="truncate max-w-[120px] md:max-w-none">شركة أبيكس العالمية</span>
           <span class="material-symbols-outlined text-[15px] text-secondary">unfold_more</span>
         </div>
 
         <!-- زر اختيار عملة التقارير -->
-        <button onclick="openCurrencyModal()" class="flex items-center gap-1 px-3 py-1 rounded bg-surface-container border border-outline-variant/40 text-xs text-on-surface hover:bg-surface-container-high transition-colors font-bold">
+        <button onclick="openCurrencyModal()" class="flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded bg-surface-container border border-outline-variant/40 text-xs text-on-surface hover:bg-surface-container-high transition-colors font-bold shrink-0">
           <span class="material-symbols-outlined text-[16px] text-primary">currency_exchange</span>
           <span id="nav-currency-label" class="font-mono-data font-bold">USD ($)</span>
-          <span class="material-symbols-outlined text-[14px] text-secondary">expand_more</span>
+          <span class="material-symbols-outlined text-[14px] text-secondary hidden sm:inline">expand_more</span>
         </button>
 
-        <!-- حقل البحث العام السريع -->
-        <div class="relative flex items-center cursor-pointer" onclick="openGlobalSearch()">
+        <!-- حقل البحث العام السريع (للشاشات المتوسطة والكبيرة) -->
+        <div class="relative hidden md:flex items-center cursor-pointer" onclick="openGlobalSearch()">
           <span class="material-symbols-outlined absolute right-2.5 text-[18px] text-secondary">search</span>
-          <input type="text" placeholder="بحث في المعاملات، الأرقام المرجعية، العملاء..." 
-                 class="w-72 h-8 pr-9 pl-12 rounded bg-surface-container-low text-xs text-on-surface border border-transparent hover:border-outline-variant/50 focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all cursor-pointer" readonly />
+          <input type="text" placeholder="بحث عام (⌘K)..." 
+                 class="w-44 lg:w-64 h-8 pr-9 pl-12 rounded bg-surface-container-low text-xs text-on-surface border border-transparent hover:border-outline-variant/50 focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all cursor-pointer" readonly />
           <span class="absolute left-1.5 px-1.5 py-0.5 rounded bg-surface-container text-secondary font-mono-data text-[10px] border border-outline-variant/40">⌘K</span>
         </div>
       </div>
 
       <!-- اليسار: حالة النظام، زر إضافة فاتورة، الإشعارات، والملف الشخصي -->
-      <div class="flex items-center gap-space-md">
+      <div class="flex items-center gap-1 sm:gap-2 md:gap-space-md shrink-0">
         
-        <!-- مؤشر ربط ومزامنة Firebase -->
-        <button id="firebaseStatusBadge" onclick="openFirebaseModal()" class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800 cursor-pointer hover:bg-emerald-100 transition-colors shadow-sm" title="إدارة المزامنة السحابية مع Firebase">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 live-pulse"></span>
-          <span>Firebase متصل (tast-b91f3)</span>
+        <!-- زر بحث للأجهزة المحمولة -->
+        <button onclick="openGlobalSearch()" class="md:hidden p-1.5 rounded-lg hover:bg-surface-container text-secondary hover:text-on-surface transition-colors cursor-pointer" title="بحث سريع">
+          <span class="material-symbols-outlined text-[20px]">search</span>
         </button>
 
-        <!-- مؤشر الحالة التشغيلية -->
-        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-xs font-bold text-slate-700">
+        <!-- مؤشر ربط ومزامنة Firebase -->
+        <button id="firebaseStatusBadge" onclick="openFirebaseModal()" class="flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800 cursor-pointer hover:bg-emerald-100 transition-colors shadow-xs" title="إدارة المزامنة السحابية مع Firebase">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 live-pulse"></span>
+          <span class="hidden sm:inline">Firebase متصل (tast-b91f3)</span>
+          <span class="sm:hidden font-mono-data text-[10px]">Cloud</span>
+        </button>
+
+        <!-- مؤشر الحالة التشغيلية (للشاشات الكبيرة) -->
+        <div class="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-xs font-bold text-slate-700">
           <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
           <span>سحابة نشطة</span>
         </div>
 
         <!-- زر إنشاء فاتورة جديدة سريع -->
-        <button onclick="openCreateInvoiceModal()" class="flex items-center gap-1 h-8 px-3.5 rounded bg-primary-container text-on-primary text-xs font-bold hover:bg-primary transition-all shadow-sm">
+        <button onclick="openCreateInvoiceModal()" class="flex items-center gap-1 h-8 px-2 sm:px-3 rounded bg-primary-container text-on-primary text-xs font-bold hover:bg-primary transition-all shadow-sm shrink-0">
           <span class="material-symbols-outlined text-[17px]">add</span>
-          <span>فاتورة جديدة</span>
+          <span class="hidden xs:inline">فاتورة جديدة</span>
         </button>
 
         <!-- جرس التنبيهات -->
-        <button onclick="showToast('مركز الإشعارات: 3 تنبيهات تشغيلية معلقة للمراجعة.', 'info')" class="relative p-1.5 rounded hover:bg-surface-container-low text-secondary hover:text-on-surface transition-colors" title="التنبيهات">
+        <button onclick="showToast('مركز الإشعارات: 3 تنبيهات تشغيلية معلقة للمراجعة.', 'info')" class="relative p-1.5 rounded-lg hover:bg-surface-container-low text-secondary hover:text-on-surface transition-colors" title="التنبيهات">
           <span class="material-symbols-outlined text-[20px]">notifications</span>
           <span class="absolute top-1 left-1 w-2 h-2 rounded-full bg-rose-600"></span>
         </button>
 
-        <div class="h-5 w-px bg-outline-variant/40"></div>
+        <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
 
         <!-- بطاقة المستخدم الحالي -->
-        <div class="flex items-center gap-2.5 cursor-pointer" onclick="navigateTo('hr', 'employees')">
-          <div class="flex flex-col text-left hidden md:flex">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('hr', 'employees')">
+          <div class="flex flex-col text-left hidden lg:flex">
             <span class="text-xs font-bold text-on-surface leading-tight">ماركوس ستيرلينغ</span>
-            <span class="text-[11px] text-secondary leading-tight">نائب الرئيس للعمليات</span>
+            <span class="text-[11px] text-secondary leading-tight">نائب الرئيس</span>
           </div>
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Marcus Sterling" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" />
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Marcus Sterling" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-1 ring-outline-variant" />
         </div>
 
       </div>

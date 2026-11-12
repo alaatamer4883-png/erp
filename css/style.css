@@ -65,32 +65,145 @@ html, body {
   background: #94a3b8;
 }
 
-/* RTL Sidebar Navigation Anchor */
-#mainSidebar {
-  position: fixed;
-  right: 0 !important;
-  left: auto !important;
-  top: 0;
-  height: 100vh;
-  width: 16rem;
-  z-index: 50;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+/* ==========================================================================
+   Responsive Sidebar & Layout Engine (Desktop & Mobile Drawer)
+   ========================================================================== */
+
+/* Desktop Layout (screens >= 1024px) */
+@media (min-width: 1024px) {
+  #mainSidebar {
+    position: fixed;
+    right: 0 !important;
+    left: auto !important;
+    top: 0;
+    height: 100vh;
+    width: 16rem;
+    z-index: 50;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+    transform: translateX(0) !important;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Desktop collapsed focus mode */
+  body.sidebar-desktop-collapsed #mainSidebar {
+    transform: translateX(100%) !important;
+  }
+  body.sidebar-desktop-collapsed #appBodyWrapper {
+    padding-right: 0 !important;
+  }
+  body.sidebar-desktop-collapsed #topHeader {
+    right: 0 !important;
+  }
+
+  #appBodyWrapper {
+    padding-right: 16rem !important;
+    padding-left: 0 !important;
+    transition: padding-right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #topHeader {
+    position: fixed;
+    top: 0;
+    right: 16rem !important;
+    left: 0 !important;
+    height: 3.5rem;
+    z-index: 40;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #sidebarBackdrop {
+    display: none !important;
+    pointer-events: none !important;
+  }
 }
 
-#appBodyWrapper {
-  padding-right: 16rem !important;
-  padding-left: 0 !important;
-  transition: padding 0.2s ease;
+/* Mobile Backdrop Base */
+#sidebarBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 28, 48, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 55;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#topHeader {
-  position: fixed;
-  top: 0;
-  right: 16rem !important;
-  left: 0 !important;
-  height: 3.5rem;
-  z-index: 40;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+/* Mobile & Tablet Layout (screens < 1024px) */
+@media (max-width: 1023px) {
+  #mainSidebar {
+    position: fixed;
+    right: 0 !important;
+    left: auto !important;
+    top: 0;
+    height: 100vh;
+    width: 17.5rem;
+    max-width: 85vw;
+    z-index: 60;
+    box-shadow: -4px 0 25px rgba(0, 0, 0, 0.35);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* When open on mobile */
+  #mainSidebar.mobile-open,
+  body.sidebar-mobile-open #mainSidebar {
+    transform: translateX(0) !important;
+  }
+
+  body.sidebar-mobile-open #sidebarBackdrop {
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  #appBodyWrapper {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+  }
+
+  #topHeader {
+    position: fixed;
+    top: 0;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 3.5rem;
+    z-index: 40;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  main {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-top: 4.25rem !important;
+  }
+}
+
+/* Sidebar Toggle Button Transitions */
+#sidebarToggleBtn {
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#sidebarToggleBtn:hover {
+  background-color: #e5eeff;
+}
+#sidebarToggleBtn:active {
+  transform: scale(0.94);
+}
+
+/* Touch & Smooth Horizontal Scrolling */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Sidebar Navigation Link Active State */
