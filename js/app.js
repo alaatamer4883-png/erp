@@ -183,6 +183,29 @@ window.addEventListener('resize', () => {
   }
 });
 
+// Dropdown menu for logged in user in the header
+function toggleUserDropdown(event) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  const menu = document.getElementById('userDropdownMenu');
+  if (menu) {
+    menu.classList.toggle('hidden');
+  }
+}
+window.toggleUserDropdown = toggleUserDropdown;
+
+window.addEventListener('click', (e) => {
+  const menu = document.getElementById('userDropdownMenu');
+  const card = document.getElementById('headerUserCard');
+  if (menu && !menu.classList.contains('hidden')) {
+    if ((card && !card.contains(e.target)) && !menu.contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  }
+});
+
 function navigateTo(module, subView = null) {
   // Automatically close mobile sidebar drawer upon selecting any page
   if (window.innerWidth < 1024) {
@@ -477,7 +500,7 @@ function renderInvoicesView() {
           </select>
         </div>
         <div class="text-xs text-secondary font-mono-data">
-          عرض <b>${start + 1}-${Math.min(start + pState.perPage, total)}</b> من أصل <b>${total}</b> فاتورة
+          عرض <b>${total ? (start + 1) + '-' + Math.min(start + pState.perPage, total) : 0}</b> من أصل <b>${total}</b> فاتورة
         </div>
       </div>
 
@@ -497,7 +520,7 @@ function renderInvoicesView() {
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-container/60 font-body-md text-on-surface">
-            ${rows.length ? rows : `<tr><td colspan="8" class="text-center py-8 text-secondary">لا توجد فواتير تطابق معايير البحث المحددة.</td></tr>`}
+            ${rows.length ? rows : `<tr><td colspan="8" class="text-center py-12 text-secondary"><div class="flex flex-col items-center justify-center gap-2"><span class="material-symbols-outlined text-4xl text-slate-300">receipt_long</span><p class="font-bold text-sm text-on-surface">لا توجد فواتير مسجلة حتى الآن</p><p class="text-xs text-secondary">اضغط على زر "فاتورة جديدة" في الأعلى لإصدار أول فاتورة ومزامنتها سحابياً مع Firebase.</p></div></td></tr>`}
           </tbody>
         </table>
       </div>
@@ -754,7 +777,13 @@ function renderTreasuryView() {
 
     <!-- Connected Bank Accounts Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
-      ${treasury.accounts.map(acc => `
+      ${treasury.accounts.length === 0 ? `
+        <div class="col-span-full py-8 text-center text-secondary text-xs erp-card bg-surface-container-low/40">
+          <span class="material-symbols-outlined text-3xl text-slate-300 mb-1">account_balance</span>
+          <p class="font-bold text-sm text-on-surface">لا توجد حسابات بنكية مربوطة حالياً</p>
+          <p class="text-xs text-secondary mt-1">اضغط على زر "مزامنة البنوك الحية" أعلاه لربط حساب بنكي بالخزينة.</p>
+        </div>
+      ` : treasury.accounts.map(acc => `
         <div class="erp-card p-space-md flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="font-bold text-xs text-on-surface truncate">${acc.name}</span>
@@ -779,7 +808,12 @@ function renderTreasuryView() {
         <h3 class="font-headline-sm font-bold text-on-surface mb-1">توقعات التدفقات النقدية للأيام القادمة</h3>
         <p class="text-xs text-secondary mb-4">جدول الاستحقاقات المتوقعة من الفواتير المعلقة والتزامات أوامر الشراء المؤكدة.</p>
         <div class="space-y-3 font-mono-data text-xs">
-          ${treasury.cashFlowForecast.map(item => `
+          ${treasury.cashFlowForecast.length === 0 ? `
+            <div class="py-8 text-center text-secondary text-xs">
+              <span class="material-symbols-outlined text-2xl text-slate-300 mb-1">trending_up</span>
+              <p>لا توجد تدفقات نقدية مستقبلية مسجلة حالياً.</p>
+            </div>
+          ` : treasury.cashFlowForecast.map(item => `
             <div class="p-2.5 rounded bg-surface-container-low flex items-center justify-between">
               <span class="font-bold text-on-surface">${item.date}</span>
               <div class="flex items-center gap-4">
@@ -797,7 +831,12 @@ function renderTreasuryView() {
         <h3 class="font-headline-sm font-bold text-on-surface mb-1">سجل حركات الخزينة والتحويلات الحديثة</h3>
         <p class="text-xs text-secondary mb-4">بيان تدقيق الحركات المالية المنفذة عبر مختلف القنوات المصرفية.</p>
         <div class="divide-y divide-outline-variant/30 font-mono-data text-xs">
-          ${treasury.recentTransactions.map(tx => `
+          ${treasury.recentTransactions.length === 0 ? `
+            <div class="py-8 text-center text-secondary text-xs">
+              <span class="material-symbols-outlined text-2xl text-slate-300 mb-1">receipt_long</span>
+              <p>لا توجد حركات مصرفية حديثة مسجلة.</p>
+            </div>
+          ` : treasury.recentTransactions.map(tx => `
             <div class="py-2.5 flex items-center justify-between">
               <div>
                 <div class="font-bold text-on-surface">${tx.desc}</div>
@@ -1019,7 +1058,7 @@ function renderProductsView() {
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-container/60 font-body-md text-on-surface">
-            ${rows}
+            ${rows.length ? rows : `<tr><td colspan="7" class="text-center py-12 text-secondary"><div class="flex flex-col items-center justify-center gap-2"><span class="material-symbols-outlined text-4xl text-slate-300">inventory_2</span><p class="font-bold text-sm text-on-surface">لا توجد منتجات مسجلة بالمخزون حالياً</p><p class="text-xs text-secondary">ستظهر المنتجات هنا فور إضافتها إلى Firebase.</p></div></td></tr>`}
           </tbody>
         </table>
       </div>
@@ -1058,7 +1097,7 @@ function renderReorderAlertsView() {
 
     <!-- Highlight Alert Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md mb-space-lg">
-      ${criticalItems.map(item => {
+      ${criticalItems.length ? criticalItems.map(item => {
         const isRed = item.status.includes('حرج');
         const cardBorder = isRed ? 'border-rose-400 bg-rose-50/40' : 'border-amber-400 bg-amber-50/40';
         const badgeColor = isRed ? 'bg-rose-600 text-white' : 'bg-amber-500 text-white';
@@ -1099,7 +1138,13 @@ function renderReorderAlertsView() {
             </div>
           </div>
         `;
-      }).join('')}
+      }).join('') : `
+        <div class="col-span-full p-12 text-center text-secondary erp-card">
+          <span class="material-symbols-outlined text-4xl text-emerald-500 mb-2">check_circle</span>
+          <p class="font-bold text-sm text-on-surface">مستويات المخزون آمنة تماماً</p>
+          <p class="text-xs text-secondary mt-1">لا توجد أصناف قد تجاوزت حد إعادة الطلب الحرج حالياً.</p>
+        </div>
+      `}
     </div>
   `;
 }
@@ -1137,7 +1182,7 @@ function renderStockMovementView() {
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-container/60 font-body-md text-on-surface">
-            ${stockMovements.map(m => {
+            ${stockMovements.length ? stockMovements.map(m => {
               const isRecv = m.type.includes('وارد');
               const isIssue = m.type.includes('صادر');
               const badgeClass = isRecv ? 'badge-success' : (isIssue ? 'badge-info' : 'badge-warning');
@@ -1166,7 +1211,17 @@ function renderStockMovementView() {
                   <td class="px-space-md py-space-sm text-xs text-secondary">${m.notes}</td>
                 </tr>
               `;
-            }).join('')}
+            }).join('') : `
+              <tr>
+                <td colspan="7" class="text-center py-12 text-secondary">
+                  <div class="flex flex-col items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-4xl text-slate-300">swap_horiz</span>
+                    <p class="font-bold text-sm text-on-surface">سجل حركات المخزون فارغ حالياً</p>
+                    <p class="text-xs text-secondary">يتم توثيق الحركات آلياً عند توريد أو صرف أي منتجات.</p>
+                  </div>
+                </td>
+              </tr>
+            `}
           </tbody>
         </table>
       </div>
@@ -1196,7 +1251,7 @@ function renderCustomersView() {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
-      ${customers.map(c => `
+      ${customers.length ? customers.map(c => `
         <div class="erp-card p-space-lg flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
@@ -1235,7 +1290,13 @@ function renderCustomersView() {
             </div>
           </div>
         </div>
-      `).join('')}
+      `).join('') : `
+        <div class="col-span-full p-12 text-center text-secondary erp-card">
+          <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">group</span>
+          <p class="font-bold text-sm text-on-surface">دليل العملاء فارغ حالياً</p>
+          <p class="text-xs text-secondary mt-1">ابدأ بإضافة أول عميل معتمد في النظام ليتم ربطه بالأوامر والفواتير السحابية.</p>
+        </div>
+      `}
     </div>
   `;
 }
@@ -1268,12 +1329,12 @@ function renderSalesOrdersView() {
           <div>
             <label class="block text-xs font-bold text-secondary mb-1">اختر حساب العميل *</label>
             <select id="soCustomerSelect" class="w-full h-9 px-3 text-xs rounded bg-surface-container-low border border-outline-variant/60 focus:border-primary focus:outline-none">
-              ${customers.map(c => `<option value="${c.id}">${c.name} (${c.contactPerson})</option>`).join('')}
+              ${customers.length === 0 ? `<option value="">لا يوجد عملاء مسجلون حالياً (أضف عميلاً أولاً)</option>` : customers.map(c => `<option value="${c.id}">${c.name} (${c.contactPerson})</option>`).join('')}
             </select>
           </div>
           <div>
             <label class="block text-xs font-bold text-secondary mb-1">مندوب المبيعات المسؤول</label>
-            <input type="text" id="soRepInput" value="ماركوس ستيرلينغ" class="w-full h-9 px-3 text-xs rounded bg-surface-container-low border border-outline-variant/60 text-secondary" readonly />
+            <input type="text" id="soRepInput" value="${ERP_STATE.currentUser?.name || 'مدير المبيعات'}" class="w-full h-9 px-3 text-xs rounded bg-surface-container-low border border-outline-variant/60 text-secondary" readonly />
           </div>
         </div>
 
@@ -1284,7 +1345,7 @@ function renderSalesOrdersView() {
             <!-- Default item 1 -->
             <div class="flex items-center gap-2 p-2 rounded bg-surface-container-low/60 border border-outline-variant/30 order-item-row">
               <select class="flex-1 h-8 px-2 text-xs rounded bg-surface-container-lowest border border-outline-variant/50 item-product-select" onchange="recalculateSalesOrder()">
-                ${products.map(p => `<option value="${p.code}" data-price="${p.price}">${p.name} - ${formatMoney(p.price)}</option>`).join('')}
+                ${products.length === 0 ? `<option value="" data-price="0">لا توجد منتجات مسجلة في المخزون (أضف منتجات أولاً)</option>` : products.map(p => `<option value="${p.code}" data-price="${p.price}">${p.name} - ${formatMoney(p.price)}</option>`).join('')}
               </select>
               <input type="number" min="1" value="10" class="w-20 h-8 px-2 text-xs rounded bg-surface-container-lowest border border-outline-variant/50 text-center item-qty-input font-mono-data font-bold" oninput="recalculateSalesOrder()" />
               <button onclick="removeOrderItemRow(this)" class="p-1 rounded text-secondary hover:text-rose-600">
@@ -1423,7 +1484,7 @@ function renderSalesPipelineView() {
           </span>
           <span class="px-2 py-0.5 rounded-full bg-surface-container-high font-mono-data text-xs font-bold">${newOrders.length}</span>
         </div>
-        <div>${newOrders.map(renderCard).join('')}</div>
+        <div>${newOrders.length ? newOrders.map(renderCard).join('') : '<div class="p-8 text-center text-secondary text-xs bg-surface-container-low/50 rounded-lg border border-dashed border-outline-variant/60">لا توجد طلبات جديدة حالياً</div>'}</div>
       </div>
 
       <!-- 2. Processing Orders -->
@@ -1434,7 +1495,7 @@ function renderSalesPipelineView() {
           </span>
           <span class="px-2 py-0.5 rounded-full bg-surface-container-high font-mono-data text-xs font-bold">${procOrders.length}</span>
         </div>
-        <div>${procOrders.map(renderCard).join('')}</div>
+        <div>${procOrders.length ? procOrders.map(renderCard).join('') : '<div class="p-8 text-center text-secondary text-xs bg-surface-container-low/50 rounded-lg border border-dashed border-outline-variant/60">لا توجد طلبات قيد التجهيز</div>'}</div>
       </div>
 
       <!-- 3. Shipped Orders -->
@@ -1445,7 +1506,7 @@ function renderSalesPipelineView() {
           </span>
           <span class="px-2 py-0.5 rounded-full bg-surface-container-high font-mono-data text-xs font-bold">${shipOrders.length}</span>
         </div>
-        <div>${shipOrders.map(renderCard).join('')}</div>
+        <div>${shipOrders.length ? shipOrders.map(renderCard).join('') : '<div class="p-8 text-center text-secondary text-xs bg-surface-container-low/50 rounded-lg border border-dashed border-outline-variant/60">لا توجد طلبات مشحونة</div>'}</div>
       </div>
     </div>
   `;
@@ -1473,7 +1534,7 @@ function renderSuppliersView() {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-      ${suppliers.map(s => `
+      ${suppliers.length ? suppliers.map(s => `
         <div class="erp-card p-space-lg flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
@@ -1515,13 +1576,36 @@ function renderSuppliersView() {
             </button>
           </div>
         </div>
-      `).join('')}
+      `).join('') : `
+        <div class="col-span-full p-12 text-center text-secondary erp-card">
+          <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">store</span>
+          <p class="font-bold text-sm text-on-surface">دليل الموردين فارغ حالياً</p>
+          <p class="text-xs text-secondary mt-1">ابدأ بتسجيل أول مورد معتمد في النظام.</p>
+        </div>
+      `}
     </div>
   `;
 }
 
 function renderQuotationsView() {
   const { quotationsComparison } = ERP_STATE.data.purchasing;
+
+  if (!quotationsComparison || !quotationsComparison.vendors || !quotationsComparison.vendors.length) {
+    return `
+      ${renderSubNavTabs('purchasing', 'quotes')}
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+        <div>
+          <h2 class="font-headline-lg font-bold text-on-surface">مصفوفة مقارنة عروض الأسعار (Quotations Matrix)</h2>
+          <p class="text-xs text-secondary">تقييم عروض الأسعار التنافسية الواردة من عدة موردين لنفس الصنف لاختيار العرض الأفضل.</p>
+        </div>
+      </div>
+      <div class="p-12 text-center text-secondary erp-card">
+        <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">compare_arrows</span>
+        <p class="font-bold text-sm text-on-surface">لا توجد عروض أسعار للمقارنة حالياً</p>
+        <p class="text-xs text-secondary mt-1">ابدأ بطلب عروض أسعار من الموردين المعتمدين.</p>
+      </div>
+    `;
+  }
 
   return `
     ${renderSubNavTabs('purchasing', 'quotes')}
@@ -1637,7 +1721,15 @@ function renderPurchaseOrdersView() {
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-container/60 font-body-md text-on-surface">
-            ${purchaseOrders.map(po => `
+            ${purchaseOrders.length === 0 ? `
+              <tr>
+                <td colspan="8" class="text-center py-10 text-secondary text-xs">
+                  <span class="material-symbols-outlined text-3xl text-slate-300 block mb-1">shopping_cart_checkout</span>
+                  <p class="font-bold text-sm text-on-surface">لا توجد أوامر شراء مسجلة حالياً</p>
+                  <p class="text-xs text-secondary mt-1">اضغط "إصدار أمر شراء جديد" لإرسال طلب إلى أحد الموردين المعتمدين.</p>
+                </td>
+              </tr>
+            ` : purchaseOrders.map(po => `
               <tr class="hover:bg-surface-container-low/60 transition-colors">
                 <td class="px-space-md py-space-sm font-mono-data font-bold text-primary">${po.id}</td>
                 <td class="px-space-md py-space-sm font-bold text-on-surface text-xs">${po.supplier}</td>
@@ -1713,7 +1805,13 @@ function renderEmployeesView() {
 
     <!-- Employee Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
-      ${employees.map(emp => `
+      ${employees.length === 0 ? `
+        <div class="col-span-full py-12 text-center text-secondary text-xs erp-card bg-surface-container-low/40">
+          <span class="material-symbols-outlined text-4xl text-slate-300 block mb-2">badge</span>
+          <p class="font-bold text-sm text-on-surface">لا يوجد موظفون مسجلون حالياً</p>
+          <p class="text-xs text-secondary mt-1">اضغط "إضافة موظف جديد" لتسجيل أول موظف في المؤسسة ومزامنته مع سحابة Firebase.</p>
+        </div>
+      ` : employees.map(emp => `
         <div class="erp-card p-space-lg flex flex-col justify-between">
           <div>
             <div class="flex items-start gap-3 mb-3">
@@ -1817,7 +1915,15 @@ function renderAttendanceView() {
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-container/60 font-body-md text-on-surface" id="attendanceTableBody">
-            ${attendanceLog.map(log => `
+            ${attendanceLog.length === 0 ? `
+              <tr>
+                <td colspan="6" class="text-center py-10 text-secondary text-xs">
+                  <span class="material-symbols-outlined text-3xl text-slate-300 block mb-1">schedule</span>
+                  <p class="font-bold text-sm text-on-surface">لا توجد سجلات حضور وانصراف اليوم</p>
+                  <p class="text-xs text-secondary mt-1">اضغط "تسجيل حضور (Check-In)" أو قم بتشغيل "مزامنة أجهزة البصمة".</p>
+                </td>
+              </tr>
+            ` : attendanceLog.map(log => `
               <tr class="hover:bg-surface-container-low/60 transition-colors">
                 <td class="px-space-md py-space-sm font-mono-data text-xs text-primary font-bold">${log.id}</td>
                 <td class="px-space-md py-space-sm">
@@ -1861,7 +1967,13 @@ function renderLeaveManagementView() {
 
     <!-- Pending Requests Review Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
-      ${leaveRequests.map(req => {
+      ${leaveRequests.length === 0 ? `
+        <div class="col-span-full py-12 text-center text-secondary text-xs erp-card bg-surface-container-low/40">
+          <span class="material-symbols-outlined text-4xl text-slate-300 block mb-2">event_available</span>
+          <p class="font-bold text-sm text-on-surface">لا توجد طلبات إجازة معلقة أو مسجلة حالياً</p>
+          <p class="text-xs text-secondary mt-1">اضغط "تقديم طلب إجازة" لإنشاء وإرسال أول طلب إجازة.</p>
+        </div>
+      ` : leaveRequests.map(req => {
         const isPending = req.status.includes('مراجعة');
         const isApproved = req.status.includes('معتمدة');
         const badgeClass = isApproved ? 'badge-success' : (isPending ? 'badge-warning' : 'badge-danger');
@@ -1942,7 +2054,15 @@ function renderPayrollView() {
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-container/60 font-body-md text-on-surface">
-            ${employees.map(emp => {
+            ${employees.length === 0 ? `
+              <tr>
+                <td colspan="8" class="text-center py-10 text-secondary text-xs">
+                  <span class="material-symbols-outlined text-3xl text-slate-300 block mb-1">payments</span>
+                  <p class="font-bold text-sm text-on-surface">لا توجد بيانات موظفين لاحتساب مسير الرواتب</p>
+                  <p class="text-xs text-secondary mt-1">قم بإضافة وتعيين الموظفين أولاً في سجل الموظفين لتفعيل مسير الرواتب الآلي.</p>
+                </td>
+              </tr>
+            ` : employees.map(emp => {
               const absenceDeduction = emp.absences * (emp.baseSalary / 30);
               const netSalary = emp.baseSalary + emp.bonus - emp.deductions - absenceDeduction;
 

@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>المشتريات والموردين - نظام أبيكس ERP</title>
+  <link rel="icon" type="image/jpeg" href="assets/icon.jpg" />
   
   <!-- خطوط عربية حديثة: Cairo, Tajawal, IBM Plex Sans Arabic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,9 +87,7 @@
     <!-- رأس القائمة: الشعار والعنوان وزر الإغلاق في وضع الهاتف -->
     <div class="h-14 flex items-center justify-between px-space-md bg-inverse-surface border-b border-outline/20">
       <div class="flex items-center gap-space-sm">
-        <div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-lg shadow-sm">
-          أ
-        </div>
+        <img src="assets/icon.jpg" alt="Apex Logo" class="w-8 h-8 rounded-lg object-cover ring-1 ring-white/20 shadow-sm" />
         <div class="flex flex-col">
           <span class="font-bold text-base tracking-tight text-white leading-none">أبيكس ERP</span>
           <span class="text-[10px] text-slate-400 uppercase tracking-widest mt-1">سحابة المؤسسات v4.18</span>
@@ -257,9 +256,7 @@
 
         <!-- الشعار الصغير على الهواتف عند إخفاء القائمة -->
         <div class="lg:hidden flex items-center gap-1.5 shrink-0">
-          <div class="w-7 h-7 rounded-md bg-primary-container flex items-center justify-center text-on-primary font-bold text-xs shadow-xs">
-            أ
-          </div>
+          <img src="assets/icon.jpg" alt="Apex Logo" class="w-7 h-7 rounded-md object-cover ring-1 ring-outline-variant shadow-xs" />
           <span class="font-bold text-xs text-on-surface hidden xs:inline">أبيكس</span>
         </div>
 
@@ -321,13 +318,43 @@
 
         <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
 
-        <!-- بطاقة المستخدم الحالي -->
-        <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('hr', 'employees')">
-          <div class="flex flex-col text-left hidden lg:flex">
-            <span class="text-xs font-bold text-on-surface leading-tight">ماركوس ستيرلينغ</span>
-            <span class="text-[11px] text-secondary leading-tight">نائب الرئيس</span>
+        <!-- بطاقة المستخدم الحالي وقائمة تسجيل الخروج المربوطة بـ Firebase -->
+        <div class="relative">
+          <div class="flex items-center gap-2 cursor-pointer p-1 rounded-lg hover:bg-surface-container transition-colors" onclick="toggleUserDropdown(event)" id="headerUserCard" title="الملف الشخصي وخيارات الجلسة">
+            <div class="flex flex-col text-left hidden lg:flex">
+              <span id="headerUserName" class="text-xs font-bold text-on-surface leading-tight">مدير النظام</span>
+              <span id="headerUserRole" class="text-[10px] text-secondary leading-tight">مسؤول النظام المعتمد</span>
+            </div>
+            <img id="headerUserAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="User Profile" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-1 ring-outline-variant shrink-0" />
+            <span class="material-symbols-outlined text-[16px] text-secondary hidden sm:inline">expand_more</span>
           </div>
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Marcus Sterling" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-1 ring-outline-variant" />
+
+          <!-- قائمة المستخدم المنسدلة (User Dropdown) -->
+          <div id="userDropdownMenu" class="hidden absolute left-0 mt-2 w-64 rounded-xl bg-white shadow-2xl border border-outline-variant/40 py-2 z-50 text-xs text-on-surface animate-in fade-in zoom-in-95 duration-150">
+            <div class="px-4 py-2.5 border-b border-outline-variant/30">
+              <div id="dropdownUserName" class="font-bold text-sm text-on-surface">مدير النظام</div>
+              <div id="dropdownUserEmail" class="text-[11px] text-secondary truncate font-mono-data">admin@apex-cloud.com</div>
+              <div class="mt-1.5 flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full w-fit">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>متصل سحابياً مع Firebase</span>
+              </div>
+            </div>
+            <div class="py-1">
+              <a href="login.html" class="flex items-center gap-2 px-4 py-2 hover:bg-surface-container transition-colors text-secondary hover:text-on-surface">
+                <span class="material-symbols-outlined text-[18px]">switch_account</span>
+                <span>صفحة تسجيل الدخول / تبديل الحساب</span>
+              </a>
+              <button onclick="if(confirm('هل أنت متأكد من رغبتك في تفريغ ومسح كافة بيانات المجموعات السحابية في Firebase؟')) window.ERP_FIREBASE.clearAllCloudData()" class="w-full flex items-center gap-2 px-4 py-2 hover:bg-amber-50 text-amber-700 transition-colors text-right cursor-pointer">
+                <span class="material-symbols-outlined text-[18px] text-amber-600">delete_sweep</span>
+                <span>تفريغ وتصفير بيانات Firebase</span>
+              </button>
+            </div>
+            <div class="border-t border-outline-variant/30 my-1"></div>
+            <button onclick="window.ERP_FIREBASE.signOutUser()" class="w-full flex items-center gap-2 px-4 py-2 hover:bg-rose-50 text-rose-700 font-bold transition-colors text-right cursor-pointer">
+              <span class="material-symbols-outlined text-[18px] text-rose-600">logout</span>
+              <span>تسجيل الخروج من النظام</span>
+            </button>
+          </div>
         </div>
 
       </div>

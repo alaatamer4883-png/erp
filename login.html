@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول والتحقق - نظام أبيكس السحابي لإدارة المؤسسات</title>
+  <link rel="icon" type="image/jpeg" href="assets/icon.jpg" />
+
+  <!-- خطوط عربية حديثة: Cairo, Tajawal, IBM Plex Sans Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Material Symbols Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00288e",
+            "primary-container": "#1e40af",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#a8b8ff",
+            secondary: "#565e74",
+            surface: "#f8f9ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#444653",
+            "inverse-surface": "#213145",
+            outline: "#757684",
+            "outline-variant": "#c4c5d5",
+          },
+          fontFamily: {
+            sans: ['Cairo', 'Tajawal', 'IBM Plex Sans Arabic', 'sans-serif'],
+            'mono-data': ['Inter', 'Cairo', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      direction: rtl;
+    }
+    .bg-grid-pattern {
+      background-size: 30px 30px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 40, 142, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 40, 142, 0.05) 1px, transparent 1px);
+    }
+    .auth-glass-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 25px 50px -12px rgba(11, 28, 48, 0.15), 0 0 1px 1px rgba(0, 40, 142, 0.08);
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.15); }
+    }
+    .live-pulse {
+      animation: pulse-subtle 2s infinite ease-in-out;
+    }
+    /* تأثير الاهتزاز عند الخطأ في الرمز */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .shake-error {
+      animation: shake 0.4s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center p-3 sm:p-6 md:p-8 bg-grid-pattern antialiased selection:bg-primary-container selection:text-white">
+
+  <!-- الحاوية الرئيسية لتسجيل الدخول والتحقق -->
+  <div class="w-full max-w-5xl rounded-3xl overflow-hidden auth-glass-card border border-outline-variant/40 flex flex-col lg:flex-row shadow-2xl">
+    
+    <!-- الجانب الأيمن: واجهة التفاعل والنماذج -->
+    <div class="w-full lg:w-1/2 p-6 sm:p-10 flex flex-col justify-between bg-white">
+      
+      <div>
+        <!-- رأس البطاقة: شعار النظام الاحترافي وعنوان المنظومة -->
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-outline-variant/20">
+          <div class="flex items-center gap-3">
+            <img src="assets/icon.jpg" alt="Apex ERP Logo" class="w-12 h-12 rounded-xl object-cover shadow-md ring-2 ring-primary/20" />
+            <div>
+              <h1 class="text-xl font-extrabold text-on-surface leading-tight">أبيكس لإدارة المؤسسات</h1>
+              <p class="text-[11px] text-secondary">Apex Enterprise ERP • الإصدار v4.18</p>
+            </div>
+          </div>
+          <!-- شارة حالة Firebase -->
+          <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] font-bold text-emerald-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 live-pulse"></span>
+            <span>Firebase متصل</span>
+          </div>
+        </div>
+
+        <!-- تبويبات التبديل بين تسجيل الدخول وإنشاء الحساب -->
+        <div id="authTabsContainer" class="flex border-b border-outline-variant/40 mb-6">
+          <button id="tabSignInBtn" onclick="switchAuthTab('signin')" 
+                  class="flex-1 pb-3 text-xs sm:text-sm font-bold border-b-2 border-primary-container text-primary-container transition-all">
+            تسجيل الدخول
+          </button>
+          <button id="tabSignUpBtn" onclick="switchAuthTab('signup')" 
+                  class="flex-1 pb-3 text-xs sm:text-sm font-bold border-b-2 border-transparent text-secondary hover:text-on-surface transition-all">
+            إنشاء حساب وتفعيل (6 أرقام)
+          </button>
+        </div>
+
+        <!-- صندوق التنبيهات والرسائل التفاعلية -->
+        <div id="authAlertBox" class="hidden mb-4 p-3 rounded-xl text-xs font-semibold flex items-center gap-2"></div>
+
+        <!-- ============================================================== -->
+        <!-- 1. نموذج تسجيل الدخول (Sign In Form)                          -->
+        <!-- ============================================================== -->
+        <div id="signInSection">
+          <form id="signInForm" onsubmit="handleSignIn(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1.5" for="signInEmail">
+                البريد الإلكتروني المؤسسي
+              </label>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute right-3 text-[18px] text-secondary">mail</span>
+                <input type="email" id="signInEmail" required placeholder="name@company.com" dir="ltr"
+                       class="w-full h-11 pr-10 pl-3 rounded-xl bg-surface text-xs sm:text-sm text-on-surface border border-outline-variant/60 focus:border-primary-container focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 placeholder:text-right" />
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-bold text-on-surface" for="signInPassword">
+                  كلمة المرور
+                </label>
+                <button type="button" onclick="openResetModal()" class="text-[11px] text-primary-container hover:underline font-bold">
+                  نسيت كلمة المرور؟
+                </button>
+              </div>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute right-3 text-[18px] text-secondary">lock</span>
+                <input type="password" id="signInPassword" required placeholder="••••••••" dir="ltr"
+                       class="w-full h-11 pr-10 pl-10 rounded-xl bg-surface text-xs sm:text-sm text-on-surface border border-outline-variant/60 focus:border-primary-container focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 placeholder:text-right" />
+                <button type="button" onclick="togglePasswordVisibility('signInPassword', this)" class="absolute left-3 text-secondary hover:text-on-surface">
+                  <span class="material-symbols-outlined text-[18px]">visibility</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <label class="flex items-center gap-2 cursor-pointer text-xs text-secondary">
+                <input type="checkbox" id="rememberMe" checked class="rounded accent-primary-container" />
+                <span>تذكر تسجيل دخولي في هذا المتصفح</span>
+              </label>
+            </div>
+
+            <button type="submit" id="signInSubmitBtn" 
+                    class="w-full h-11 rounded-xl bg-primary-container text-white text-xs sm:text-sm font-bold hover:bg-primary transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">login</span>
+              <span>تسجيل الدخول إلى النظام</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- 2. نموذج إنشاء الحساب - الخطوة 1 (Sign Up Form - Step 1)        -->
+        <!-- ============================================================== -->
+        <div id="signUpSection" class="hidden">
+          <form id="signUpForm" onsubmit="handleRequestSignUpOTP(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1" for="signUpName">
+                الاسم الكامل
+              </label>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute right-3 text-[18px] text-secondary">person</span>
+                <input type="text" id="signUpName" required placeholder="مثال: ياسمين أحمد" 
+                       class="w-full h-10 pr-10 pl-3 rounded-xl bg-surface text-xs sm:text-sm text-on-surface border border-outline-variant/60 focus:border-primary-container focus:bg-white focus:outline-none transition-all placeholder:text-slate-400" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1" for="signUpEmail">
+                البريد الإلكتروني (الذي سيستقبل رمز التفعيل)
+              </label>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute right-3 text-[18px] text-secondary">mail</span>
+                <input type="email" id="signUpEmail" required placeholder="user@company.com" dir="ltr"
+                       class="w-full h-10 pr-10 pl-3 rounded-xl bg-surface text-xs sm:text-sm text-on-surface border border-outline-variant/60 focus:border-primary-container focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 placeholder:text-right" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1" for="signUpPassword">
+                كلمة المرور (6 خانات على الأقل)
+              </label>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute right-3 text-[18px] text-secondary">lock</span>
+                <input type="password" id="signUpPassword" required minlength="6" placeholder="••••••••" dir="ltr"
+                       class="w-full h-10 pr-10 pl-10 rounded-xl bg-surface text-xs sm:text-sm text-on-surface border border-outline-variant/60 focus:border-primary-container focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 placeholder:text-right" />
+                <button type="button" onclick="togglePasswordVisibility('signUpPassword', this)" class="absolute left-3 text-secondary hover:text-on-surface">
+                  <span class="material-symbols-outlined text-[18px]">visibility</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1" for="signUpConfirmPassword">
+                تأكيد كلمة المرور
+              </label>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute right-3 text-[18px] text-secondary">check_circle</span>
+                <input type="password" id="signUpConfirmPassword" required minlength="6" placeholder="••••••••" dir="ltr"
+                       class="w-full h-10 pr-10 pl-3 rounded-xl bg-surface text-xs sm:text-sm text-on-surface border border-outline-variant/60 focus:border-primary-container focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 placeholder:text-right" />
+              </div>
+            </div>
+
+            <button type="submit" id="requestOTPBtn" 
+                    class="w-full h-11 mt-1 rounded-xl bg-primary-container text-white text-xs sm:text-sm font-bold hover:bg-primary transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">mark_email_read</span>
+              <span>إرسال رمز التفعيل (6 أرقام) إلى الإيميل</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- 3. شاشة إدخال رمز التحقق المكون من 6 أرقام (6-Digit OTP Screen)   -->
+        <!-- ============================================================== -->
+        <div id="otpVerificationSection" class="hidden">
+          <div class="text-center mb-5">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-50 border border-blue-200 text-primary-container flex items-center justify-center mb-3 shadow-inner">
+              <span class="material-symbols-outlined text-3xl">verified_user</span>
+            </div>
+            <h3 class="font-extrabold text-base text-on-surface">تأكيد وتفعيل البريد الإلكتروني</h3>
+            <p class="text-xs text-secondary mt-1">
+              تم إرسال رمز تحقق مكوّن من 6 أرقام إلى:
+              <br/>
+              <span id="otpTargetEmailDisplay" class="font-mono-data font-bold text-primary-container text-xs inline-block mt-0.5" dir="ltr"></span>
+            </p>
+          </div>
+
+          <!-- بطاقة كشف الرمز التجريبي السريع -->
+          <div id="otpDemoBanner" class="mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-amber-600 text-[20px]">mark_email_unread</span>
+              <span>رمز التفعيل المرسل: <b id="otpDemoCodeValue" class="font-mono-data text-sm tracking-widest text-primary font-extrabold">------</b></span>
+            </div>
+            <button type="button" onclick="autoFillOTP()" class="px-2.5 py-1 rounded bg-amber-200/70 hover:bg-amber-300 text-amber-950 text-[11px] font-bold transition-colors cursor-pointer">
+              تعبئة تلقائية
+            </button>
+          </div>
+
+          <!-- مربعات إدخال الرمز المكون من 6 خانات -->
+          <div class="flex items-center justify-center gap-2 sm:gap-2.5 mb-5" dir="ltr" id="otpInputsContainer">
+            <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" class="otp-box w-11 h-13 sm:w-12 sm:h-14 text-center font-mono-data font-extrabold text-xl sm:text-2xl rounded-xl border border-outline-variant/60 bg-surface focus:border-primary-container focus:ring-2 focus:ring-primary/20 focus:bg-white outline-none transition-all shadow-xs" data-index="1" />
+            <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" class="otp-box w-11 h-13 sm:w-12 sm:h-14 text-center font-mono-data font-extrabold text-xl sm:text-2xl rounded-xl border border-outline-variant/60 bg-surface focus:border-primary-container focus:ring-2 focus:ring-primary/20 focus:bg-white outline-none transition-all shadow-xs" data-index="2" />
+            <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" class="otp-box w-11 h-13 sm:w-12 sm:h-14 text-center font-mono-data font-extrabold text-xl sm:text-2xl rounded-xl border border-outline-variant/60 bg-surface focus:border-primary-container focus:ring-2 focus:ring-primary/20 focus:bg-white outline-none transition-all shadow-xs" data-index="3" />
+            <span class="text-secondary font-bold text-lg">-</span>
+            <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" class="otp-box w-11 h-13 sm:w-12 sm:h-14 text-center font-mono-data font-extrabold text-xl sm:text-2xl rounded-xl border border-outline-variant/60 bg-surface focus:border-primary-container focus:ring-2 focus:ring-primary/20 focus:bg-white outline-none transition-all shadow-xs" data-index="4" />
+            <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" class="otp-box w-11 h-13 sm:w-12 sm:h-14 text-center font-mono-data font-extrabold text-xl sm:text-2xl rounded-xl border border-outline-variant/60 bg-surface focus:border-primary-container focus:ring-2 focus:ring-primary/20 focus:bg-white outline-none transition-all shadow-xs" data-index="5" />
+            <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" class="otp-box w-11 h-13 sm:w-12 sm:h-14 text-center font-mono-data font-extrabold text-xl sm:text-2xl rounded-xl border border-outline-variant/60 bg-surface focus:border-primary-container focus:ring-2 focus:ring-primary/20 focus:bg-white outline-none transition-all shadow-xs" data-index="6" />
+          </div>
+
+          <!-- زر التحقق والتفعيل النهائي -->
+          <button type="button" onclick="verifyAndActivateAccount()" id="verifyOTPBtn" 
+                  class="w-full h-11 rounded-xl bg-primary-container text-white text-xs sm:text-sm font-bold hover:bg-primary transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer mb-3">
+            <span class="material-symbols-outlined text-[18px]">task_alt</span>
+            <span>تأكيد الرمز وتفعيل الحساب فورياً</span>
+          </button>
+
+          <!-- عداد إعادة إرسال الرمز وزر التعديل -->
+          <div class="flex items-center justify-between text-xs text-secondary pt-1">
+            <button type="button" id="resendOtpBtn" onclick="resendOTP()" disabled class="text-secondary/50 font-bold cursor-not-allowed">
+              إعادة إرسال الرمز (<span id="resendTimerSpan" class="font-mono-data">59</span>ث)
+            </button>
+            <button type="button" onclick="cancelOTPAndBack()" class="text-primary-container hover:underline font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">arrow_back</span>
+              <span>تعديل الإيميل</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- فاصل الخيارات السريعة -->
+        <div id="quickOptionsSeparator" class="relative my-5 flex items-center justify-center">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant/30"></div></div>
+          <span class="relative px-3 bg-white text-[11px] text-secondary font-bold">أو المتابعة السريعة بواسطة</span>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- 4. أزرار الدخول السريع (Google & Demo)                          -->
+        <!-- ============================================================== -->
+        <div id="quickOptionsButtons" class="space-y-2">
+          
+          <!-- زر الدخول بحساب Google المعتمد -->
+          <button type="button" id="googleSignInBtn" onclick="handleGoogleSignIn()" 
+                  class="w-full h-11 rounded-xl border border-outline-variant/60 bg-white hover:bg-surface text-on-surface text-xs sm:text-sm font-bold flex items-center justify-center gap-3 transition-all shadow-xs hover:shadow-sm cursor-pointer">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>تسجيل الدخول بحساب Google</span>
+          </button>
+
+          <!-- زر بديل سريع عند قيود النطاق في Google Auth -->
+          <div id="googleFallbackContainer" class="hidden p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-xs">
+            <p class="text-blue-900 mb-2 leading-relaxed">
+              إذا كانت نافذة Google تطلب تفعيل النطاق في Firebase Console، يمكنك تجربة الدخول المباشر بالملف التجريبي لـ Google:
+            </p>
+            <button type="button" onclick="handleGoogleDemoLogin()" class="w-full py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold flex items-center justify-center gap-1.5 transition-colors">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>الدخول ببروفايل Google المعتمد (فوراً)</span>
+            </button>
+          </div>
+
+          <!-- زر الدخول السريع كمسؤول تجريبي -->
+          <button type="button" onclick="handleDemoLogin()" 
+                  class="w-full h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-[16px] text-primary">play_arrow</span>
+            <span>الدخول الفوري كمسؤول تجريبي (تخطي المصادقة)</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- تذييل البطاقة -->
+      <div class="mt-6 pt-4 border-t border-outline-variant/30 text-center text-[11px] text-secondary flex items-center justify-between">
+        <span class="font-mono-data">Firebase Auth: tast-b91f3</span>
+        <span class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px] text-emerald-600">lock</span>
+          <span>تشفير 256-Bit SSL</span>
+        </span>
+      </div>
+
+    </div>
+
+    <!-- الجانب الأيسر: واجهة استعراض اللوجو ومميزات السحابة -->
+    <div class="w-full lg:w-1/2 p-8 sm:p-12 bg-gradient-to-br from-primary via-primary-container to-slate-900 text-white flex flex-col justify-between hidden sm:flex relative overflow-hidden">
+      
+      <!-- خلفية زخرفية -->
+      <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10">
+        
+        <!-- اللوجو المؤسسي الكبير المولد -->
+        <div class="mb-6 flex items-center justify-center">
+          <img src="assets/logo.jpg" alt="Apex ERP Enterprise Logo" 
+               class="w-full max-w-xs sm:max-w-sm rounded-2xl shadow-2xl ring-1 ring-white/20 object-cover transform hover:scale-[1.02] transition-transform duration-300" />
+        </div>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold backdrop-blur-md mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>سحابة إدارة الموارد المتطورة v4.18</span>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-black tracking-tight leading-tight mb-3">
+          تحكم شامل بالمبيعات، المخازن، والمالية في منصة موحدة
+        </h2>
+        <p class="text-white/80 text-xs sm:text-sm leading-relaxed mb-6">
+          توثيق وتفعيل عبر كود البريد المكوّن من 6 أرقام، وتزامن سحابي فوري مع Google Cloud Firestore بدون أي تأخير.
+        </p>
+
+        <!-- كروت المزايا -->
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-emerald-400 text-[20px]">mark_email_read</span>
+            <div>
+              <div class="font-bold">تفعيل بريدي آمن</div>
+              <div class="text-[10px] text-white/70">رمز 6 أرقام لحظي</div>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-blue-300 text-[20px]">fingerprint</span>
+            <div>
+              <div class="font-bold">Google Auth</div>
+              <div class="text-[10px] text-white/70">دخول بنقرة واحدة</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- تذييل الجانب الأيسر -->
+      <div class="pt-6 border-t border-white/10 flex items-center justify-between text-xs text-white/70 relative z-10">
+        <span>أبيكس للحلول التقنية السحابية</span>
+        <span class="font-mono-data">Cloud Ready 2026</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- نافذة منبثقة لاستعادة كلمة المرور (Reset Password Modal) -->
+  <div id="resetPasswordModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 border border-outline-variant/30 animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">lock_reset</span>
+          </div>
+          <h3 class="font-bold text-sm text-on-surface">استعادة كلمة المرور</h3>
+        </div>
+        <button onclick="closeResetModal()" class="text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+      <p class="text-xs text-secondary mb-4 leading-relaxed">
+        أدخل بريدك الإلكتروني وسيقوم خادم Firebase بإرسال رابط آمن لإعادة تعيين كلمة المرور فوراً.
+      </p>
+      <form onsubmit="handlePasswordReset(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1">البريد الإلكتروني</label>
+          <input type="email" id="resetEmail" required placeholder="name@company.com" dir="ltr"
+                 class="w-full h-10 px-3 rounded-xl bg-surface text-xs text-on-surface border border-outline-variant/60 focus:border-primary-container focus:outline-none" />
+        </div>
+        <div class="flex items-center gap-2 justify-end pt-2">
+          <button type="button" onclick="closeResetModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-xs font-bold text-secondary hover:bg-slate-200 transition-colors">
+            إلغاء
+          </button>
+          <button type="submit" id="resetSubmitBtn" class="px-4 py-2 rounded-xl bg-primary-container text-white text-xs font-bold hover:bg-primary transition-colors shadow-xs">
+            إرسال رابط الاستعادة
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- تضمين كود Firebase وخدمات المصادقة كـ ES Module -->
+  <script type="module" src="js/firebase-service.js"></script>
+
+  <!-- الشيفرات التفاعلية للواجهة والـ OTP والـ Google Auth -->
+  <script>
+    // بيانات الجلسة المؤقتة لإنشاء الحساب
+    let pendingSignUpData = null;
+    let generatedOTPCode = null;
+    let resendTimerInterval = null;
+
+    // تبديل التبويبات بين تسجيل الدخول وإنشاء الحساب
+    function switchAuthTab(mode) {
+      const signInTab = document.getElementById('tabSignInBtn');
+      const signUpTab = document.getElementById('tabSignUpBtn');
+      const signInSec = document.getElementById('signInSection');
+      const signUpSec = document.getElementById('signUpSection');
+      const otpSec = document.getElementById('otpVerificationSection');
+      const quickSep = document.getElementById('quickOptionsSeparator');
+      const quickBtns = document.getElementById('quickOptionsButtons');
+      hideAlert();
+
+      // إخفاء قسم الـ OTP إذا كان مفتوحاً
+      otpSec.classList.add('hidden');
+      quickSep.classList.remove('hidden');
+      quickBtns.classList.remove('hidden');
+
+      if (mode === 'signin') {
+        signInTab.className = "flex-1 pb-3 text-xs sm:text-sm font-bold border-b-2 border-primary-container text-primary-container transition-all";
+        signUpTab.className = "flex-1 pb-3 text-xs sm:text-sm font-bold border-b-2 border-transparent text-secondary hover:text-on-surface transition-all";
+        signInSec.classList.remove('hidden');
+        signUpSec.classList.add('hidden');
+      } else {
+        signUpTab.className = "flex-1 pb-3 text-xs sm:text-sm font-bold border-b-2 border-primary-container text-primary-container transition-all";
+        signInTab.className = "flex-1 pb-3 text-xs sm:text-sm font-bold border-b-2 border-transparent text-secondary hover:text-on-surface transition-all";
+        signUpSec.classList.remove('hidden');
+        signInSec.classList.add('hidden');
+      }
+    }
+
+    // إظهار/إخفاء كلمة المرور
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    // عرض التنبيهات
+    function showAlert(message, type = 'error') {
+      const box = document.getElementById('authAlertBox');
+      box.classList.remove('hidden');
+      if (type === 'error') {
+        box.className = "mb-4 p-3 rounded-xl text-xs font-semibold flex items-center gap-2 bg-rose-50 text-rose-700 border border-rose-200 animate-in fade-in";
+        box.innerHTML = `<span class="material-symbols-outlined text-[18px]">error</span><span>${message}</span>`;
+      } else if (type === 'success') {
+        box.className = "mb-4 p-3 rounded-xl text-xs font-semibold flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 animate-in fade-in";
+        box.innerHTML = `<span class="material-symbols-outlined text-[18px]">check_circle</span><span>${message}</span>`;
+      } else if (type === 'info') {
+        box.className = "mb-4 p-3 rounded-xl text-xs font-semibold flex items-center gap-2 bg-blue-50 text-blue-700 border border-blue-200 animate-in fade-in";
+        box.innerHTML = `<span class="material-symbols-outlined text-[18px]">info</span><span>${message}</span>`;
+      }
+    }
+
+    function hideAlert() {
+      const box = document.getElementById('authAlertBox');
+      box.classList.add('hidden');
+    }
+
+    // ==============================================================
+    // 1. تسجيل الدخول العادي بالبريد وكلمة المرور
+    // ==============================================================
+    async function handleSignIn(e) {
+      e.preventDefault();
+      hideAlert();
+      const email = document.getElementById('signInEmail').value.trim();
+      const password = document.getElementById('signInPassword').value;
+      const btn = document.getElementById('signInSubmitBtn');
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>جاري التحقق والمصادقة...</span>`;
+
+      try {
+        if (!window.ERP_FIREBASE) {
+          throw new Error("خدمة Firebase قيد التهيئة، يرجى الانتظار ثانية واحدة.");
+        }
+        const res = await window.ERP_FIREBASE.signIn(email, password);
+        if (res.success) {
+          showAlert("تم تسجيل الدخول بنجاح! جاري تحويلك إلى لوحة التحكم...", "success");
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 800);
+        } else {
+          showAlert(res.error, "error");
+        }
+      } catch (err) {
+        showAlert(err.message || "حدث خطأ أثناء الاتصال.", "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">login</span><span>تسجيل الدخول إلى النظام</span>`;
+      }
+    }
+
+    // ==============================================================
+    // 2. طلب تفعيل الحساب وإرسال رمز الـ 6 أرقام (Step 1)
+    // ==============================================================
+    async function handleRequestSignUpOTP(e) {
+      e.preventDefault();
+      hideAlert();
+      const name = document.getElementById('signUpName').value.trim();
+      const email = document.getElementById('signUpEmail').value.trim();
+      const password = document.getElementById('signUpPassword').value;
+      const confirmPassword = document.getElementById('signUpConfirmPassword').value;
+      const btn = document.getElementById('requestOTPBtn');
+
+      if (password !== confirmPassword) {
+        showAlert("كلمتا المرور غير متطابقتين، يرجى التأكد وإعادة المحاولة.", "error");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>جاري إرسال رمز التفعيل...</span>`;
+
+      try {
+        if (!window.ERP_FIREBASE) {
+          throw new Error("خدمة Firebase قيد التحميل، يرجى المحاولة بعد لحظات.");
+        }
+
+        // حفظ البيانات مؤقتاً لحين التحقق من الـ 6 أرقام
+        pendingSignUpData = { name, email, password };
+
+        // توليد رمز التحقق المكون من 6 أرقام
+        const otpResult = await window.ERP_FIREBASE.createOTPVerification(email);
+        generatedOTPCode = otpResult.code;
+
+        // إظهار شاشة إدخال الرمز
+        showOTPVerificationScreen(email, generatedOTPCode);
+
+      } catch (err) {
+        showAlert(err.message || "حدث خطأ أثناء إنشاء رمز التفعيل.", "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">mark_email_read</span><span>إرسال رمز التفعيل (6 أرقام) إلى الإيميل</span>`;
+      }
+    }
+
+    // إظهار شاشة إدخال الـ 6 أرقام وتجهيز الحقول
+    function showOTPVerificationScreen(email, code) {
+      document.getElementById('signUpSection').classList.add('hidden');
+      document.getElementById('signInSection').classList.add('hidden');
+      document.getElementById('authTabsContainer').classList.add('hidden');
+      document.getElementById('quickOptionsSeparator').classList.add('hidden');
+      document.getElementById('quickOptionsButtons').classList.add('hidden');
+
+      const otpSec = document.getElementById('otpVerificationSection');
+      otpSec.classList.remove('hidden');
+
+      document.getElementById('otpTargetEmailDisplay').innerText = email;
+      document.getElementById('otpDemoCodeValue').innerText = code;
+
+      showAlert(`تم إرسال رمز التفعيل المكوّن من 6 أرقام بنجاح إلى ${email}`, "info");
+
+      // تفريغ وتجهيز الخانات الستة
+      const boxes = document.querySelectorAll('.otp-box');
+      boxes.forEach(b => b.value = '');
+      setTimeout(() => {
+        boxes[0]?.focus();
+      }, 100);
+
+      // بدء عداد الـ 60 ثانية لإعادة الإرسال
+      startResendCountdown(60);
+    }
+
+    // تعبئة الرمز تلقائياً للتجربة السريعة
+    function autoFillOTP() {
+      if (!generatedOTPCode) return;
+      const digits = generatedOTPCode.split('');
+      const boxes = document.querySelectorAll('.otp-box');
+      boxes.forEach((b, idx) => {
+        b.value = digits[idx] || '';
+      });
+      boxes[boxes.length - 1]?.focus();
+    }
+
+    // العودة لتعديل الإيميل
+    function cancelOTPAndBack() {
+      document.getElementById('otpVerificationSection').classList.add('hidden');
+      document.getElementById('authTabsContainer').classList.remove('hidden');
+      document.getElementById('quickOptionsSeparator').classList.remove('hidden');
+      document.getElementById('quickOptionsButtons').classList.remove('hidden');
+      document.getElementById('signUpSection').classList.remove('hidden');
+      hideAlert();
+      if (resendTimerInterval) clearInterval(resendTimerInterval);
+    }
+
+    // عداد إعادة الإرسال
+    function startResendCountdown(seconds) {
+      if (resendTimerInterval) clearInterval(resendTimerInterval);
+      const resendBtn = document.getElementById('resendOtpBtn');
+      const timerSpan = document.getElementById('resendTimerSpan');
+      let remaining = seconds;
+
+      resendBtn.disabled = true;
+      resendBtn.className = "text-secondary/50 font-bold cursor-not-allowed";
+
+      resendTimerInterval = setInterval(() => {
+        remaining--;
+        timerSpan.innerText = remaining;
+        if (remaining <= 0) {
+          clearInterval(resendTimerInterval);
+          resendBtn.disabled = false;
+          resendBtn.className = "text-primary-container hover:underline font-bold cursor-pointer";
+          resendBtn.innerText = "إعادة إرسال رمز جديد الآن";
+        }
+      }, 1000);
+    }
+
+    // إعادة إرسال الرمز
+    async function resendOTP() {
+      if (!pendingSignUpData) return;
+      const resendBtn = document.getElementById('resendOtpBtn');
+      resendBtn.innerText = "جاري الإرسال...";
+      resendBtn.disabled = true;
+
+      try {
+        const otpResult = await window.ERP_FIREBASE.createOTPVerification(pendingSignUpData.email);
+        generatedOTPCode = otpResult.code;
+        document.getElementById('otpDemoCodeValue').innerText = generatedOTPCode;
+        showAlert("تم إرسال رمز تحقق جديد إلى بريدك الإلكتروني.", "info");
+        startResendCountdown(60);
+      } catch (err) {
+        showAlert("تعذر إعادة إرسال الرمز، حاول مرة أخرى.", "error");
+      }
+    }
+
+    // ==============================================================
+    // 3. التحقق من الـ 6 أرقام وتفعيل الحساب (Step 2)
+    // ==============================================================
+    async function verifyAndActivateAccount() {
+      hideAlert();
+      const boxes = document.querySelectorAll('.otp-box');
+      let enteredCode = '';
+      boxes.forEach(b => enteredCode += b.value.trim());
+
+      if (enteredCode.length !== 6) {
+        showAlert("يرجى إدخال رمز التحقق كاملاً والمكون من 6 أرقام.", "error");
+        highlightOTPBoxes(true);
+        return;
+      }
+
+      const verifyBtn = document.getElementById('verifyOTPBtn');
+      verifyBtn.disabled = true;
+      verifyBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>جاري التحقق وتفعيل الحساب...</span>`;
+
+      try {
+        const email = pendingSignUpData?.email || document.getElementById('otpTargetEmailDisplay').innerText;
+        const res = await window.ERP_FIREBASE.verifyOTP(email, enteredCode);
+
+        if (res.success) {
+          highlightOTPBoxes(false);
+          showAlert("✅ تم التحقق من الرمز بنجاح! جاري اعتماد الحساب في Firebase...", "success");
+
+          // إتمام إنشاء الحساب في Firebase Authentication
+          if (pendingSignUpData) {
+            const signupRes = await window.ERP_FIREBASE.signUp(
+              pendingSignUpData.email,
+              pendingSignUpData.password,
+              pendingSignUpData.name
+            );
+
+            if (signupRes.success) {
+              showAlert("🎉 تم تفعيل الحساب والدخول بنجاح! جاري التوجيه إلى النظام...", "success");
+              setTimeout(() => {
+                window.location.href = 'index.html';
+              }, 800);
+            } else {
+              // إذا كان الحساب مسجل بالفعل في Auth
+              if (signupRes.rawError?.code === 'auth/email-already-in-use') {
+                showAlert("الحساب موثق ومسجل بالفعل. جاري الدخول...", "success");
+                setTimeout(() => {
+                  window.location.href = 'index.html';
+                }, 800);
+              } else {
+                showAlert(signupRes.error, "error");
+                verifyBtn.disabled = false;
+                verifyBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">task_alt</span><span>تأكيد الرمز وتفعيل الحساب فورياً</span>`;
+              }
+            }
+          } else {
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 600);
+          }
+        } else {
+          highlightOTPBoxes(true);
+          showAlert(res.error || "رمز التحقق غير صحيح، يرجى إعادة المحاولة.", "error");
+          verifyBtn.disabled = false;
+          verifyBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">task_alt</span><span>تأكيد الرمز وتفعيل الحساب فورياً</span>`;
+        }
+      } catch (err) {
+        showAlert(err.message || "حدث خطأ أثناء فحص الرمز.", "error");
+        verifyBtn.disabled = false;
+        verifyBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">task_alt</span><span>تأكيد الرمز وتفعيل الحساب فورياً</span>`;
+      }
+    }
+
+    // تلوين الخانات بالأحمر وهزها عند الخطأ
+    function highlightOTPBoxes(isError) {
+      const container = document.getElementById('otpInputsContainer');
+      const boxes = document.querySelectorAll('.otp-box');
+      if (isError) {
+        container.classList.add('shake-error');
+        boxes.forEach(b => {
+          b.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-700');
+        });
+        setTimeout(() => container.classList.remove('shake-error'), 500);
+      } else {
+        boxes.forEach(b => {
+          b.classList.remove('border-rose-500', 'bg-rose-50', 'text-rose-700');
+          b.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-800');
+        });
+      }
+    }
+
+    // ضبط التنقل التلقائي بين خانات الـ OTP ولصق الأرقام
+    document.addEventListener('DOMContentLoaded', () => {
+      const boxes = document.querySelectorAll('.otp-box');
+
+      boxes.forEach((box, index) => {
+        // عند الكتابة: الانتقال التلقائي للخانة التالية
+        box.addEventListener('input', (e) => {
+          const val = e.target.value;
+          // إزالة أي رموز غير الأرقام
+          if (!/^\d*$/.test(val)) {
+            e.target.value = '';
+            return;
+          }
+          if (val.length === 1 && index < boxes.length - 1) {
+            boxes[index + 1].focus();
+          }
+          // إذا تمت تعبئة جميع الخانات الستة، يمكن التحقق تلقائياً
+          let fullCode = '';
+          boxes.forEach(b => fullCode += b.value.trim());
+          if (fullCode.length === 6) {
+            verifyAndActivateAccount();
+          }
+        });
+
+        // عند الضغط على Backspace: الرجوع للخانة السابقة
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && index > 0) {
+            boxes[index - 1].focus();
+          }
+        });
+
+        // دعم لصق الرمز كاملاً في أي خانة (Paste Handler)
+        box.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasteData = (e.clipboardData || window.clipboardData).getData('text').trim();
+          const digits = pasteData.replace(/\D/g, '').slice(0, 6).split('');
+          if (digits.length > 0) {
+            boxes.forEach((b, idx) => {
+              b.value = digits[idx] || '';
+            });
+            const lastFilledIdx = Math.min(digits.length, boxes.length) - 1;
+            boxes[lastFilledIdx]?.focus();
+            if (digits.length === 6) {
+              verifyAndActivateAccount();
+            }
+          }
+        });
+      });
+    });
+
+    // ==============================================================
+    // 4. تسجيل الدخول عبر Google
+    // ==============================================================
+    async function handleGoogleSignIn() {
+      hideAlert();
+      const googleBtn = document.getElementById('googleSignInBtn');
+      googleBtn.disabled = true;
+      googleBtn.innerHTML = `
+        <span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+        <span>جاري فتح مصادقة Google...</span>
+      `;
+
+      try {
+        if (!window.ERP_FIREBASE) throw new Error("خدمة Firebase غير مهيأة بعد.");
+        const res = await window.ERP_FIREBASE.signInWithGoogle();
+        if (res.success) {
+          showAlert("تم تسجيل الدخول بحساب Google بنجاح! جاري التوجيه...", "success");
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 600);
+        } else {
+          showAlert(res.error, "error");
+          // إذا كان الخطأ متعلقاً بنطاق localhost غير مصرح به في Firebase Console
+          if (res.rawError?.code === 'auth/unauthorized-domain' || res.rawError?.code === 'auth/popup-blocked') {
+            document.getElementById('googleFallbackContainer')?.classList.remove('hidden');
+          }
+        }
+      } catch (err) {
+        showAlert(err.message || "فشل تسجيل الدخول عبر Google.", "error");
+      } finally {
+        googleBtn.disabled = false;
+        googleBtn.innerHTML = `
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>تسجيل الدخول بحساب Google</span>
+        `;
+      }
+    }
+
+    // الدخول ببروفايل Google التجريبي الفوري
+    function handleGoogleDemoLogin() {
+      if (window.ERP_FIREBASE?.loginAsGoogleDemo) {
+        window.ERP_FIREBASE.loginAsGoogleDemo("ياسمين أحمد (حساب Google)", "yasmin.ahmed@gmail.com");
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // الدخول كمسؤول تجريبي
+    function handleDemoLogin() {
+      if (window.ERP_FIREBASE?.loginAsDemoUser) {
+        window.ERP_FIREBASE.loginAsDemoUser("مسؤول النظام المعتمد", "admin@apex-enterprise.com");
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // استعادة كلمة المرور
+    function openResetModal() {
+      document.getElementById('resetPasswordModal').classList.remove('hidden');
+    }
+
+    function closeResetModal() {
+      document.getElementById('resetPasswordModal').classList.add('hidden');
+    }
+
+    async function handlePasswordReset(e) {
+      e.preventDefault();
+      const email = document.getElementById('resetEmail').value.trim();
+      const btn = document.getElementById('resetSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = "جاري الإرسال...";
+
+      try {
+        const res = await window.ERP_FIREBASE.sendPasswordReset(email);
+        if (res.success) {
+          closeResetModal();
+          showAlert(res.message, "success");
+        } else {
+          alert(res.error);
+        }
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "إرسال رابط الاستعادة";
+      }
+    }
+  </script>
+
+</body>
+</html>
