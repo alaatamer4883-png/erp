@@ -593,6 +593,9 @@ window.ERP_FIREBASE = {
     const products = data.inventory.products || [];
     data.inventory.kpis.totalSKUs = products.length;
     data.inventory.kpis.totalInventoryValue = products.reduce((sum, p) => sum + ((Number(p.price) || 0) * (Number(p.qty) || 0)), 0);
+    const critical = products.filter(p => (Number(p.qty) || 0) <= (Number(p.minLevel) || 0) || (p.status && p.status.includes('حرج')));
+    data.inventory.kpis.criticalBreachItems = critical.length;
+    data.inventory.kpis.inStockPercentage = products.length ? Math.round(((products.length - critical.length) / products.length) * 100) : 100;
 
     // المبيعات
     const orders = data.sales.orders || [];
@@ -632,8 +635,31 @@ window.ERP_FIREBASE = {
     if (!db) return;
     try {
       await setDoc(doc(db, this.collections.products, product.code), product);
+      console.log(`Saved product ${product.code} to Firestore.`);
     } catch (e) {
       console.warn("Failed saving product:", e);
+    }
+  },
+
+  async updateProductStock(code, newQuantity, newStatus) {
+    if (!db) return;
+    try {
+      const updates = { qty: Number(newQuantity) };
+      if (newStatus) updates.status = newStatus;
+      await updateDoc(doc(db, this.collections.products, code), updates);
+      console.log(`Updated product ${code} stock to ${newQuantity} in Firestore.`);
+    } catch (e) {
+      console.warn("Failed updating product stock:", e);
+    }
+  },
+
+  async saveStockMovement(movement) {
+    if (!db) return;
+    try {
+      await setDoc(doc(db, this.collections.stockMovements, movement.id), movement);
+      console.log(`Saved stock movement ${movement.id} to Firestore.`);
+    } catch (e) {
+      console.warn("Failed saving stock movement:", e);
     }
   },
 
