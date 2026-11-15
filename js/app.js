@@ -985,14 +985,22 @@ function renderProductsView() {
         <h2 class="font-headline-lg font-bold text-on-surface">إدارة المنتجات ومراقبة المخزون</h2>
         <p class="text-xs text-secondary">دليل الأصناف الرئيسي، تخصيص المستودعات، والكميات المتاحة لحظياً في مراكز التوزيع.</p>
       </div>
-      <div class="flex items-center gap-2">
-        <button onclick="exportTableToCSV('products')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-surface-container-lowest text-on-surface font-semibold text-xs border border-outline-variant/40 hover:bg-surface-container-low shadow-sm">
-          <span class="material-symbols-outlined text-[18px]">download</span>
-          <span>تصدير دليل الأصناف</span>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="openNewProductModal()" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary transition-all">
+          <span class="material-symbols-outlined text-[18px]">add_box</span>
+          <span>إضافة صنف جديد</span>
+        </button>
+        <button onclick="openStockInModal()" class="flex items-center gap-1.5 h-9 px-3 rounded bg-emerald-600 text-white font-bold text-xs shadow-sm hover:bg-emerald-700 transition-all">
+          <span class="material-symbols-outlined text-[18px]">move_to_inbox</span>
+          <span>توريد مخزون (Stock In)</span>
         </button>
         <button onclick="navigateTo('inventory', 'alerts')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-amber-500 text-white font-bold text-xs shadow-sm hover:bg-amber-600">
           <span class="material-symbols-outlined text-[18px]">warning</span>
           <span>تنبيهات إعادة الطلب (${kpis.criticalBreachItems})</span>
+        </button>
+        <button onclick="exportTableToCSV('products')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-surface-container-lowest text-on-surface font-semibold text-xs border border-outline-variant/40 hover:bg-surface-container-low shadow-sm">
+          <span class="material-symbols-outlined text-[18px]">download</span>
+          <span>تصدير دليل الأصناف</span>
         </button>
       </div>
     </div>
@@ -1058,7 +1066,27 @@ function renderProductsView() {
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-container/60 font-body-md text-on-surface">
-            ${rows.length ? rows : `<tr><td colspan="7" class="text-center py-12 text-secondary"><div class="flex flex-col items-center justify-center gap-2"><span class="material-symbols-outlined text-4xl text-slate-300">inventory_2</span><p class="font-bold text-sm text-on-surface">لا توجد منتجات مسجلة بالمخزون حالياً</p><p class="text-xs text-secondary">ستظهر المنتجات هنا فور إضافتها إلى Firebase.</p></div></td></tr>`}
+            ${rows.length ? rows : `
+              <tr>
+                <td colspan="7" class="text-center py-12 text-secondary">
+                  <div class="flex flex-col items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-4xl text-slate-300">inventory_2</span>
+                    <p class="font-bold text-sm text-on-surface">لا توجد منتجات مسجلة بالمخزون حالياً</p>
+                    <p class="text-xs text-secondary">ابدأ بإضافة أول صنف للمخزون أو تسجيل حركة توريد جديدة.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                      <button onclick="openNewProductModal()" class="flex items-center gap-1.5 px-4 py-2 rounded bg-primary-container text-white text-xs font-bold hover:bg-primary shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-[18px]">add_box</span>
+                        <span>إضافة صنف جديد الآن</span>
+                      </button>
+                      <button onclick="openStockInModal()" class="flex items-center gap-1.5 px-4 py-2 rounded bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-[18px]">move_to_inbox</span>
+                        <span>توريد مخزون</span>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            `}
           </tbody>
         </table>
       </div>
@@ -1089,9 +1117,9 @@ function renderReorderAlertsView() {
         </h2>
         <p class="text-xs text-secondary">أصناف بلغت مستويات مخزون حرجة دون حاجز الأمان التشغيلي مع تمييز بصري بالألوان (أصفر / أحمر).</p>
       </div>
-      <button onclick="showToast('تم إنشاء حزمة أوامر شراء تعويضية لجميع الأصناف الحرجة.')" class="flex items-center gap-1.5 h-9 px-4 rounded bg-rose-600 text-white font-bold text-xs shadow-sm hover:bg-rose-700">
+      <button onclick="executeBulkReorder()" class="flex items-center gap-1.5 h-9 px-4 rounded bg-rose-600 text-white font-bold text-xs shadow-sm hover:bg-rose-700 transition-all">
         <span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
-        <span>إصدار أوامر توريد مجمعة</span>
+        <span>إصدار أوامر توريد وشراء تعويضية مجمعة</span>
       </button>
     </div>
 
@@ -1160,10 +1188,16 @@ function renderStockMovementView() {
         <h2 class="font-headline-lg font-bold text-on-surface">سجل حركات وتدقيق المخزون (Audit Trail)</h2>
         <p class="text-xs text-secondary">سجل مفصل وتاريخي للحركات الواردة (Receiving) والصادرة (Issuing) مع التوقيت والمسؤول المعتمد.</p>
       </div>
-      <button onclick="exportTableToCSV('movements')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-surface-container-lowest text-on-surface font-semibold text-xs border border-outline-variant/40 hover:bg-surface-container-low shadow-sm">
-        <span class="material-symbols-outlined text-[18px]">download</span>
-        <span>تحميل سجل التدقيق</span>
-      </button>
+      <div class="flex items-center gap-2">
+        <button onclick="openStockInModal()" class="flex items-center gap-1.5 h-9 px-3 rounded bg-emerald-600 text-white font-bold text-xs shadow-sm hover:bg-emerald-700 transition-all">
+          <span class="material-symbols-outlined text-[18px]">move_to_inbox</span>
+          <span>تسجيل حركة توريد مخزني</span>
+        </button>
+        <button onclick="exportTableToCSV('movements')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-surface-container-lowest text-on-surface font-semibold text-xs border border-outline-variant/40 hover:bg-surface-container-low shadow-sm">
+          <span class="material-symbols-outlined text-[18px]">download</span>
+          <span>تحميل سجل التدقيق</span>
+        </button>
+      </div>
     </div>
 
     <!-- Movement Audit Table -->
