@@ -1278,7 +1278,7 @@ function renderCustomersView() {
         <h2 class="font-headline-lg font-bold text-on-surface">دليل وحسابات العملاء</h2>
         <p class="text-xs text-secondary">قاعدة بيانات العملاء المعتمدين، جهات الاتصال، العناوين، وإجمالي المبيعات المحققة.</p>
       </div>
-      <button onclick="showToast('تم فتح نافذة تسجيل عميل جديد.')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary">
+      <button onclick="openNewCustomerModal()" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary transition-all">
         <span class="material-symbols-outlined text-[18px]">person_add</span>
         <span>تسجيل عميل جديد</span>
       </button>
@@ -1329,6 +1329,10 @@ function renderCustomersView() {
           <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">group</span>
           <p class="font-bold text-sm text-on-surface">دليل العملاء فارغ حالياً</p>
           <p class="text-xs text-secondary mt-1">ابدأ بإضافة أول عميل معتمد في النظام ليتم ربطه بالأوامر والفواتير السحابية.</p>
+          <button onclick="openNewCustomerModal()" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded bg-primary-container text-white text-xs font-bold hover:bg-primary shadow-sm transition-all">
+            <span class="material-symbols-outlined text-[18px]">person_add</span>
+            <span>تسجيل أول عميل الآن</span>
+          </button>
         </div>
       `}
     </div>
@@ -1561,7 +1565,7 @@ function renderSuppliersView() {
         <h2 class="font-headline-lg font-bold text-on-surface">دليل الموردين المعتمدين</h2>
         <p class="text-xs text-secondary">قاعدة بيانات الموردين المعتمدين، تقييمات الجودة والالتزام، وشروط السداد التعاقدية.</p>
       </div>
-      <button onclick="showToast('تم فتح نافذة تسجيل مورد معتمد جديد.')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary">
+      <button onclick="openNewSupplierModal()" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary transition-all">
         <span class="material-symbols-outlined text-[18px]">add_business</span>
         <span>تسجيل مورد جديد</span>
       </button>
@@ -1614,7 +1618,11 @@ function renderSuppliersView() {
         <div class="col-span-full p-12 text-center text-secondary erp-card">
           <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">store</span>
           <p class="font-bold text-sm text-on-surface">دليل الموردين فارغ حالياً</p>
-          <p class="text-xs text-secondary mt-1">ابدأ بتسجيل أول مورد معتمد في النظام.</p>
+          <p class="text-xs text-secondary mt-1">ابدأ بتسجيل أول مورد معتمد في النظام لإرسال أوامر الشراء ومقارنة العروض.</p>
+          <button onclick="openNewSupplierModal()" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded bg-primary-container text-white text-xs font-bold hover:bg-primary shadow-sm transition-all">
+            <span class="material-symbols-outlined text-[18px]">add_business</span>
+            <span>تسجيل أول مورد الآن</span>
+          </button>
         </div>
       `}
     </div>
@@ -1733,7 +1741,7 @@ function renderPurchaseOrdersView() {
         <h2 class="font-headline-lg font-bold text-on-surface">أوامر الشراء والحسابات الدائنة (PO & AP)</h2>
         <p class="text-xs text-secondary">أوامر الشراء الرسمية الصادرة للموردين، التحقق من المطابقة الثلاثية، ومتابعة الاستحقاقات الدائنة.</p>
       </div>
-      <button onclick="showToast('تم فتح نافذة إصدار أمر شراء رسمي جديد.')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary">
+      <button onclick="openCreatePOModal()" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary transition-all">
         <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
         <span>إصدار أمر شراء جديد</span>
       </button>
@@ -1761,6 +1769,10 @@ function renderPurchaseOrdersView() {
                   <span class="material-symbols-outlined text-3xl text-slate-300 block mb-1">shopping_cart_checkout</span>
                   <p class="font-bold text-sm text-on-surface">لا توجد أوامر شراء مسجلة حالياً</p>
                   <p class="text-xs text-secondary mt-1">اضغط "إصدار أمر شراء جديد" لإرسال طلب إلى أحد الموردين المعتمدين.</p>
+                  <button onclick="openCreatePOModal()" class="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-white text-xs font-bold hover:bg-primary shadow-sm transition-all">
+                    <span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+                    <span>إصدار أول أمر شراء الآن</span>
+                  </button>
                 </td>
               </tr>
             ` : purchaseOrders.map(po => `
@@ -1807,7 +1819,7 @@ function renderEmployeesView() {
         <h2 class="font-headline-lg font-bold text-on-surface">سجل وملفات الموظفين (Employee Profiles)</h2>
         <p class="text-xs text-secondary">دليل الموظفين الإداري، المسميات الوظيفية، الرواتب الأساسية، والحالة اليومية المحدثة.</p>
       </div>
-      <button onclick="showToast('تم فتح نموذج تعيين موظف جديد.')" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary">
+      <button onclick="openNewEmployeeModal()" class="flex items-center gap-1.5 h-9 px-3 rounded bg-primary-container text-on-primary font-bold text-xs shadow-sm hover:bg-primary transition-all">
         <span class="material-symbols-outlined text-[18px]">person_add</span>
         <span>إضافة موظف جديد</span>
       </button>
@@ -1844,6 +1856,10 @@ function renderEmployeesView() {
           <span class="material-symbols-outlined text-4xl text-slate-300 block mb-2">badge</span>
           <p class="font-bold text-sm text-on-surface">لا يوجد موظفون مسجلون حالياً</p>
           <p class="text-xs text-secondary mt-1">اضغط "إضافة موظف جديد" لتسجيل أول موظف في المؤسسة ومزامنته مع سحابة Firebase.</p>
+          <button onclick="openNewEmployeeModal()" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded bg-primary-container text-white text-xs font-bold hover:bg-primary shadow-sm transition-all">
+            <span class="material-symbols-outlined text-[18px]">person_add</span>
+            <span>إضافة أول موظف الآن</span>
+          </button>
         </div>
       ` : employees.map(emp => `
         <div class="erp-card p-space-lg flex flex-col justify-between">
@@ -2006,6 +2022,10 @@ function renderLeaveManagementView() {
           <span class="material-symbols-outlined text-4xl text-slate-300 block mb-2">event_available</span>
           <p class="font-bold text-sm text-on-surface">لا توجد طلبات إجازة معلقة أو مسجلة حالياً</p>
           <p class="text-xs text-secondary mt-1">اضغط "تقديم طلب إجازة" لإنشاء وإرسال أول طلب إجازة.</p>
+          <button onclick="openLeaveRequestModal()" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded bg-primary-container text-white text-xs font-bold hover:bg-primary shadow-sm transition-all">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            <span>تقديم أول طلب إجازة الآن</span>
+          </button>
         </div>
       ` : leaveRequests.map(req => {
         const isPending = req.status.includes('مراجعة');
@@ -2282,22 +2302,82 @@ function recalculateSalesOrder() {
 
 function submitSalesOrder() {
   const custSelect = document.getElementById('soCustomerSelect');
-  const custName = custSelect.options[custSelect.selectedIndex].text;
+  let custName = "عميل نقدي معتمد";
+  let custId = "CUST-DEFAULT";
+
+  if (custSelect && custSelect.selectedIndex >= 0 && custSelect.options[custSelect.selectedIndex]) {
+    const rawText = custSelect.options[custSelect.selectedIndex].text;
+    if (custSelect.value) {
+      custId = custSelect.value;
+      custName = rawText.split('(')[0].trim();
+    }
+  }
+
   const totalText = document.getElementById('summaryTotal')?.innerText || "$0";
-  const totalVal = parseFloat(totalText.replace(/[^0-9.-]+/g, '')) || 3500;
+  const totalVal = parseFloat(totalText.replace(/[^0-9.-]+/g, '')) || 0;
+
+  // فحص واستخراج بنود المنتجات وخصمها من المخزون فعلياً
+  const rows = document.querySelectorAll('.order-item-row');
+  let itemsSummaryList = [];
+
+  rows.forEach(r => {
+    const select = r.querySelector('.item-product-select');
+    const qtyInput = r.querySelector('.item-qty-input');
+    const prodCode = select?.value;
+    const qty = parseInt(qtyInput?.value || 1, 10);
+    const prodName = select?.options[select?.selectedIndex]?.text?.split('-')[0]?.trim() || "صنف مبيعات";
+
+    if (prodCode && qty > 0) {
+      itemsSummaryList.push(`${qty} × ${prodName}`);
+
+      // خصم الكمية من رصيد المخزون فعلياً
+      const inventoryProd = ERP_STATE.data.inventory.products.find(p => p.code === prodCode);
+      if (inventoryProd) {
+        inventoryProd.qty = Math.max(0, (Number(inventoryProd.qty) || 0) - qty);
+        if (inventoryProd.qty === 0) {
+          inventoryProd.status = "خرق حرج";
+        } else if (inventoryProd.qty <= (Number(inventoryProd.minLevel) || 0)) {
+          inventoryProd.status = "مخزون منخفض";
+        }
+
+        // تسجيل حركة صادر مخزني
+        const mov = {
+          id: `MOV-${Math.floor(1000 + Math.random() * 9000)}`,
+          timestamp: new Date().toLocaleString('ar-EG'),
+          type: "صادر صرف (Issuing)",
+          item: inventoryProd.name,
+          code: inventoryProd.code,
+          qty: qty,
+          reference: `أمر بيع للعميل: ${custName}`,
+          user: ERP_STATE.currentUser?.name || "مندوب المبيعات",
+          notes: "صرف وتسليم بضاعة مباعة للعميل"
+        };
+        ERP_STATE.data.inventory.stockMovements.unshift(mov);
+        if (window.ERP_FIREBASE?.saveStockMovement) {
+          window.ERP_FIREBASE.saveStockMovement(mov);
+        }
+        if (window.ERP_FIREBASE?.updateProductStock) {
+          window.ERP_FIREBASE.updateProductStock(inventoryProd.code, inventoryProd.qty, inventoryProd.status);
+        }
+      }
+    }
+  });
+
+  const repInput = document.getElementById('soRepInput');
+  const repName = repInput?.value || ERP_STATE.currentUser?.name || "مسؤول المبيعات";
+  const notes = document.getElementById('soNotes')?.value || "أمر بيع معتمد";
 
   const newOrder = {
     id: `SO-2025-${Math.floor(1000 + Math.random() * 9000)}`,
-    customerId: custSelect.value,
-    customerName: custName.split('(')[0].trim(),
-    itemsSummary: "باقة مخصصة من المنتجات الهيدروليكية المعتمدة",
-    amount: totalVal,
+    customerId: custId,
+    customerName: custName,
+    itemsSummary: itemsSummaryList.length ? itemsSummaryList.join('، ') : "أمر بيع منتجات معتمدة",
+    amount: totalVal || 1200,
     date: new Date().toISOString().split('T')[0],
     stage: "new",
     priority: "عادي",
-    discountType: "percent",
-    discountValue: 5,
-    rep: "ماركوس ستيرلينغ"
+    rep: repName,
+    notes: notes
   };
 
   ERP_STATE.data.sales.orders.unshift(newOrder);
@@ -2307,7 +2387,8 @@ function submitSalesOrder() {
     window.ERP_FIREBASE.saveSalesOrder(newOrder);
   }
 
-  showToast(`تم إدراج أمر البيع ${newOrder.id} وحفظه سحابياً في Firebase!`);
+  recalculateInventoryKPIs();
+  showToast(`تم إدراج أمر البيع ${newOrder.id} وحفظه سحابياً وتحديث رصيد المخزن بنجاح!`);
   navigateTo('sales', 'pipeline');
 }
 
@@ -2350,10 +2431,10 @@ function acceptQuotationAndGeneratePO(vendorName, amount) {
 }
 
 function reorderProduct(sku) {
-  const prod = ERP_STATE.data.inventory.products.find(p => p.code === sku);
-  if (prod) {
-    showToast(`تم تحويل طلب توريد عاجل للصنف: ${prod.name}.`);
-    navigateTo('purchasing', 'quotes');
+  if (window.openReorderProductModal) {
+    window.openReorderProductModal(sku);
+  } else {
+    showToast(`تم فتح نافذة طلب توريد الصنف: ${sku}`);
   }
 }
 

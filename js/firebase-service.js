@@ -712,8 +712,39 @@ window.ERP_FIREBASE = {
     if (!db) return;
     try {
       await setDoc(doc(db, this.collections.purchaseOrders, po.id), po);
+      console.log(`Saved purchase order ${po.id} to Firestore.`);
     } catch (e) {
       console.warn("Failed saving PO:", e);
+    }
+  },
+
+  async saveSupplier(supplier) {
+    if (!db) return;
+    try {
+      await setDoc(doc(db, this.collections.suppliers, supplier.id), supplier);
+      console.log(`Saved supplier ${supplier.id} to Firestore.`);
+    } catch (e) {
+      console.warn("Failed saving supplier:", e);
+    }
+  },
+
+  async saveEmployee(employee) {
+    if (!db) return;
+    try {
+      await setDoc(doc(db, this.collections.employees, employee.id), employee);
+      console.log(`Saved employee ${employee.id} to Firestore.`);
+    } catch (e) {
+      console.warn("Failed saving employee:", e);
+    }
+  },
+
+  async saveLeaveRequest(request) {
+    if (!db) return;
+    try {
+      await setDoc(doc(db, this.collections.leaveRequests, request.id), request);
+      console.log(`Saved leave request ${request.id} to Firestore.`);
+    } catch (e) {
+      console.warn("Failed saving leave request:", e);
     }
   },
 
